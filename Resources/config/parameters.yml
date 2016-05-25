@@ -1,0 +1,5 @@
+parameters:
+    prime.bdx.default.weather_api_key: ~
+    prime.bdx.default.weather_url: 'http://api.openweathermap.org/data/2.5/weather?lat={$latitude}&lon={$longitude}&units={$units}&lang=$language&APPID={$apiKey}'
+    prime.bdx.default.weather_image_url: 'http://api.openweathermap.org/img/w/'
+    prime.bdx.default.image_location: ~

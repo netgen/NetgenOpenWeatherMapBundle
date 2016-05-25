@@ -1,0 +1,10 @@
+netgen_open_weather_get_weather:
+    path:     /netgen/openweather/weather/{latitude}/{longitude}/{units}/{language}
+    defaults: { _controller: 'netgen_open_weather_map.weather_controller:getWeatherAction', units: 'metric', language: 'en' }
+    methods:
+        - GET
+    requirements:
+        latitude: \d+
+        longitude: \d+
+        units: \s+
+        language: \s+

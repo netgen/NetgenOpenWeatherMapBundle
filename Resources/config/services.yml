@@ -1,0 +1,16 @@
+parameters:
+
+services:
+    netgen_open_weather_map.weather_controller:
+        class: Netgen\Bundle\OpenWeatherMapBundle\Controller\WeatherController
+        arguments:
+            - '@netgen_open_weather_map.weather'
+
+    netgen_open_weather_map.weather:
+        class: Netgen\Bundle\OpenWeatherMapBundle\Service\Weather
+        arguments:
+            - $weather_api_key;netgen_open_weather_map$
+            - $weather_url;netgen_open_weather_map$
+            - $weather_image_url;netgen_open_weather_map$
+            - '@stash'
+            - $image_location;netgen_open_weather_map$
