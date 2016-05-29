@@ -82,7 +82,7 @@ class WeatherController extends Controller
      */
     public function byZipCode($zipCode, $countryCode = '')
     {
-        $data = $this->weather->fetchWeatherDataByZipId($zipCode, $countryCode);
+        $data = $this->weather->fetchWeatherDataByZipCode($zipCode, $countryCode);
 
         return new Response($data);
     }

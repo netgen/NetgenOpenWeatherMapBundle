@@ -46,7 +46,7 @@ interface WeatherInterface
      *
      * @return mixed
      */
-    public function fetchWeatherDataByZipId($zipCode, $countryCode = '');
+    public function fetchWeatherDataByZipCode($zipCode, $countryCode = '');
 
     /**
      * Call current weather data for several cities within a rectangle zone

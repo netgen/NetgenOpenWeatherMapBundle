@@ -96,23 +96,7 @@ class Weather implements WeatherInterface
 
         $queryPart = $queryPart . $this->getParams();
 
-        $url = $this->url . $queryPart;
-
-        $hash = md5($url);
-
-        if ($this->cacheService->has($hash)) {
-
-            return $this->cacheService->get($hash);
-
-        } else {
-
-            $result = $this->client->get($url);
-
-            $this->cacheService->set($hash, $result, $this->ttl);
-
-            return $result;
-
-        }
+        return $this->getResult($queryPart);
     }
 
     /**
@@ -120,7 +104,9 @@ class Weather implements WeatherInterface
      */
     public function fetchWeatherDataByCityId($cityId)
     {
-        throw new \RuntimeException('Not implemented');
+        $queryPart = '/weather?id=' . $cityId . $this->getParams();
+
+        return $this->getResult($queryPart);
     }
 
     /**
@@ -130,32 +116,23 @@ class Weather implements WeatherInterface
     {
         $queryPart = '/weather?lat=' . $latitude . '&lon=' . $longitude . $this->getParams();
 
-        $url = $this->url . $queryPart;
-        dump($url);
-
-        $hash = md5($url);
-
-        if ($this->cacheService->has($hash)) {
-
-            return $this->cacheService->get($hash);
-
-        } else {
-
-            $result = $this->client->get($url);
-
-            $this->cacheService->set($hash, $result, $this->ttl);
-
-            return $result;
-
-        }
+        return $this->getResult($queryPart);
     }
 
     /**
      * @inheritDoc
      */
-    public function fetchWeatherDataByZipId($zipCode, $countryCode = '')
+    public function fetchWeatherDataByZipCode($zipCode, $countryCode = '')
     {
-        throw new \RuntimeException('Not implemented');
+        if (empty($countryCode)) {
+            $queryPart = '/weather?zip=' . $zipCode;
+        } else {
+            $queryPart = '/weather?zip=' . $zipCode . ',' . $countryCode;
+        }
+
+        $queryPart = $queryPart . $this->getParams();
+
+        return $this->getResult($queryPart);
     }
 
     /**
@@ -163,7 +140,9 @@ class Weather implements WeatherInterface
      */
     public function fetchWeatherDataForCitiesWithinRectangleZone(array $boundingBox, $cluster = 'yes')
     {
-        throw new \RuntimeException('Not implemented');
+        $queryPart = '/box/city?bbox=' . implode(',', $boundingBox) . '&cluster' . $cluster . $this->getParams();
+
+        return $this->getResult($queryPart);
     }
 
     /**
@@ -171,7 +150,12 @@ class Weather implements WeatherInterface
      */
     public function fetchWeatherDataForCitiesInCycle($latitude, $longitude, $cluster = 'yes', $numberOfCities = 10)
     {
-        throw new \RuntimeException('Not implemented');
+        $queryPart = '/find?lat=' . $latitude
+            . '&lon=' . $longitude
+            . '&cluster=' . $cluster
+            . '&cnt=' . $numberOfCities . $this->getParams();
+
+        return $this->getResult($queryPart);
     }
 
     /**
@@ -179,7 +163,9 @@ class Weather implements WeatherInterface
      */
     public function fetchWeatherDataForSeveralCityIds(array $cities)
     {
-        throw new \RuntimeException('Not implemented');
+        $queryPart = '/group?id=' . implode(',', $cities) . $this->getParams();
+
+        return $this->getResult($queryPart);
     }
 
     /**
@@ -192,5 +178,33 @@ class Weather implements WeatherInterface
         return '&units=' . $this->units . '&lang=' . $this->language
         . '&mode=' . $this->mode . '&type=' . $this->type
         . '&appid=' . $this->apiKey;
+    }
+
+    /**
+     * Helper method
+     *
+     * @param string $queryPart
+     *
+     * @return mixed
+     */
+    protected function getResult($queryPart)
+    {
+        $url = $this->url . $queryPart;
+
+        $hash = md5($url);
+
+        if ($this->cacheService->has($hash)) {
+
+            return $this->cacheService->get($hash);
+
+        } else {
+
+            $result = $this->client->get($url);
+
+            $this->cacheService->set($hash, $result, $this->ttl);
+
+            return $result;
+
+        }
     }
 }
