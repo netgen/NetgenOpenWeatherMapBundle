@@ -9,12 +9,12 @@ netgen_openweather_weather_by_geographic_coordinates:
 
 netgen_openweather_weather_by_city_name:
     path: /netgen/openweather/weather/cityname/{cityName}/{countryCode}
-    defaults: { _controller: 'netgen_open_weather_map.controller.weather:byCityName' }
+    defaults: { _controller: 'netgen_open_weather_map.controller.weather:byCityName', countryCode: '' }
     methods:
         - GET
     requirements:
-        cityName: \s+
-        countryCode: \s+
+        cityName: \w+
+        countryCode: \w+
 
 netgen_openweather_weather_by_city_id:
     path: /netgen/openweather/weather/cityid/{cityId}
@@ -26,12 +26,12 @@ netgen_openweather_weather_by_city_id:
 
 netgen_openweather_weather_by_zip_code:
     path: /netgen/openweather/weather/zipcode/{zipCode}/{countryCode}
-    defaults: { _controller: 'netgen_open_weather_map.controller.weather:byZipCode' }
+    defaults: { _controller: 'netgen_open_weather_map.controller.weather:byZipCode', countryCode: '' }
     methods:
         - GET
     requirements:
         zipCode: \d+
-        countryCode: \s+
+        countryCode: \w+
 
 netgen_openweather_weather_by_rectangle_zone:
     path: /netgen/openweather/weather/rectanglezone/{longitudeLeft}/{latitudeBottom}/{logitudeRight}/{latitudeTop}/{cluster}
@@ -43,7 +43,7 @@ netgen_openweather_weather_by_rectangle_zone:
         latitudeBottom: \d+
         logitudeRight: \d+
         latitudeTop: \d+
-        cluster: \s+
+        cluster: \w+
 
 netgen_openweather_weather_by_circle:
     path: /netgen/openweather/weather/circle/{latitude}/{longitude}/{cluster}/{numberOfCities}
@@ -53,7 +53,7 @@ netgen_openweather_weather_by_circle:
     requirements:
         latitude: \d+
         longitude: \d+
-        cluster: \s+
+        cluster: \w+
         numberOfCities: \d+
 
 netgen_openweather_weather_by_city_ids:
