@@ -1,16 +1,79 @@
 parameters:
+    # OpenWeatherMap services
+    netgen_open_weather_map.weather.class: Netgen\Bundle\OpenWeatherMapBundle\Core\Weather
+    # END of OpenWeatherMap services
 
+    # Cache services
+    netgen_open_weather_map.cache_handler.null.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\Null
+    netgen_open_weather_map.cache_handler.memcached.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\Memcached
+    netgen_open_weather_map.cache_handler.stash.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\Stash
+    netgen_open_weather_map.cache_handler.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface
+    # END of Cache services
+
+    # Controllers
+    netgen_open_weather_map.controller.weather.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\WeatherController
+    # END of Controllers
+
+    # Http
+    netgen_open_weather_map.http.client.class: Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClient
+    # END of Http
+
+    # Factories
+    netgen_open_weather_map.factory.cache.class: Netgen\Bundle\OpenWeatherMapBundle\Factory\CacheHandlerFactory
+    # END of Factories
 services:
-    netgen_open_weather_map.weather_controller:
-        class: Netgen\Bundle\OpenWeatherMapBundle\Controller\WeatherController
+    # Factories
+    netgen_open_weather_map.factory.cache:
+        class: '%netgen_open_weather_map.factory.cache.class%'
+        arguments:
+            - '@service_container'
+    # END of Factories
+
+    # Http
+    netgen_open_weather_map.http.client:
+        class: '%netgen_open_weather_map.http.client.class%'
+    # END of Http
+
+    # Cache services
+    netgen_open_weather_map.cache_handler:
+        class: '%netgen_open_weather_map.cache_handler.class%'
+        factory: ['@netgen_open_weather_map.factory.cache', getCacheHandler]
+        arguments:
+            - '$cache_settings.handler;netgen_open_weather_map$'
+
+    netgen_open_weather_map.cache_handler.null:
+        class: '%netgen_open_weather_map.cache_handler.null.class%'
+
+    netgen_open_weather_map.cache_handler.memcached:
+        class: '%netgen_open_weather_map.cache_handler.memcached.class%'
+        arguments:
+            - '$memcached_settings.server;netgen_open_weather_map$'
+            - '$memcached_settings.port;netgen_open_weather_map$'
+
+    netgen_open_weather_map.cache_handler.stash:
+        class: '%netgen_open_weather_map.cache_handler.stash.class%'
+        arguments:
+            - '@stash'
+    # END of Cache services
+
+    # OpenWeatherMap services
+    netgen_open_weather_map.weather:
+        class: '%netgen_open_weather_map.weather.class%'
+        arguments:
+            - '@netgen_open_weather_map.http.client'
+            - '$api_settings.weather_api_key;netgen_open_weather_map$'
+            - '$api_settings.weather_url;netgen_open_weather_map$'
+            - '$api_settings.units;netgen_open_weather_map$'
+            - '$api_settings.language;netgen_open_weather_map$'
+            - '$api_settings.mode;netgen_open_weather_map$'
+            - '$api_settings.type;netgen_open_weather_map$'
+            - '@netgen_open_weather_map.cache_handler'
+            - '$cache_settings.ttl;netgen_open_weather_map$'
+    # END of OpenWeatherMap services
+
+    # Controllers
+    netgen_open_weather_map.controller.weather:
+        class: '%netgen_open_weather_map.controller.weather.class%'
         arguments:
             - '@netgen_open_weather_map.weather'
-
-    netgen_open_weather_map.weather:
-        class: Netgen\Bundle\OpenWeatherMapBundle\Service\Weather
-        arguments:
-            - $weather_api_key;netgen_open_weather_map$
-            - $weather_url;netgen_open_weather_map$
-            - $weather_image_url;netgen_open_weather_map$
-            - '@stash'
-            - $image_location;netgen_open_weather_map$
+    # END of Controllers

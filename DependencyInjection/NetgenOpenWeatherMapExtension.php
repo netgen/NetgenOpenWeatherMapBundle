@@ -29,15 +29,22 @@ class NetgenOpenWeatherMapExtension extends Extension
         
         
         $processor = new ConfigurationProcessor( $container, 'netgen_open_weather_map' );
-        $processor->mapConfig(
-            $config,
-            function ( $scopeSettings, $currentScope, ContextualizerInterface $contextualizer )
-            {
-                foreach ( $scopeSettings as $key => $value )
-                {
-                    $contextualizer->setContextualParameter( $key, $currentScope, $value );
+        $configArrays = array('api_settings', 'cache_settings', 'memcached_settings');
+
+        $scopes = array_merge(array('default'), $container->getParameter('ezpublish.siteaccess.list'));
+
+        foreach ($configArrays as $configArray) {
+            $processor->mapConfigArray($configArray, $config);
+
+            foreach ($scopes as $scope) {
+                $scopeConfig = $container->getParameter('netgen_open_weather_map.' . $scope . '.' . $configArray);
+                foreach ($scopeConfig as $key => $value) {
+                    $container->setParameter(
+                        'netgen_open_weather_map.' . $scope . '.' . $configArray . '.' . $key,
+                        $value
+                    );
                 }
             }
-        );
+        }
     }
 }

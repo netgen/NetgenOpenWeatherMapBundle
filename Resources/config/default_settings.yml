@@ -1,0 +1,15 @@
+system:
+    default:
+        api_settings:
+            weather_api_key: ~
+            weather_url: ~
+            units: 'metric'
+            language: 'en'
+            mode: 'json'
+            type: 'accurate'
+        cache_settings:
+            handler: 'null'
+            ttl: 3600
+        memcached_settings:
+            server: localhost
+            port: 11211

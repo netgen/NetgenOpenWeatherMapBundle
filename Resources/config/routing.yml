@@ -1,10 +1,63 @@
-netgen_open_weather_get_weather:
-    path:     /netgen/openweather/weather/{latitude}/{longitude}/{units}/{language}
-    defaults: { _controller: 'netgen_open_weather_map.weather_controller:getWeatherAction', units: 'metric', language: 'en' }
+netgen_openweather_weather_by_geographic_coordinates:
+    path: /netgen/openweather/weather/coordinates/{latitude}/{longitude}
+    defaults: { _controller: 'netgen_open_weather_map.controller.weather:byGeographicCoordinates' }
     methods:
         - GET
     requirements:
         latitude: \d+
         longitude: \d+
-        units: \s+
-        language: \s+
+
+netgen_openweather_weather_by_city_name:
+    path: /netgen/openweather/weather/cityname/{cityName}/{countryCode}
+    defaults: { _controller: 'netgen_open_weather_map.controller.weather:byCityName' }
+    methods:
+        - GET
+    requirements:
+        cityName: \s+
+        countryCode: \s+
+
+netgen_openweather_weather_by_city_id:
+    path: /netgen/openweather/weather/cityid/{cityId}
+    defaults: { _controller: 'netgen_open_weather_map.controller.weather:byCityId' }
+    methods:
+        - GET
+    requirements:
+        cityId: \d+
+
+netgen_openweather_weather_by_zip_code:
+    path: /netgen/openweather/weather/zipcode/{zipCode}/{countryCode}
+    defaults: { _controller: 'netgen_open_weather_map.controller.weather:byZipCode' }
+    methods:
+        - GET
+    requirements:
+        zipCode: \d+
+        countryCode: \s+
+
+netgen_openweather_weather_by_rectangle_zone:
+    path: /netgen/openweather/weather/rectanglezone/{longitudeLeft}/{latitudeBottom}/{logitudeRight}/{latitudeTop}/{cluster}
+    defaults: { _controller: 'netgen_open_weather_map.controller.weather:byRectangleZone' }
+    methods:
+        - GET
+    requirements:
+        longitudeLeft: \d+
+        latitudeBottom: \d+
+        logitudeRight: \d+
+        latitudeTop: \d+
+        cluster: \s+
+
+netgen_openweather_weather_by_circle:
+    path: /netgen/openweather/weather/circle/{latitude}/{longitude}/{cluster}/{numberOfCities}
+    defaults: { _controller: 'netgen_open_weather_map.controller.weather:byCircle' }
+    methods:
+        - GET
+    requirements:
+        latitude: \d+
+        longitude: \d+
+        cluster: \s+
+        numberOfCities: \d+
+
+netgen_openweather_weather_by_city_ids:
+    path: /netgen/openweather/weather/cityids
+    defaults: { _controller: 'netgen_open_weather_map.controller.weather:byCityIds' }
+    methods:
+        - GET
