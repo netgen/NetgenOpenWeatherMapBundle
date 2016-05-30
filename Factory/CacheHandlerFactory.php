@@ -2,28 +2,14 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\Factory;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
 /**
  * Class CacheHandlerFactory
  * @package Netgen\Bundle\OpenWeatherMapBundle\Factory
  */
-class CacheHandlerFactory
+class CacheHandlerFactory extends ContainerAware
 {
-    /**
-     * @var \Symfony\Component\DependencyInjection\ContainerInterface
-     */
-    private $container;
-
-    /**
-     * CacheHandlerFactory constructor.
-     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-     */
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
     /**
      * Returns cache handler for specified identifier.
      *
