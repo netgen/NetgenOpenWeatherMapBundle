@@ -23,32 +23,27 @@ class Weather implements WeatherInterface
     protected $ttl;
 
     /**
-     * @var
+     * @var string
      */
     protected $apiKey;
 
     /**
-     * @var
-     */
-    protected $url;
-
-    /**
-     * @var
+     * @var string
      */
     protected $units;
 
     /**
-     * @var
+     * @var string
      */
     protected $language;
 
     /**
-     * @var
+     * @var string
      */
     protected $mode;
 
     /**
-     * @var
+     * @var string
      */
     protected $type;
 
@@ -62,7 +57,6 @@ class Weather implements WeatherInterface
      *
      * @param \Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface $client
      * @param string $apiKey
-     * @param string $url
      * @param string $units
      * @param string $language
      * @param string $mode
@@ -70,10 +64,9 @@ class Weather implements WeatherInterface
      * @param \Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface $cacheService
      * @param int $ttl
      */
-    public function __construct(HttpClientInterface $client, $apiKey, $url, $units, $language, $mode, $type, HandlerInterface $cacheService, $ttl)
+    public function __construct(HttpClientInterface $client, $apiKey, $units, $language, $mode, $type, HandlerInterface $cacheService, $ttl)
     {
         $this->apiKey = $apiKey;
-        $this->url = $url;
         $this->units = $units;
         $this->language = $language;
         $this->mode = $mode;
@@ -189,7 +182,7 @@ class Weather implements WeatherInterface
      */
     protected function getResult($queryPart)
     {
-        $url = $this->url . $queryPart;
+        $url = self::BASE_URL . $queryPart;
 
         $hash = md5($url);
 

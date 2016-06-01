@@ -9,6 +9,11 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather;
 interface DailyForecastInterface
 {
     /**
+     * Base URL for daily forecast
+     */
+    const BASE_URL = 'http://api.openweathermap.org/data/2.5';
+
+    /**
      * Call 16 day / daily forecast data by city name
      *
      * @param string $cityName

@@ -1,8 +1,7 @@
 system:
     default:
         api_settings:
-            weather_api_key: ~
-            weather_url: ~
+            api_key: ~
             units: 'metric'
             language: 'en'
             mode: 'json'

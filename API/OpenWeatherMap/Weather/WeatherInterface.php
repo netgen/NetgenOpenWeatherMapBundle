@@ -9,6 +9,11 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather;
 interface WeatherInterface
 {
     /**
+     * Base URL for weather
+     */
+    const BASE_URL = 'http://api.openweathermap.org/data/2.5';
+
+    /**
      * Call current weather data for one location by city name
      *
      * @param string $cityName
