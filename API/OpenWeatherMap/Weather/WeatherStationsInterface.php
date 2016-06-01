@@ -36,11 +36,11 @@ interface WeatherStationsInterface
     /**
      * Call current weather from several stations by geo point
      *
-     * @param array $boundingBox
-     * @param string $cluster
+     * @param float $latitude
+     * @param float $longitude
      * @param int $numberOfStations
      *
      * @return mixed
      */
-    public function fetchFromSeveralByGeoPoint(array $boundingBox, $cluster = 'yes', $numberOfStations = 10);
+    public function fetchFromSeveralByGeoPoint($latitude, $longitude, $numberOfStations = 10);
 }

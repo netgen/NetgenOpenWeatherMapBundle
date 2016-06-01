@@ -1,6 +1,11 @@
 parameters:
     # OpenWeatherMap services
     netgen_open_weather_map.weather.class: Netgen\Bundle\OpenWeatherMapBundle\Core\Weather
+    netgen_open_weather_map.air_pollution.class: Netgen\Bundle\OpenWeatherMapBundle\Core\AirPollution
+    netgen_open_weather_map.daily_forecast.class: Netgen\Bundle\OpenWeatherMapBundle\Core\DailyForecast
+    netgen_open_weather_map.hour_forecast.class: Netgen\Bundle\OpenWeatherMapBundle\Core\HourForecast
+    netgen_open_weather_map.ultraviolet_index.class: Netgen\Bundle\OpenWeatherMapBundle\Core\UltravioletIndex
+    netgen_open_weather_map.weather_stations.class: Netgen\Bundle\OpenWeatherMapBundle\Core\WeatherStations
     # END of OpenWeatherMap services
 
     # Cache services
@@ -12,6 +17,11 @@ parameters:
 
     # Controllers
     netgen_open_weather_map.controller.weather.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\WeatherController
+    netgen_open_weather_map.controller.weather_stations.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\WeatherStationsController
+    netgen_open_weather_map.controller.ultraviolet_index.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\UltravioletIndexController
+    netgen_open_weather_map.controller.hour_forecast.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\HourForecastController
+    netgen_open_weather_map.controller.daily_forecast.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\DailyForecastController
+    netgen_open_weather_map.controller.air_pollution.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\AirPollutionController
     # END of Controllers
 
     # Http
@@ -62,12 +72,61 @@ services:
         arguments:
             - '@netgen_open_weather_map.http.client'
             - '$api_settings.api_key;netgen_open_weather_map$'
+            - '@netgen_open_weather_map.cache_handler'
+            - '$cache_settings.ttl;netgen_open_weather_map$'
             - '$api_settings.units;netgen_open_weather_map$'
             - '$api_settings.language;netgen_open_weather_map$'
             - '$api_settings.mode;netgen_open_weather_map$'
             - '$api_settings.type;netgen_open_weather_map$'
+
+    netgen_open_weather_map.air_pollution:
+        class: '%netgen_open_weather_map.air_pollution.class%'
+        arguments:
+            - '@netgen_open_weather_map.http.client'
+            - '$api_settings.api_key;netgen_open_weather_map$'
             - '@netgen_open_weather_map.cache_handler'
             - '$cache_settings.ttl;netgen_open_weather_map$'
+
+    netgen_open_weather_map.daily_forecast:
+        class: '%netgen_open_weather_map.daily_forecast.class%'
+        arguments:
+            - '@netgen_open_weather_map.http.client'
+            - '$api_settings.api_key;netgen_open_weather_map$'
+            - '@netgen_open_weather_map.cache_handler'
+            - '$cache_settings.ttl;netgen_open_weather_map$'
+            - '$api_settings.units;netgen_open_weather_map$'
+            - '$api_settings.language;netgen_open_weather_map$'
+            - '$api_settings.mode;netgen_open_weather_map$'
+            - '$api_settings.type;netgen_open_weather_map$'
+
+    netgen_open_weather_map.hour_forecast:
+        class: '%netgen_open_weather_map.hour_forecast.class%'
+        arguments:
+            - '@netgen_open_weather_map.http.client'
+            - '$api_settings.api_key;netgen_open_weather_map$'
+            - '@netgen_open_weather_map.cache_handler'
+            - '$cache_settings.ttl;netgen_open_weather_map$'
+            - '$api_settings.units;netgen_open_weather_map$'
+            - '$api_settings.language;netgen_open_weather_map$'
+            - '$api_settings.mode;netgen_open_weather_map$'
+            - '$api_settings.type;netgen_open_weather_map$'
+
+    netgen_open_weather_map.ultraviolet_index:
+        class: '%netgen_open_weather_map.ultraviolet_index.class%'
+        arguments:
+            - '@netgen_open_weather_map.http.client'
+            - '$api_settings.api_key;netgen_open_weather_map$'
+            - '@netgen_open_weather_map.cache_handler'
+            - '$cache_settings.ttl;netgen_open_weather_map$'
+
+    netgen_open_weather_map.weather_stations:
+        class: '%netgen_open_weather_map.weather_stations.class%'
+        arguments:
+            - '@netgen_open_weather_map.http.client'
+            - '$api_settings.api_key;netgen_open_weather_map$'
+            - '@netgen_open_weather_map.cache_handler'
+            - '$cache_settings.ttl;netgen_open_weather_map$'
+            - '$api_settings.mode;netgen_open_weather_map$'
     # END of OpenWeatherMap services
 
     # Controllers
@@ -75,4 +134,29 @@ services:
         class: '%netgen_open_weather_map.controller.weather.class%'
         arguments:
             - '@netgen_open_weather_map.weather'
+
+    netgen_open_weather_map.controller.weather_stations:
+        class: '%netgen_open_weather_map.controller.weather_stations.class%'
+        arguments:
+            - '@netgen_open_weather_map.weather_stations'
+
+    netgen_open_weather_map.controller.ultraviolet_index:
+        class: '%netgen_open_weather_map.controller.ultraviolet_index.class%'
+        arguments:
+            - '@netgen_open_weather_map.ultraviolet_index'
+
+    netgen_open_weather_map.controller.hour_forecast:
+        class: '%netgen_open_weather_map.controller.hour_forecast.class%'
+        arguments:
+            - '@netgen_open_weather_map.hour_forecast'
+
+    netgen_open_weather_map.controller.daily_forecast:
+        class: '%netgen_open_weather_map.controller.daily_forecast.class%'
+        arguments:
+            - '@netgen_open_weather_map.daily_forecast'
+
+    netgen_open_weather_map.controller.air_pollution:
+        class: '%netgen_open_weather_map.controller.air_pollution.class%'
+        arguments:
+            - '@netgen_open_weather_map.air_pollution'
     # END of Controllers
