@@ -18,14 +18,11 @@ class Memcached implements HandlerInterface
     /**
      * Memcached constructor.
      *
-     * @param string $server
-     * @param int $port
+     * @param \Memcached $memcached
      */
-    public function __construct($server, $port)
+    public function __construct(\Memcached $memcached)
     {
-        $this->memcached = new MemcachedStore();
-        $this->memcached->addServer($server, (int)$port);
-
+        $this->memcached = $memcached;
         $this->memcached->setOption(MemcachedStore::OPT_PREFIX_KEY, self::CACHE_KEY_PREFIX);
         $this->memcached->setOption(MemcachedStore::OPT_LIBKETAMA_COMPATIBLE, true);
     }

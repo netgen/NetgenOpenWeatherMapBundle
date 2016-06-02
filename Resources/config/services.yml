@@ -13,6 +13,8 @@ parameters:
     netgen_open_weather_map.cache_handler.memcached.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\Memcached
     netgen_open_weather_map.cache_handler.stash.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\Stash
     netgen_open_weather_map.cache_handler.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface
+
+    netgen_open_weather_map.memcached.class: Memcached
     # END of Cache services
 
     # Controllers
@@ -57,13 +59,18 @@ services:
     netgen_open_weather_map.cache_handler.memcached:
         class: '%netgen_open_weather_map.cache_handler.memcached.class%'
         arguments:
-            - '$memcached_settings.server;netgen_open_weather_map$'
-            - '$memcached_settings.port;netgen_open_weather_map$'
+            - '@netgen_open_weather_map.memcached'
 
     netgen_open_weather_map.cache_handler.stash:
         class: '%netgen_open_weather_map.cache_handler.stash.class%'
         arguments:
             - '@stash'
+
+    netgen_open_weather_map.memcached:
+        class: '%netgen_open_weather_map.memcached.class%'
+        arguments:
+            - '$memcached_settings.server;netgen_open_weather_map$'
+            - '$memcached_settings.port;netgen_open_weather_map$'
     # END of Cache services
 
     # OpenWeatherMap services
