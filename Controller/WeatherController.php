@@ -3,7 +3,6 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Controller;
 
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -11,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Class WeatherController
  * @package Netgen\Bundle\OpenWeatherMapBundle\Controller
  */
-class WeatherController extends Controller
+class WeatherController
 {
     /**
      * @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface

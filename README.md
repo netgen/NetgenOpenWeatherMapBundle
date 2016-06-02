@@ -7,11 +7,11 @@ Implemented features
 --------------------
 
 * Current weather data
-* 5 day / 3 hour forecast (in progress)
-* 16 day / daily forecast (in progress)
-* UV Index (in progress)
-* Weather stations (in progress)
-* Air pollution (in progress)
+* 5 day / 3 hour forecast
+* 16 day / daily forecast
+* UV Index
+* Weather stations
+* Air pollution
 
 License, docs and installation instructions
 -------------------------------------
