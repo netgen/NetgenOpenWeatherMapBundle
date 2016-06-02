@@ -3,6 +3,8 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Controller;
 
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -36,9 +38,18 @@ class HourForecastController
      */
     public function getForecastByCityName($cityName, $countryCode = '')
     {
-        $data = $this->hourForecast->fetchForecastByCityName($cityName, $countryCode);
+        $response = new Response();
 
-        return new Response($data);
+        try {
+            $data = $this->hourForecast->fetchForecastByCityName($cityName, $countryCode);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
+
+        return $response;
     }
 
     /**
@@ -50,9 +61,18 @@ class HourForecastController
      */
     public function getForecastByCityId($cityId)
     {
-        $data = $this->hourForecast->fetchForecastByCityId($cityId);
+        $response = new Response();
 
-        return new Response($data);
+        try {
+            $data = $this->hourForecast->fetchForecastByCityId($cityId);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
+
+        return $response;
     }
 
     /**
@@ -65,8 +85,17 @@ class HourForecastController
      */
     public function getForecastByCityGeographicCoordinates($latitude, $longitude)
     {
-        $data = $this->hourForecast->fetchForecastByCityName($latitude, $longitude);
+        $response = new Response();
 
-        return new Response($data);
+        try {
+            $data = $this->hourForecast->fetchForecastByCityName($latitude, $longitude);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
+
+        return $response;
     }
 }

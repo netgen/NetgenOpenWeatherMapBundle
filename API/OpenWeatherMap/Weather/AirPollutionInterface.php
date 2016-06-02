@@ -20,7 +20,10 @@ interface AirPollutionInterface
      * @param float $longitude
      * @param \DateTime|string $datetime
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchOzoneData($latitude, $longitude, $datetime = 'current');
 
@@ -31,7 +34,10 @@ interface AirPollutionInterface
      * @param float $longitude
      * @param \DateTime|string $datetime
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchCarbonMonoxideData($latitude, $longitude, $datetime = 'current');
 }

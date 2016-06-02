@@ -3,6 +3,8 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Controller;
 
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 use DateTime;
 
@@ -47,9 +49,18 @@ class AirPollutionController
             }
         }
 
-        $data = $this->airPollution->fetchOzoneData($latitude, $longitude, $datetime);
+        $response = new Response();
 
-        return new Response($data);
+        try {
+            $data = $this->airPollution->fetchOzoneData($latitude, $longitude, $datetime);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
+
+        return $response;
     }
 
     /**
@@ -71,9 +82,18 @@ class AirPollutionController
                 $datetime = 'current';
             }
         }
+        
+        $response = new Response();
 
-        $data = $this->airPollution->fetchCarbonMonoxideData($latitude, $longitude, $datetime);
+        try {
+            $data = $this->airPollution->fetchCarbonMonoxideData($latitude, $longitude, $datetime);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
 
-        return new Response($data);
+        return $response;
     }
 }

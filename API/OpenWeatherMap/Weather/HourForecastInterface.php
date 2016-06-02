@@ -19,7 +19,10 @@ interface HourForecastInterface
      * @param string $cityName
      * @param string $countryCode
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchForecastByCityName($cityName, $countryCode = '');
 
@@ -28,7 +31,10 @@ interface HourForecastInterface
      *
      * @param int $cityId
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchForecastByCityId($cityId);
 
@@ -38,7 +44,10 @@ interface HourForecastInterface
      * @param float $latitude
      * @param float $longitude
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchForecastByCityGeographicCoordinates($latitude, $longitude);
 }

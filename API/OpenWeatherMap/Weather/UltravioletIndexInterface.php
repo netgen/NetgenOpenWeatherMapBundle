@@ -20,7 +20,10 @@ interface UltravioletIndexInterface
      * @param float $longitude
      * @param \Datetime|string $datetime
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchUltraviletIndex($latitude, $longitude, $datetime = 'current');
 }

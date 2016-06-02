@@ -20,7 +20,10 @@ interface DailyForecastInterface
      * @param string $countryCode
      * @param int $numberOfDays
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchForecastByCityName($cityName, $countryCode = '', $numberOfDays = 16);
 
@@ -30,7 +33,10 @@ interface DailyForecastInterface
      * @param int $cityId
      * @param int $numberOfDays
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchForecastByCityId($cityId, $numberOfDays = 16);
 
@@ -41,7 +47,10 @@ interface DailyForecastInterface
      * @param float $longitude
      * @param int $numberOfDays
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchForecastByCityGeographicCoordinates($latitude, $longitude, $numberOfDays = 16);
 }

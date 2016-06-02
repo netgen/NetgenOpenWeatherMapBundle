@@ -3,6 +3,8 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Core;
 
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
 
 /**
@@ -54,6 +56,9 @@ abstract class Base
      * @param string $queryPart
      *
      * @return mixed
+     *
+     * @throws NotFoundException
+     * @throws NotAuthorizedException
      */
     protected function getResult($baseUrl, $queryPart)
     {
@@ -67,12 +72,19 @@ abstract class Base
 
         } else {
 
-            $result = $this->client->get($url);
+            $response = $this->client->get($url);
+            dump($response);
+            if (!$response->isAuthorized()) {
+                throw new NotAuthorizedException($response->getMessage());
+            }
 
-            $this->cacheService->set($hash, $result, $this->ttl);
+            if (!$response->isOk()) {
+                throw new NotFoundException($response->getMessage());
+            }
 
-            return $result;
+            $this->cacheService->set($hash, (string)$response, $this->ttl);
 
+            return (string)$response;
         }
     }
 }

@@ -19,7 +19,10 @@ interface WeatherInterface
      * @param string $cityName
      * @param string $countryCode
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchWeatherDataByCityName($cityName, $countryCode = '');
 
@@ -28,17 +31,23 @@ interface WeatherInterface
      *
      * @param int $cityId
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchWeatherDataByCityId($cityId);
 
     /**
      * Call current weather data for one location by geographic coordinates
      *
-     * @param int $latitude
-     * @param int $longitude
+     * @param float $latitude
+     * @param float $longitude
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchWeatherDataByGeographicCoordinates($latitude, $longitude);
 
@@ -49,7 +58,10 @@ interface WeatherInterface
      * @param int $zipCode
      * @param string $countryCode
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchWeatherDataByZipCode($zipCode, $countryCode = '');
 
@@ -59,7 +71,10 @@ interface WeatherInterface
      * @param array $boundingBox Longitude-left,latitude-bottom,longitude-right,latitude-top
      * @param string $cluster
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchWeatherDataForCitiesWithinRectangleZone(array $boundingBox, $cluster = 'yes');
 
@@ -71,7 +86,10 @@ interface WeatherInterface
      * @param string $cluster
      * @param int $numberOfCities
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchWeatherDataForCitiesInCycle($latitude, $longitude, $cluster = 'yes', $numberOfCities = 10);
 
@@ -80,7 +98,10 @@ interface WeatherInterface
      *
      * @param array $cities
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchWeatherDataForSeveralCityIds(array $cities);
 }

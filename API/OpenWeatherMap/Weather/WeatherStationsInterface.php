@@ -18,7 +18,10 @@ interface WeatherStationsInterface
      *
      * @param int $stationId
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchFromOnStationById($stationId);
 
@@ -29,7 +32,10 @@ interface WeatherStationsInterface
      * @param string $cluster
      * @param int $numberOfStations
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchFromSeveralByRectangleZone(array $boundingBox, $cluster = 'yes', $numberOfStations = 10);
 
@@ -40,7 +46,10 @@ interface WeatherStationsInterface
      * @param float $longitude
      * @param int $numberOfStations
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException
+     * @throws \Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException
      */
     public function fetchFromSeveralByGeoPoint($latitude, $longitude, $numberOfStations = 10);
 }

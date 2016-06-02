@@ -3,6 +3,8 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Controller;
 
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -35,9 +37,18 @@ class WeatherStationsController
      */
     public function getFromOnStationById($stationId)
     {
-        $data = $this->weatherStations->fetchFromOnStationById($stationId);
+        $response = new Response();
 
-        return new Response($data);
+        try {
+            $data = $this->weatherStations->fetchFromOnStationById($stationId);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
+
+        return $response;
     }
 
     /**
@@ -59,9 +70,18 @@ class WeatherStationsController
             $longitudeTopLeft, $latitudeTopLeft, $longitudeBottomRight, $latitudeBottomRight, $mapZoom
         );
 
-        $data = $this->weatherStations->fetchFromSeveralByRectangleZone($boundingBox, $cluster, $numberOfStations);
+        $response = new Response();
 
-        return new Response($data);
+        try {
+            $data = $this->weatherStations->fetchFromSeveralByRectangleZone($boundingBox, $cluster, $numberOfStations);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
+
+        return $response;
     }
 
     /**
@@ -75,8 +95,17 @@ class WeatherStationsController
      */
     public function getFromSeveralByGeoPoint($latitude, $longitude, $numberOfStations = 10)
     {
-        $data = $this->weatherStations->fetchFromSeveralByGeoPoint($latitude, $longitude, $numberOfStations);
+        $response = new Response();
 
-        return new Response($data);
+        try {
+            $data = $this->weatherStations->fetchFromSeveralByGeoPoint($latitude, $longitude, $numberOfStations);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
+
+        return $response;
     }
 }

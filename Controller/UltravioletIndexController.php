@@ -3,6 +3,8 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Controller;
 
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 use DateTime;
 
@@ -47,8 +49,17 @@ class UltravioletIndexController
             }
         }
 
-        $data = $this->ultravioletIndex->fetchUltraviletIndex($latitude, $longitude, $datetime);
+        $response = new Response();
 
-        return new Response($data);
+        try {
+            $data = $this->ultravioletIndex->fetchUltraviletIndex($latitude, $longitude, $datetime);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
+
+        return $response;
     }
 }

@@ -3,6 +3,8 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Controller;
 
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -37,9 +39,18 @@ class DailyForecastController
      */
     public function getForecastByCityName($cityName, $numberOfDays = 16, $countryCode = '')
     {
-        $data = $this->dailyForecast->fetchForecastByCityName($cityName, $countryCode, $numberOfDays);
+        $response = new Response();
 
-        return new Response($data);
+        try {
+            $data = $this->dailyForecast->fetchForecastByCityName($cityName, $countryCode, $numberOfDays);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
+
+        return $response;
     }
 
     /**
@@ -52,9 +63,18 @@ class DailyForecastController
      */
     public function getForecastByCityId($cityId, $numberOfDays = 16)
     {
-        $data = $this->dailyForecast->fetchForecastByCityId($cityId, $numberOfDays);
+        $response = new Response();
 
-        return new Response($data);
+        try {
+            $data = $this->dailyForecast->fetchForecastByCityId($cityId, $numberOfDays);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
+
+        return $response;
     }
 
     /**
@@ -68,8 +88,17 @@ class DailyForecastController
      */
     public function getForecastByCityGeographicCoordinates($latitude, $longitude, $numberOfDays = 16)
     {
-        $data = $this->dailyForecast->fetchForecastByCityGeographicCoordinates($latitude, $longitude, $numberOfDays);
+        $response = new Response();
 
-        return new Response($data);
+        try {
+            $data = $this->dailyForecast->fetchForecastByCityGeographicCoordinates($latitude, $longitude, $numberOfDays);
+            $response->setContent($data);
+        } catch (NotAuthorizedException $e) {
+            $response->setContent($e->getMessage());
+        } catch (NotFoundException $e) {
+            $response->setContent($e->getMessage());
+        }
+
+        return $response;
     }
 }

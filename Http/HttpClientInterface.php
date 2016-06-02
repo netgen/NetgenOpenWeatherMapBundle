@@ -13,7 +13,7 @@ interface HttpClientInterface
      *
      * @param string $url
      *
-     * @return mixed
+     * @return ResponseInterface
      */
     public function get($url);
 }
