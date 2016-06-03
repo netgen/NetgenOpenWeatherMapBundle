@@ -132,13 +132,14 @@ class WeatherController
      * @param float $latitudeBottom
      * @param float $logitudeRigth
      * @param float $latitudeTop
+     * @param int $mapZoom
      * @param string $cluster
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function byRectangleZone($longitudeLeft, $latitudeBottom, $logitudeRigth, $latitudeTop, $cluster = 'yes')
+    public function byRectangleZone($longitudeLeft, $latitudeBottom, $logitudeRigth, $latitudeTop, $mapZoom = 10, $cluster = 'yes')
     {
-        $boundingBox = array($longitudeLeft, $latitudeBottom, $logitudeRigth, $latitudeTop);
+        $boundingBox = array($longitudeLeft, $latitudeBottom, $logitudeRigth, $latitudeTop, $mapZoom);
 
         $response = new Response();
 

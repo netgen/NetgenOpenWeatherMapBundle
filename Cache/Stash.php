@@ -65,9 +65,6 @@ class Stash implements HandlerInterface
         $cacheKey = self::CACHE_KEY_PREFIX . $cacheKey;
 
         $item = $this->cacheService->getItem($cacheKey);
-
-        if (!$item->isMiss()) {
-            $item->set($data, $ttl);
-        }
+        $item->set($data, $ttl);
     }
 }

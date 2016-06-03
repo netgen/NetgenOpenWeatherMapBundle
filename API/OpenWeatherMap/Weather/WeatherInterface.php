@@ -68,7 +68,7 @@ interface WeatherInterface
     /**
      * Call current weather data for several cities within a rectangle zone
      *
-     * @param array $boundingBox Longitude-left,latitude-bottom,longitude-right,latitude-top
+     * @param array $boundingBox Longitude-left,latitude-bottom,longitude-right,latitude-top, map zoom
      * @param string $cluster
      *
      * @return string

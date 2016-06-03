@@ -14,6 +14,7 @@
         <whitelist>
             <directory>.</directory>
             <exclude>
+                <directory>DependencyInjection</directory>
                 <directory>Tests</directory>
                 <directory>vendor</directory>
                 <file>NetgenOpenWeatherMapBundle.php</file>
