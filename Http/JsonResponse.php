@@ -3,10 +3,10 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Http;
 
 /**
- * Class Response
+ * Class JsonResponse
  * @package Netgen\Bundle\OpenWeatherMapBundle\Http
  */
-class Response implements ResponseInterface
+class JsonResponse implements ResponseInterface
 {
     /**
      * @var array
@@ -21,12 +21,12 @@ class Response implements ResponseInterface
     /**
      * Response constructor.
      *
-     * @param array $data
+     * @param string $data
      * @param integer $httpCode
      */
     public function __construct($data, $httpCode)
     {
-        if (!empty($data)) {
+        if ($this->isValidJson($data)) {
             $data = json_decode($data, true);
         }
         $this->data = $data;
@@ -99,5 +99,19 @@ class Response implements ResponseInterface
     public function __toString()
     {
         return json_encode($this->data);
+    }
+
+    /**
+     * Checks if given string is valid json
+     *
+     * @param string $string
+     *
+     * @return bool
+     */
+    protected function isValidJson($string)
+    {
+        json_decode($string);
+
+        return json_last_error() == JSON_ERROR_NONE;
     }
 }

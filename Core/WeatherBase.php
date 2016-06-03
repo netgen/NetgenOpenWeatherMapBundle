@@ -24,11 +24,6 @@ abstract class WeatherBase extends Base
     /**
      * @var string
      */
-    protected $mode;
-
-    /**
-     * @var string
-     */
     protected $type;
 
     /**
@@ -40,15 +35,13 @@ abstract class WeatherBase extends Base
      * @param int $ttl
      * @param string $units
      * @param string $language
-     * @param string $mode
      * @param string $type
      */
-    public function __construct(HttpClientInterface $client, $apiKey, HandlerInterface $cacheService, $ttl, $units, $language, $mode, $type)
+    public function __construct(HttpClientInterface $client, $apiKey, HandlerInterface $cacheService, $ttl, $units, $language, $type)
     {
         parent::__construct($client, $apiKey, $cacheService, $ttl);
         $this->units = $units;
         $this->language = $language;
-        $this->mode = $mode;
         $this->type = $type;
     }
 
@@ -60,7 +53,7 @@ abstract class WeatherBase extends Base
     protected function getParams()
     {
         return '&units=' . $this->units . '&lang=' . $this->language
-        . '&mode=' . $this->mode . '&type=' . $this->type
+        . '&type=' . $this->type
         . '&appid=' . $this->apiKey;
     }
 }

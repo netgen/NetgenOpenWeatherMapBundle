@@ -83,7 +83,6 @@ services:
             - '$cache_settings.ttl;netgen_open_weather_map$'
             - '$api_settings.units;netgen_open_weather_map$'
             - '$api_settings.language;netgen_open_weather_map$'
-            - '$api_settings.mode;netgen_open_weather_map$'
             - '$api_settings.type;netgen_open_weather_map$'
 
     netgen_open_weather_map.air_pollution:
@@ -103,7 +102,6 @@ services:
             - '$cache_settings.ttl;netgen_open_weather_map$'
             - '$api_settings.units;netgen_open_weather_map$'
             - '$api_settings.language;netgen_open_weather_map$'
-            - '$api_settings.mode;netgen_open_weather_map$'
             - '$api_settings.type;netgen_open_weather_map$'
 
     netgen_open_weather_map.hour_forecast:
@@ -115,7 +113,6 @@ services:
             - '$cache_settings.ttl;netgen_open_weather_map$'
             - '$api_settings.units;netgen_open_weather_map$'
             - '$api_settings.language;netgen_open_weather_map$'
-            - '$api_settings.mode;netgen_open_weather_map$'
             - '$api_settings.type;netgen_open_weather_map$'
 
     netgen_open_weather_map.ultraviolet_index:
@@ -133,7 +130,6 @@ services:
             - '$api_settings.api_key;netgen_open_weather_map$'
             - '@netgen_open_weather_map.cache_handler'
             - '$cache_settings.ttl;netgen_open_weather_map$'
-            - '$api_settings.mode;netgen_open_weather_map$'
     # END of OpenWeatherMap services
 
     # Controllers

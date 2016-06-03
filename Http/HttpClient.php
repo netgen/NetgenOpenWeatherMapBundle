@@ -20,9 +20,9 @@ class HttpClient implements HttpClientInterface
 
         $response = curl_exec($curlHandle);
         $httpCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
-
+        
         curl_close($curlHandle);
 
-        return new Response($response, $httpCode);
+        return new JsonResponse($response, $httpCode);
     }
 }

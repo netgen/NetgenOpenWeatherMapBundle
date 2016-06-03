@@ -3,8 +3,6 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Core;
 
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface;
-use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
-use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
 
 /**
  * Class WeatherStations
@@ -13,31 +11,11 @@ use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
 class WeatherStations extends Base implements WeatherStationsInterface
 {
     /**
-     * @var string
-     */
-    protected $mode;
-
-    /**
-     * WeatherStations constructor.
-     *
-     * @param \Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface $client
-     * @param string $apiKey
-     * @param \Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface $cacheService
-     * @param int $ttl
-     * @param string $mode
-     */
-    public function __construct(HttpClientInterface $client, $apiKey, HandlerInterface $cacheService, $ttl, $mode)
-    {
-        parent::__construct($client, $apiKey, $cacheService, $ttl);
-        $this->mode = $mode;
-    }
-
-    /**
      * @inheritDoc
      */
     public function fetchFromOnStationById($stationId)
     {
-        $queryPart = '/station?id=' . $stationId . '&mode=' . $this->mode . '&appid=' . $this->apiKey;
+        $queryPart = '/station?id=' . $stationId . '&appid=' . $this->apiKey;
 
         return $this->getResult(self::BASE_URL, $queryPart);
     }
