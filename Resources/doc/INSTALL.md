@@ -15,7 +15,7 @@ Installation steps
 Run the following from your website root folder to install Netgen OpenWeatherMap Bundle:
 
 ```
-$ composer require netgen/openweathermapbundle
+$ composer require netgen/open-weather-map-bundle
 ```
 
 ### Activate the bundle
@@ -55,7 +55,6 @@ netgen_open_weather_map:
                api_key: 'YOUR API KEY HERE'
                units: 'metric' # metric or imperial
                language: 'en' # Please check http://openweathermap.org/ for this one
-               mode: 'json' # xml, html, json
                type: 'accurate' # like or accurate
            cache_settings:
                handler: 'stash' # stash, memcached or null

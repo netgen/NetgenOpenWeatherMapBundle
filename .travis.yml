@@ -23,7 +23,7 @@ before_install:
     - composer self-update
 
 # install dependencies
-install: composer install --prefer-source
+install: composer install --prefer-source -o
 
 # execute phpunit as the script command
 script:
