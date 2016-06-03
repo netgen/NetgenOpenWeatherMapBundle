@@ -1,0 +1,23 @@
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         colors="true"
+>
+    <testsuites>
+        <testsuite name="Netgen\OpenWeatherMapBundle\Tests">
+            <directory>Tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory>.</directory>
+            <exclude>
+                <directory>Tests</directory>
+                <directory>vendor</directory>
+                <file>NetgenOpenWeatherMapBundle.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>
