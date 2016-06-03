@@ -9,7 +9,7 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Http;
 class JsonResponse implements ResponseInterface
 {
     /**
-     * @var array
+     * @var array|string
      */
     protected $data;
 
@@ -98,7 +98,11 @@ class JsonResponse implements ResponseInterface
      */
     public function __toString()
     {
-        return json_encode($this->data);
+        if (is_array($this->data)) {
+            return json_encode($this->data);
+        }
+
+        return $this->data;
     }
 
     /**

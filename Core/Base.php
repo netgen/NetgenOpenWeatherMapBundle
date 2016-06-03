@@ -73,7 +73,7 @@ abstract class Base
         } else {
 
             $response = $this->client->get($url);
-            dump($response);
+            
             if (!$response->isAuthorized()) {
                 throw new NotAuthorizedException($response->getMessage());
             }
