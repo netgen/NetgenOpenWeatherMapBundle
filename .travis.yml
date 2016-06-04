@@ -21,11 +21,9 @@ branches:
 # make sure to update composer to latest available version
 before_install:
     - phpenv config-rm xdebug.ini
-    - which composer
-    - composer self-update
 
 # install dependencies
-install: php -d memory_limit=-1 /home/travis/.phpenv/shims/composer install --prefer-source -o
+install: composer install
 
 # execute phpunit as the script command
 script:
