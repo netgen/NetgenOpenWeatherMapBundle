@@ -23,7 +23,7 @@ before_install:
     - phpenv config-rm xdebug.ini
 
 # install dependencies
-install: composer install
+install: composer install --prefer-dist
 
 # execute phpunit as the script command
 script:
