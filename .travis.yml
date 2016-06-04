@@ -25,7 +25,7 @@ before_install:
     - composer self-update
 
 # install dependencies
-install: php -d memory_limit=-1 /usr/local/bin/composer install --prefer-source -o
+install: php -d memory_limit=-1 /home/travis/.phpenv/shims/composer install --prefer-source -o
 
 # execute phpunit as the script command
 script:
