@@ -4,7 +4,7 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Tests\Core;
 
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
-use Netgen\Bundle\OpenWeatherMapBundle\Cache\Null;
+use Netgen\Bundle\OpenWeatherMapBundle\Cache\NoCache;
 use Netgen\Bundle\OpenWeatherMapBundle\Core\Weather;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClient;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
@@ -24,7 +24,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchForecastByCityName()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -54,7 +54,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchForecastByCityNameWithoutCountryCode()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -84,7 +84,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchForecastByCityId()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -114,7 +114,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchForecastByZipCode()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -144,7 +144,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchForecastByZipCodeWithoutCountryCode()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -174,7 +174,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchForecastByCityGeographicCoordinates()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -204,7 +204,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchWeatherDataForCitiesWithinRectangleZone()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -238,7 +238,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchWeatherDataForCitiesInCycle()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -268,7 +268,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchWeatherDataForSeveralCityIds()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();

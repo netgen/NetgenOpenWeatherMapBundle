@@ -4,7 +4,7 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Tests\Core;
 
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
-use Netgen\Bundle\OpenWeatherMapBundle\Cache\Null;
+use Netgen\Bundle\OpenWeatherMapBundle\Cache\NoCache;
 use Netgen\Bundle\OpenWeatherMapBundle\Core\AirPollution;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClient;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
@@ -24,7 +24,7 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchOzoneDataFromCache()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'get'))
             ->getMock();
@@ -48,7 +48,7 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchOzoneDataFromRemoteService()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -87,7 +87,7 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
      */
     public function testFetchOzoneDataWhenRequestIsNotAuthorized()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has'))
             ->getMock();
@@ -116,7 +116,7 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
      */
     public function testFetchOzoneDataWhenRequestIsNotOk()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has'))
             ->getMock();
@@ -142,7 +142,7 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchCarbonMonoxideDataFromCache()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'get'))
             ->getMock();
@@ -166,7 +166,7 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchCarbonMonoxideDataFromRemoteService()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();

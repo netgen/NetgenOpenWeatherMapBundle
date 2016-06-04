@@ -9,7 +9,7 @@ parameters:
     # END of OpenWeatherMap services
 
     # Cache services
-    netgen_open_weather_map.cache_handler.null.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\Null
+    netgen_open_weather_map.cache_handler.null.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\NoCache
     netgen_open_weather_map.cache_handler.memcached.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\Memcached
     netgen_open_weather_map.cache_handler.stash.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\Stash
     netgen_open_weather_map.cache_handler.class: Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface

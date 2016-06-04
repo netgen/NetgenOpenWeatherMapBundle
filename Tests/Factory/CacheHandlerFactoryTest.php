@@ -3,11 +3,9 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Tests\Factory;
 
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
-use Netgen\Bundle\OpenWeatherMapBundle\Cache\Null;
 use Netgen\Bundle\OpenWeatherMapBundle\Factory\CacheHandlerFactory;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class CacheHandlerFactoryTest extends \PHPUnit_Framework_TestCase
 {

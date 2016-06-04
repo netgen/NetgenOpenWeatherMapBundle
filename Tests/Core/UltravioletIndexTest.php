@@ -4,7 +4,7 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Tests\Core;
 
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
-use Netgen\Bundle\OpenWeatherMapBundle\Cache\Null;
+use Netgen\Bundle\OpenWeatherMapBundle\Cache\NoCache;
 use Netgen\Bundle\OpenWeatherMapBundle\Core\UltravioletIndex;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClient;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
@@ -24,7 +24,7 @@ class UltravioletIndexTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchUltravioletIndex()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -54,7 +54,7 @@ class UltravioletIndexTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchUltravioletIndexWithDate()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();

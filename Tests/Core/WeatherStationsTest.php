@@ -4,7 +4,7 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Tests\Core;
 
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
-use Netgen\Bundle\OpenWeatherMapBundle\Cache\Null;
+use Netgen\Bundle\OpenWeatherMapBundle\Cache\NoCache;
 use Netgen\Bundle\OpenWeatherMapBundle\Core\WeatherStations;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClient;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
@@ -24,7 +24,7 @@ class WeatherStationsTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchFromOnStationById()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -54,7 +54,7 @@ class WeatherStationsTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchFromSeveralByRectangleZone()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();
@@ -88,7 +88,7 @@ class WeatherStationsTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchFromSeveralByGeoPoint()
     {
-        $cacheHandler = $this->getMockBuilder(Null::class)
+        $cacheHandler = $this->getMockBuilder(NoCache::class)
             ->disableOriginalConstructor()
             ->setMethods(array('has', 'set'))
             ->getMock();

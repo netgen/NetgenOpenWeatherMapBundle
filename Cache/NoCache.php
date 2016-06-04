@@ -3,10 +3,10 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Cache;
 
 /**
- * Class Null
+ * Class NoCache
  * @package Netgen\Bundle\OpenWeatherMapBundle\Cache
  */
-class Null implements HandlerInterface
+class NoCache implements HandlerInterface
 {
     /**
      * @inheritDoc

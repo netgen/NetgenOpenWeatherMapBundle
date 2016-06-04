@@ -3,18 +3,18 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Tests\Cache;
 
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
-use Netgen\Bundle\OpenWeatherMapBundle\Cache\Null;
+use Netgen\Bundle\OpenWeatherMapBundle\Cache\NoCache;
 
 class NullTest extends \PHPUnit_Framework_TestCase
 {
     public function testInstanceOfHandlerInterface()
     {
-        $this->assertInstanceOf(HandlerInterface::class, new Null());
+        $this->assertInstanceOf(HandlerInterface::class, new NoCache());
     }
 
     public function testHasMethodMustAlwaysReturnFalse()
     {
-        $nullHandler = new Null();
+        $nullHandler = new NoCache();
 
         $this->assertFalse($nullHandler->has('some_key'));
         $this->assertFalse($nullHandler->has('test'));
@@ -23,7 +23,7 @@ class NullTest extends \PHPUnit_Framework_TestCase
 
     public function testGetMethodMustAlwaysReturnFalse()
     {
-        $nullHandler = new Null();
+        $nullHandler = new NoCache();
 
         $this->assertFalse($nullHandler->get('some_key'));
         $this->assertFalse($nullHandler->get('test'));
@@ -32,7 +32,7 @@ class NullTest extends \PHPUnit_Framework_TestCase
 
     public function testSetMethodShouldDoNothing()
     {
-        $nullHandler = new Null();
+        $nullHandler = new NoCache();
 
         $nullHandler->set('some_key', 'data', 120);
         $nullHandler->set('test', 'data', 1000);
