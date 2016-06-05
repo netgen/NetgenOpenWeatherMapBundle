@@ -45,8 +45,10 @@ class HourForecastController
             $response->setContent($data);
         } catch (NotAuthorizedException $e) {
             $response->setContent($e->getMessage());
+            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
         } catch (NotFoundException $e) {
             $response->setContent($e->getMessage());
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
 
         return $response;
@@ -68,8 +70,10 @@ class HourForecastController
             $response->setContent($data);
         } catch (NotAuthorizedException $e) {
             $response->setContent($e->getMessage());
+            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
         } catch (NotFoundException $e) {
             $response->setContent($e->getMessage());
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
 
         return $response;
@@ -88,12 +92,14 @@ class HourForecastController
         $response = new Response();
 
         try {
-            $data = $this->hourForecast->fetchForecastByCityName($latitude, $longitude);
+            $data = $this->hourForecast->fetchForecastByCityGeographicCoordinates($latitude, $longitude);
             $response->setContent($data);
         } catch (NotAuthorizedException $e) {
             $response->setContent($e->getMessage());
+            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
         } catch (NotFoundException $e) {
             $response->setContent($e->getMessage());
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
 
         return $response;

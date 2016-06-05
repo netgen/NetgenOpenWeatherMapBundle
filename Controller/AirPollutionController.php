@@ -56,8 +56,10 @@ class AirPollutionController
             $response->setContent($data);
         } catch (NotAuthorizedException $e) {
             $response->setContent($e->getMessage());
+            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
         } catch (NotFoundException $e) {
             $response->setContent($e->getMessage());
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
 
         return $response;
@@ -90,8 +92,10 @@ class AirPollutionController
             $response->setContent($data);
         } catch (NotAuthorizedException $e) {
             $response->setContent($e->getMessage());
+            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
         } catch (NotFoundException $e) {
             $response->setContent($e->getMessage());
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
 
         return $response;
