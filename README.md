@@ -1,7 +1,7 @@
 Netgen OpenWeatherMap Bundle
 ============================
 [![Build Status](https://img.shields.io/travis/netgen/NetgenOpenWeatherMapBundle.svg?style=flat-square)](https://travis-ci.org/netgen/NetgenOpenWeatherMapBundle)
-[![Build Status](https://img.shields.io/codecov/c/github/netgen/NetgenOpenWeatherMapBundle.svg?style=flat-square)](https://codecov.io/gh/netgen/NetgenOpenWeatherMapBundle)
+[![Code Coverage](https://img.shields.io/codecov/c/github/netgen/NetgenOpenWeatherMapBundle.svg?style=flat-square)](https://codecov.io/gh/netgen/NetgenOpenWeatherMapBundle)
 [![Downloads](https://img.shields.io/packagist/dt/netgen/open-weather-map-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/open-weather-map-bundle)
 [![Latest stable](https://img.shields.io/packagist/v/netgen/open-weather-map-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/open-weather-map-bundle)
 [![License](https://img.shields.io/packagist/l/netgen/open-weather-map-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/open-weather-map-bundle)
