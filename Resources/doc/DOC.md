@@ -56,18 +56,38 @@ Air pollution
 
 ### Ozone Data by geographic coordinates
 
+* By calling AirPollution service
 ```php
-
 /** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface */
 $data = $airPollution->fetchOzoneData(35, 139);
 
 ```
 
+* By rendering controller inside template
+```jinja
+{{ render(controller('netgen_open_weather_map.controller.air_pollution:getOzoneData', { 'latitude': 35, 'longitude: '139' })) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/airpollution/ozone/35/139
+```
+
 ### Carbon Monoxide Data by geographic coordinates
 
+* By calling AirPollution service
 ```php
-
 /** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface */
 $data = $airPollution->fetchCarbonMonoxideData(35, 139);
 
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(controller('netgen_open_weather_map.controller.air_pollution:getCarbonMonoxideData', { 'latitude': 35, 'longitude: '139' })) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/airpollution/carbonmonoxide/35/139
 ```
