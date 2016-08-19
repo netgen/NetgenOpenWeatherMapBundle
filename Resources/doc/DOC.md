@@ -6,17 +6,196 @@ Current weather data
 
 ### Current weather data for one location by city name
 
+* By calling Weather service
+```php
+/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+$data = $weather->fetchWeatherDataByCityName(
+    'London'
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.weather:byCityName',
+            { 
+                'cityName': 'London'
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/weather/cityname/London
+```
+
 ### Current weather data for one location by city id
+
+* By calling Weather service
+```php
+/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+$data = $weather->fetchWeatherDataByCityId(
+    2172797
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.weather:byCityId',
+            { 
+                'cityId': '2172797
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/weather/cityid/2172797
+```
 
 ### Current weather data for one location by geographic coordinates
 
+* By calling Weather service
+```php
+/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+$data = $weather->fetchWeatherDataByGeographicCoordinates(
+    35, 139
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.weather:byGeographicCoordinates',
+            { 
+                'latitude': 35,
+                'longitude': 139
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/weather/coordinates/35/139
+```
+
 ### Current weather data for one location by zip code
+
+* By calling Weather service
+```php
+/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+$data = $weather->fetchWeatherDataByZipCode(
+    94040
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.weather:byZipCode',
+            { 
+                'zipCode': 94040
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/weather/zipcode/94040/us
+```
 
 ### Current weather data for several cities within a rectangle zone
 
+* By calling Weather service
+```php
+/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+$data = $weather->fetchWeatherDataForCitiesWithinRectangleZone(
+    array(12, 32, 15, 37, 10), 'yes'
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.weather:byRectangleZone',
+            { 
+                'longitudeLeft': 12,
+                'latitudeBottom': 32,
+                'logitudeRigth': 15,
+                'latitudeTop': 37,
+                'mapZoom': 10,
+                'cluster': 'yes'
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/weather/rectanglezone/12/32/15/37/10/yes
+```
+
 ### Current weather data for several cities in cycle
 
+* By calling Weather service
+```php
+/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+$data = $weather->fetchWeatherDataForCitiesInCycle(
+    55.5, 37.5, 'yes', 10
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.weather:byCircle',
+            { 
+                'latitude': 55.5,
+                'longitude': 37.5,
+                'cluster': 'yes',
+                'numberOfCities': 10
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/weather/circle/55.5/37.5/yes/10
+```
+
 ### Current weather data for several cities by city IDs
+
+* By calling Weather service
+```php
+/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+$data = $weather->fetchWeatherDataForSeveralCityIds(
+    array(524901, 703448, 2643743)
+);
+
+```
+
+* Or via Symfony route
+```php
+netgen/openweather/weather/cityids?cities=524901,703448,2643743
+```
 
 
 5 day / 3 hour forecast
@@ -26,7 +205,7 @@ Current weather data
 
 * By calling HourForecast service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
+/** @var $hourForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
 $data = $hourForecast->fetchForecastByCityName(
     'London'
 );
@@ -54,7 +233,7 @@ $data = $hourForecast->fetchForecastByCityName(
 
 * By calling HourForecast service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
+/** @var $hourForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
 $data = $hourForecast->fetchForecastByCityId(
     524901
 );
@@ -82,7 +261,7 @@ $data = $hourForecast->fetchForecastByCityId(
 
 * By calling HourForecast service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
+/** @var $hourForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
 $data = $hourForecast->fetchForecastByCityGeographicCoordinates(
     35, 139
 );
@@ -114,7 +293,7 @@ $data = $hourForecast->fetchForecastByCityGeographicCoordinates(
 
 * By calling DailyForecast service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
+/** @var $dailyForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
 $data = $dailyForecast->fetchForecastByCityName(
     'London'
 );
@@ -142,7 +321,7 @@ $data = $dailyForecast->fetchForecastByCityName(
 
 * By calling DailyForecast service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
+/** @var $dailyForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
 $data = $dailyForecast->fetchForecastByCityId(
     524901
 );
@@ -170,7 +349,7 @@ $data = $dailyForecast->fetchForecastByCityId(
 
 * By calling DailyForecast service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
+/** @var $dailyForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
 $data = $dailyForecast->fetchForecastByCityGeographicCoordinates(
     55, 37
 );
@@ -202,7 +381,7 @@ UV Index
 
 * By calling UltravioletIndex service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface */
+/** @var $ultravioletIndex \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface */
 $data = $ultravioletIndex->fetchUltraviletIndex(
     55, 37
 );
@@ -234,7 +413,7 @@ Weather stations
 
 * By calling WeatherStations service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
+/** @var $weatherStations \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
 $data = $weatherStations->fetchFromOnStationById(29584);
 
 ```
@@ -258,9 +437,9 @@ $data = $weatherStations->fetchFromOnStationById(29584);
 
 * By calling WeatherStations service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
+/** @var $weatherStations \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
 $data = $weatherStations->fetchFromSeveralByRectangleZone(
-    8.87, 49.07, 65.21, 61.26, 6
+    array(8.87, 49.07, 65.21, 61.26, 6), 'yes', 10
 );
 
 ```
@@ -275,7 +454,9 @@ $data = $weatherStations->fetchFromSeveralByRectangleZone(
                 'latitudeTopLeft': 49.07,
                 'longitudeBottomRight': 65.21,
                 'latitudeBottomRight': 61.26,
-                'mapZoom': 6 
+                'mapZoom': 6,
+                'cluster': 'yes', 
+                'numberOfStations': 10
             }
         )
 ) }}
@@ -283,14 +464,14 @@ $data = $weatherStations->fetchFromSeveralByRectangleZone(
 
 * Or via Symfony route
 ```php
-/netgen/openweather/weatherstations/stationsrectangle/8.87/49.07/65.21/61.26/6
+/netgen/openweather/weatherstations/stationsrectangle/8.87/49.07/65.21/61.26/6/yes/10
 ```
 
 ### Current weather from several stations by geo point
 
 * By calling WeatherStations service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
+/** @var $weatherStations \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
 $data = $weatherStations->fetchFromSeveralByGeoPoint(
     55, 37
 );
@@ -322,7 +503,7 @@ Air pollution
 
 * By calling AirPollution service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface */
+/** @var $airPollution \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface */
 $data = $airPollution->fetchOzoneData(35, 139);
 
 ```
@@ -346,7 +527,7 @@ $data = $airPollution->fetchOzoneData(35, 139);
 
 * By calling AirPollution service
 ```php
-/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface */
+/** @var $airPollution \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface */
 $data = $airPollution->fetchCarbonMonoxideData(35, 139);
 
 ```
