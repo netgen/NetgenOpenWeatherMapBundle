@@ -10,7 +10,9 @@ For more details please check [here](http://openweathermap.org/current).
 
 * By calling Weather service
 ```php
-/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+/** 
+ * @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface 
+ */
 $data = $weather->fetchWeatherDataByCityName(
     'London'
 );
@@ -38,7 +40,9 @@ $data = $weather->fetchWeatherDataByCityName(
 
 * By calling Weather service
 ```php
-/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+/** 
+ * @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface 
+ */
 $data = $weather->fetchWeatherDataByCityId(
     2172797
 );
@@ -66,7 +70,9 @@ $data = $weather->fetchWeatherDataByCityId(
 
 * By calling Weather service
 ```php
-/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+/** 
+ * @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface
+ */
 $data = $weather->fetchWeatherDataByGeographicCoordinates(
     35, 139
 );
@@ -95,7 +101,9 @@ $data = $weather->fetchWeatherDataByGeographicCoordinates(
 
 * By calling Weather service
 ```php
-/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+/** 
+ * @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface 
+ */
 $data = $weather->fetchWeatherDataByZipCode(
     94040
 );
@@ -123,7 +131,9 @@ $data = $weather->fetchWeatherDataByZipCode(
 
 * By calling Weather service
 ```php
-/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+/** 
+ * @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface 
+ */
 $data = $weather->fetchWeatherDataForCitiesWithinRectangleZone(
     array(12, 32, 15, 37, 10), 'yes'
 );
@@ -156,7 +166,9 @@ $data = $weather->fetchWeatherDataForCitiesWithinRectangleZone(
 
 * By calling Weather service
 ```php
-/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+/** 
+ * @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface 
+ */
 $data = $weather->fetchWeatherDataForCitiesInCycle(
     55.5, 37.5, 'yes', 10
 );
@@ -187,7 +199,9 @@ $data = $weather->fetchWeatherDataForCitiesInCycle(
 
 * By calling Weather service
 ```php
-/** @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface */
+/** 
+ * @var $weather \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface 
+ */
 $data = $weather->fetchWeatherDataForSeveralCityIds(
     array(524901, 703448, 2643743)
 );
@@ -209,7 +223,9 @@ For more details please check [here](http://openweathermap.org/forecast5).
 
 * By calling HourForecast service
 ```php
-/** @var $hourForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
+/** 
+ * @var $hourForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface 
+ */
 $data = $hourForecast->fetchForecastByCityName(
     'London'
 );
@@ -237,7 +253,9 @@ $data = $hourForecast->fetchForecastByCityName(
 
 * By calling HourForecast service
 ```php
-/** @var $hourForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
+/** 
+ * @var $hourForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface 
+ */
 $data = $hourForecast->fetchForecastByCityId(
     524901
 );
@@ -265,7 +283,9 @@ $data = $hourForecast->fetchForecastByCityId(
 
 * By calling HourForecast service
 ```php
-/** @var $hourForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
+/** 
+ * @var $hourForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface 
+ */
 $data = $hourForecast->fetchForecastByCityGeographicCoordinates(
     35, 139
 );
@@ -299,7 +319,9 @@ For more details please check [here](http://openweathermap.org/forecast16).
 
 * By calling DailyForecast service
 ```php
-/** @var $dailyForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
+/** 
+ * @var $dailyForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface 
+ */
 $data = $dailyForecast->fetchForecastByCityName(
     'London'
 );
@@ -327,7 +349,9 @@ $data = $dailyForecast->fetchForecastByCityName(
 
 * By calling DailyForecast service
 ```php
-/** @var $dailyForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
+/** 
+ * @var $dailyForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface 
+ */
 $data = $dailyForecast->fetchForecastByCityId(
     524901
 );
@@ -355,7 +379,9 @@ $data = $dailyForecast->fetchForecastByCityId(
 
 * By calling DailyForecast service
 ```php
-/** @var $dailyForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
+/** 
+ * @var $dailyForecast \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface 
+ */
 $data = $dailyForecast->fetchForecastByCityGeographicCoordinates(
     55, 37
 );
@@ -389,7 +415,9 @@ For more details please check [here](http://openweathermap.org/api/uvi).
 
 * By calling UltravioletIndex service
 ```php
-/** @var $ultravioletIndex \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface */
+/** 
+ * @var $ultravioletIndex \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface 
+ */
 $data = $ultravioletIndex->fetchUltraviletIndex(
     55, 37
 );
@@ -423,7 +451,9 @@ For more details please check [here](http://openweathermap.org/api_station).
 
 * By calling WeatherStations service
 ```php
-/** @var $weatherStations \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
+/** 
+ * @var $weatherStations \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface 
+ */
 $data = $weatherStations->fetchFromOnStationById(29584);
 
 ```
@@ -447,7 +477,9 @@ $data = $weatherStations->fetchFromOnStationById(29584);
 
 * By calling WeatherStations service
 ```php
-/** @var $weatherStations \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
+/** 
+ * @var $weatherStations \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface 
+ */
 $data = $weatherStations->fetchFromSeveralByRectangleZone(
     array(8.87, 49.07, 65.21, 61.26, 6), 'yes', 10
 );
@@ -481,7 +513,9 @@ $data = $weatherStations->fetchFromSeveralByRectangleZone(
 
 * By calling WeatherStations service
 ```php
-/** @var $weatherStations \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
+/** 
+ * @var $weatherStations \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface 
+ */
 $data = $weatherStations->fetchFromSeveralByGeoPoint(
     55, 37
 );
@@ -515,7 +549,9 @@ For details about CO check [here](http://openweathermap.org/api/pollution/co) an
 
 * By calling AirPollution service
 ```php
-/** @var $airPollution \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface */
+/** 
+ * @var $airPollution \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface 
+ */
 $data = $airPollution->fetchOzoneData(35, 139);
 
 ```
@@ -539,7 +575,9 @@ $data = $airPollution->fetchOzoneData(35, 139);
 
 * By calling AirPollution service
 ```php
-/** @var $airPollution \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface */
+/** 
+ * @var $airPollution \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface 
+ */
 $data = $airPollution->fetchCarbonMonoxideData(35, 139);
 
 ```
