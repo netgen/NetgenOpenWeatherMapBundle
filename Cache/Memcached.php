@@ -5,8 +5,7 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Cache;
 use Memcached as MemcachedStore;
 
 /**
- * Class Memcached
- * @package Netgen\Bundle\OpenWeatherMapBundle\Cache
+ * Class Memcached.
  */
 class Memcached implements HandlerInterface
 {
@@ -28,7 +27,7 @@ class Memcached implements HandlerInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function has($cacheKey)
     {
@@ -36,7 +35,7 @@ class Memcached implements HandlerInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function get($cacheKey)
     {
@@ -44,7 +43,7 @@ class Memcached implements HandlerInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function set($cacheKey, $data, $ttl)
     {

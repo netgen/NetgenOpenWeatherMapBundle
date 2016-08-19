@@ -5,13 +5,12 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Core;
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface;
 
 /**
- * Class Weather
- * @package Netgen\Bundle\OpenWeatherMapBundle\Core
+ * Class Weather.
  */
 class Weather extends WeatherBase implements WeatherInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchWeatherDataByCityName($cityName, $countryCode = '')
     {
@@ -27,7 +26,7 @@ class Weather extends WeatherBase implements WeatherInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchWeatherDataByCityId($cityId)
     {
@@ -37,7 +36,7 @@ class Weather extends WeatherBase implements WeatherInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchWeatherDataByGeographicCoordinates($latitude, $longitude)
     {
@@ -47,7 +46,7 @@ class Weather extends WeatherBase implements WeatherInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchWeatherDataByZipCode($zipCode, $countryCode = '')
     {
@@ -63,7 +62,7 @@ class Weather extends WeatherBase implements WeatherInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchWeatherDataForCitiesWithinRectangleZone(array $boundingBox, $cluster = 'yes')
     {
@@ -73,7 +72,7 @@ class Weather extends WeatherBase implements WeatherInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchWeatherDataForCitiesInCycle($latitude, $longitude, $cluster = 'yes', $numberOfCities = 10)
     {
@@ -86,7 +85,7 @@ class Weather extends WeatherBase implements WeatherInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchWeatherDataForSeveralCityIds(array $cities)
     {

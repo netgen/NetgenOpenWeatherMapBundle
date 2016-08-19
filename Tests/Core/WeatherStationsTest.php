@@ -41,7 +41,7 @@ class WeatherStationsTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -49,7 +49,7 @@ class WeatherStationsTest extends \PHPUnit_Framework_TestCase
 
         $weatherStations = new WeatherStations($httpClient, 'api_key', $cacheHandler, 3600);
         $data = $weatherStations->fetchFromOnStationById(123);
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     public function testFetchFromSeveralByRectangleZone()
@@ -71,19 +71,19 @@ class WeatherStationsTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
             ->method('get');
 
         $boundingBox = array(
-            12,32,15,37,10
+            12, 32, 15, 37, 10,
         );
 
         $weatherStations = new WeatherStations($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $weatherStations->fetchFromSeveralByRectangleZone($boundingBox, 'yes');
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     public function testFetchFromSeveralByGeoPoint()
@@ -105,7 +105,7 @@ class WeatherStationsTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -113,6 +113,6 @@ class WeatherStationsTest extends \PHPUnit_Framework_TestCase
 
         $weatherStations = new WeatherStations($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $weatherStations->fetchFromSeveralByGeoPoint(35, 129, 10);
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 }

@@ -1,42 +1,42 @@
 <?php
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\Http;
+
 /**
- * Interface ResponseInterface
- * @package Netgen\Bundle\OpenWeatherMapBundle\Http
+ * Interface ResponseInterface.
  */
 interface ResponseInterface
 {
     /**
-     * Returns HTTP status code
+     * Returns HTTP status code.
      *
-     * @return integer
+     * @return int
      */
     public function getStatusCode();
 
     /**
-     * Returns data from remote service
+     * Returns data from remote service.
      *
      * @return array
      */
     public function getData();
 
     /**
-     * Returns true is HTTP status code is 200
+     * Returns true is HTTP status code is 200.
      *
-     * @return boolean
+     * @return bool
      */
     public function isOk();
 
     /**
-     * Returns true is HTTP status code is not 401
+     * Returns true is HTTP status code is not 401.
      *
-     * @return boolean
+     * @return bool
      */
     public function isAuthorized();
 
     /**
-     * Returns message in case of error
+     * Returns message in case of error.
      *
      * @return string
      */

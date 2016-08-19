@@ -41,7 +41,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -49,7 +49,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
         $weather = new Weather($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $weather->fetchWeatherDataByCityName('London', 'uk');
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     public function testFetchForecastByCityNameWithoutCountryCode()
@@ -71,7 +71,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -79,7 +79,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
         $weather = new Weather($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $weather->fetchWeatherDataByCityName('London');
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     public function testFetchForecastByCityId()
@@ -101,7 +101,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -109,7 +109,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
         $weather = new Weather($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $weather->fetchWeatherDataByCityId(524901);
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     public function testFetchForecastByZipCode()
@@ -131,7 +131,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -139,7 +139,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
         $weather = new Weather($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $weather->fetchWeatherDataByZipCode(94040, 'us');
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     public function testFetchForecastByZipCodeWithoutCountryCode()
@@ -161,7 +161,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -169,7 +169,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
         $weather = new Weather($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $weather->fetchWeatherDataByZipCode(94040);
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     public function testFetchForecastByCityGeographicCoordinates()
@@ -191,7 +191,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -199,7 +199,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
         $weather = new Weather($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $weather->fetchWeatherDataByGeographicCoordinates(35, 139);
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     public function testFetchWeatherDataForCitiesWithinRectangleZone()
@@ -221,19 +221,19 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
             ->method('get');
 
         $boundingBox = array(
-            12,32,15,37,10
+            12, 32, 15, 37, 10,
         );
 
         $weather = new Weather($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $weather->fetchWeatherDataForCitiesWithinRectangleZone($boundingBox, 'yes');
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     public function testFetchWeatherDataForCitiesInCycle()
@@ -255,7 +255,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -263,7 +263,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
         $weather = new Weather($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $weather->fetchWeatherDataForCitiesInCycle(35, 129, 'yes', 10);
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     public function testFetchWeatherDataForSeveralCityIds()
@@ -285,7 +285,7 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -293,6 +293,6 @@ class WeatherTest extends \PHPUnit_Framework_TestCase
 
         $weather = new Weather($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $weather->fetchWeatherDataForSeveralCityIds(array(23, 34, 354, 546));
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 }

@@ -6,8 +6,7 @@ use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
 
 /**
- * Class WeatherBase
- * @package Netgen\Bundle\OpenWeatherMapBundle\Core
+ * Class WeatherBase.
  */
 abstract class WeatherBase extends Base
 {
@@ -46,7 +45,7 @@ abstract class WeatherBase extends Base
     }
 
     /**
-     * Return standard params
+     * Return standard params.
      *
      * @return string
      */

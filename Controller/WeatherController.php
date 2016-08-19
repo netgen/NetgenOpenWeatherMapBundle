@@ -9,8 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class WeatherController
- * @package Netgen\Bundle\OpenWeatherMapBundle\Controller
+ * Class WeatherController.
  */
 class WeatherController
 {
@@ -30,8 +29,8 @@ class WeatherController
     }
 
     /**
-     * Returns weather data by geographic coordinates
-     * 
+     * Returns weather data by geographic coordinates.
+     *
      * @param float $latitude
      * @param float $longitude
      *
@@ -56,7 +55,7 @@ class WeatherController
     }
 
     /**
-     * Returns weather data by city name
+     * Returns weather data by city name.
      *
      * @param string $cityName
      * @param string $countryCode
@@ -65,7 +64,6 @@ class WeatherController
      */
     public function byCityName($cityName, $countryCode = '')
     {
-
         $response = new Response();
 
         try {
@@ -83,7 +81,7 @@ class WeatherController
     }
 
     /**
-     * Returns weather data by city id
+     * Returns weather data by city id.
      *
      * @param int $cityId
      *
@@ -108,7 +106,7 @@ class WeatherController
     }
 
     /**
-     * Returns weather data by zip code
+     * Returns weather data by zip code.
      *
      * @param int $zipCode
      * @param string $countryCode
@@ -134,7 +132,7 @@ class WeatherController
     }
 
     /**
-     * Returns weather data for cities in rectangle zone
+     * Returns weather data for cities in rectangle zone.
      *
      * @param float $longitudeLeft
      * @param float $latitudeBottom
@@ -166,7 +164,7 @@ class WeatherController
     }
 
     /**
-     * Returns weather data for cities in circle
+     * Returns weather data for cities in circle.
      *
      * @param float $latitude
      * @param float $longitude
@@ -194,7 +192,7 @@ class WeatherController
     }
 
     /**
-     * Returns weather data by several city ids
+     * Returns weather data by several city ids.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
@@ -208,7 +206,7 @@ class WeatherController
         }
 
         $cities = $request->query->has('cities');
-        $cities = explode(",", $cities);
+        $cities = explode(',', $cities);
 
         try {
             $data = $this->weather->fetchWeatherDataForSeveralCityIds($cities);

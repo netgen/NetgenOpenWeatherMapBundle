@@ -5,8 +5,7 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Exception;
 use Exception;
 
 /**
- * Class NotFoundException
- * @package Netgen\Bundle\OpenWeatherMapBundle\Exception
+ * Class NotFoundException.
  */
 class NotFoundException extends Exception
 {

@@ -65,7 +65,7 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new Response("some_data", 200);
+        $response = new Response('some_data', 200);
 
         $httpClient->expects($this->any())
             ->willReturn($response)
@@ -73,13 +73,13 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
 
         $airPollution = new AirPollution($httpClient, 'api_key', $cacheHandler, 3600);
         $data = $airPollution->fetchOzoneData(23.5, 67.6);
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
 
         $data = $airPollution->fetchOzoneData(23.5, 67.6, new \DateTime());
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
 
         $data = $airPollution->fetchOzoneData(23.5, 67.6, 'current');
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     /**
@@ -101,7 +101,7 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new Response("some_data", 401);
+        $response = new Response('some_data', 401);
 
         $httpClient->expects($this->any())
             ->willReturn($response)
@@ -130,7 +130,7 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new Response("some_data", 404);
+        $response = new Response('some_data', 404);
 
         $httpClient->expects($this->any())
             ->willReturn($response)
@@ -183,7 +183,7 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new Response("some_data", 200);
+        $response = new Response('some_data', 200);
 
         $httpClient->expects($this->any())
             ->willReturn($response)
@@ -191,12 +191,12 @@ class AirPollutionTest extends \PHPUnit_Framework_TestCase
 
         $airPollution = new AirPollution($httpClient, 'api_key', $cacheHandler, 3600);
         $data = $airPollution->fetchCarbonMonoxideData(23.5, 67.6);
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
 
         $data = $airPollution->fetchCarbonMonoxideData(23.5, 67.6, new \DateTime());
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
 
         $data = $airPollution->fetchCarbonMonoxideData(23.5, 67.6, 'current');
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 }

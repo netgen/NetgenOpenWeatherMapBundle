@@ -8,8 +8,7 @@ use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class HourForecastController
- * @package Netgen\Bundle\OpenWeatherMapBundle\Controller
+ * Class HourForecastController.
  */
 class HourForecastController
 {
@@ -29,7 +28,7 @@ class HourForecastController
     }
 
     /**
-     * Returns hour forecast by city name
+     * Returns hour forecast by city name.
      *
      * @param string $cityName
      * @param string $countryCode
@@ -55,7 +54,7 @@ class HourForecastController
     }
 
     /**
-     * Returns hour forecast by city id
+     * Returns hour forecast by city id.
      *
      * @param int $cityId
      *
@@ -80,7 +79,7 @@ class HourForecastController
     }
 
     /**
-     * Returns hour forecast by geographic coordinates
+     * Returns hour forecast by geographic coordinates.
      *
      * @param float $latitude
      * @param float $longitude

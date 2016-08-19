@@ -41,7 +41,7 @@ class UltravioletIndexTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -49,7 +49,7 @@ class UltravioletIndexTest extends \PHPUnit_Framework_TestCase
 
         $ultravioletIndex = new UltravioletIndex($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $ultravioletIndex->fetchUltraviletIndex(34, 129);
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 
     public function testFetchUltravioletIndexWithDate()
@@ -71,7 +71,7 @@ class UltravioletIndexTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('get'))
             ->getMock();
 
-        $response = new JsonResponse("some_data", 200);
+        $response = new JsonResponse('some_data', 200);
 
         $httpClient->expects($this->once())
             ->willReturn($response)
@@ -79,6 +79,6 @@ class UltravioletIndexTest extends \PHPUnit_Framework_TestCase
 
         $ultravioletIndex = new UltravioletIndex($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
         $data = $ultravioletIndex->fetchUltraviletIndex(34, 129, new \DateTime());
-        $this->assertEquals("some_data", $data);
+        $this->assertEquals('some_data', $data);
     }
 }

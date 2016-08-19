@@ -8,8 +8,7 @@ use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class WeatherStationsController
- * @package Netgen\Bundle\OpenWeatherMapBundle\Controller
+ * Class WeatherStationsController.
  */
 class WeatherStationsController
 {
@@ -29,7 +28,7 @@ class WeatherStationsController
     }
 
     /**
-     * Returns data from one stations by station id
+     * Returns data from one stations by station id.
      *
      * @param int $stationId
      *
@@ -54,7 +53,7 @@ class WeatherStationsController
     }
 
     /**
-     * Returns data from several stations by rectangle zone
+     * Returns data from several stations by rectangle zone.
      *
      * @param float $longitudeTopLeft
      * @param float $latitudeTopLeft
@@ -69,7 +68,7 @@ class WeatherStationsController
     public function getFromSeveralByRectangleZone($longitudeTopLeft, $latitudeTopLeft, $longitudeBottomRight, $latitudeBottomRight, $mapZoom, $cluster = 'yes', $numberOfStations = 10)
     {
         $boundingBox = array(
-            $longitudeTopLeft, $latitudeTopLeft, $longitudeBottomRight, $latitudeBottomRight, $mapZoom
+            $longitudeTopLeft, $latitudeTopLeft, $longitudeBottomRight, $latitudeBottomRight, $mapZoom,
         );
 
         $response = new Response();
@@ -89,7 +88,7 @@ class WeatherStationsController
     }
 
     /**
-     * Returns data from several stations by geo point
+     * Returns data from several stations by geo point.
      *
      * @param float $latitude
      * @param float $longitude

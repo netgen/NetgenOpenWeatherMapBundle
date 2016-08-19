@@ -8,8 +8,7 @@ use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
 
 /**
- * Class Base
- * @package Netgen\Bundle\OpenWeatherMapBundle\Core
+ * Class Base.
  */
 abstract class Base
 {
@@ -50,15 +49,15 @@ abstract class Base
     }
 
     /**
-     * Helper method
+     * Helper method.
      *
      * @param string $baseUrl
      * @param string $queryPart
      *
-     * @return mixed
-     *
      * @throws NotFoundException
      * @throws NotAuthorizedException
+     *
+     * @return mixed
      */
     protected function getResult($baseUrl, $queryPart)
     {
@@ -67,13 +66,10 @@ abstract class Base
         $hash = md5($url);
 
         if ($this->cacheService->has($hash)) {
-
             return $this->cacheService->get($hash);
-
         } else {
-
             $response = $this->client->get($url);
-            
+
             if (!$response->isAuthorized()) {
                 throw new NotAuthorizedException($response->getMessage());
             }

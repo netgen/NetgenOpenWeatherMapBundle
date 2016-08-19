@@ -5,13 +5,12 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Core;
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface;
 
 /**
- * Class DailyForecast
- * @package Netgen\Bundle\OpenWeatherMapBundle\Core
+ * Class DailyForecast.
  */
 class DailyForecast extends WeatherBase implements DailyForecastInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchForecastByCityName($cityName, $countryCode = '', $numberOfDays = 16)
     {
@@ -27,7 +26,7 @@ class DailyForecast extends WeatherBase implements DailyForecastInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchForecastByCityId($cityId, $numberOfDays = 16)
     {
@@ -39,7 +38,7 @@ class DailyForecast extends WeatherBase implements DailyForecastInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchForecastByCityGeographicCoordinates($latitude, $longitude, $numberOfDays = 16)
     {

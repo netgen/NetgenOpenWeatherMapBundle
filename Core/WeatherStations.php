@@ -5,13 +5,12 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Core;
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface;
 
 /**
- * Class WeatherStations
- * @package Netgen\Bundle\OpenWeatherMapBundle\Core
+ * Class WeatherStations.
  */
 class WeatherStations extends Base implements WeatherStationsInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchFromOnStationById($stationId)
     {
@@ -21,7 +20,7 @@ class WeatherStations extends Base implements WeatherStationsInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchFromSeveralByRectangleZone(array $boundingBox, $cluster = 'yes', $numberOfStations = 10)
     {
@@ -34,7 +33,7 @@ class WeatherStations extends Base implements WeatherStationsInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchFromSeveralByGeoPoint($latitude, $longitude, $numberOfStations = 10)
     {

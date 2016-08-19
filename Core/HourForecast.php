@@ -5,13 +5,12 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Core;
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface;
 
 /**
- * Class HourForecast
- * @package Netgen\Bundle\OpenWeatherMapBundle\Core
+ * Class HourForecast.
  */
 class HourForecast extends WeatherBase implements HourForecastInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchForecastByCityName($cityName, $countryCode = '')
     {
@@ -27,7 +26,7 @@ class HourForecast extends WeatherBase implements HourForecastInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchForecastByCityId($cityId)
     {
@@ -39,7 +38,7 @@ class HourForecast extends WeatherBase implements HourForecastInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchForecastByCityGeographicCoordinates($latitude, $longitude)
     {

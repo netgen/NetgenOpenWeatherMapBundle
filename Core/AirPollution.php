@@ -5,13 +5,12 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Core;
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface;
 
 /**
- * Class AirPollution
- * @package Netgen\Bundle\OpenWeatherMapBundle\Core
+ * Class AirPollution.
  */
 class AirPollution extends Base implements AirPollutionInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchOzoneData($latitude, $longitude, $datetime = 'current')
     {
@@ -27,7 +26,7 @@ class AirPollution extends Base implements AirPollutionInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchCarbonMonoxideData($latitude, $longitude, $datetime = 'current')
     {

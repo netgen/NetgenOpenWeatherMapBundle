@@ -9,8 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use DateTime;
 
 /**
- * Class UltravioletIndexController
- * @package Netgen\Bundle\OpenWeatherMapBundle\Controller
+ * Class UltravioletIndexController.
  */
 class UltravioletIndexController
 {
@@ -30,7 +29,7 @@ class UltravioletIndexController
     }
 
     /**
-     * Returns ultraviolet index
+     * Returns ultraviolet index.
      *
      * @param float $latitude
      * @param float $longitude
@@ -41,7 +40,6 @@ class UltravioletIndexController
     public function getUltravioletIndex($latitude, $longitude, $datetime = 'current')
     {
         if ($datetime !== 'current') {
-
             $datetime = DateTime::createFromFormat('c', $datetime);
 
             if ($datetime === false) {

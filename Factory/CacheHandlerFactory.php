@@ -5,8 +5,7 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Factory;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 /**
- * Class CacheHandlerFactory
- * @package Netgen\Bundle\OpenWeatherMapBundle\Factory
+ * Class CacheHandlerFactory.
  */
 class CacheHandlerFactory extends ContainerAware
 {

@@ -3,8 +3,7 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Http;
 
 /**
- * Class JsonResponse
- * @package Netgen\Bundle\OpenWeatherMapBundle\Http
+ * Class JsonResponse.
  */
 class JsonResponse implements ResponseInterface
 {
@@ -14,7 +13,7 @@ class JsonResponse implements ResponseInterface
     protected $data;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $httpCode;
 
@@ -22,7 +21,7 @@ class JsonResponse implements ResponseInterface
      * Response constructor.
      *
      * @param string $data
-     * @param integer $httpCode
+     * @param int $httpCode
      */
     public function __construct($data, $httpCode)
     {
@@ -39,7 +38,7 @@ class JsonResponse implements ResponseInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getStatusCode()
     {
@@ -47,7 +46,7 @@ class JsonResponse implements ResponseInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getData()
     {
@@ -55,7 +54,7 @@ class JsonResponse implements ResponseInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function isOk()
     {
@@ -67,7 +66,7 @@ class JsonResponse implements ResponseInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function isAuthorized()
     {
@@ -79,7 +78,7 @@ class JsonResponse implements ResponseInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getMessage()
     {
@@ -90,9 +89,8 @@ class JsonResponse implements ResponseInterface
         return '';
     }
 
-
     /**
-     * Returns data represented as string
+     * Returns data represented as string.
      *
      * @return string
      */
@@ -106,7 +104,7 @@ class JsonResponse implements ResponseInterface
     }
 
     /**
-     * Checks if given string is valid json
+     * Checks if given string is valid json.
      *
      * @param string $string
      *

@@ -3,13 +3,12 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Http;
 
 /**
- * Class HttpClient
- * @package Netgen\Bundle\OpenWeatherMapBundle\Http
+ * Class HttpClient.
  */
 class HttpClient implements HttpClientInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function get($url)
     {

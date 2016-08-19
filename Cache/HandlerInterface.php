@@ -3,8 +3,7 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Cache;
 
 /**
- * Interface HandlerInterface
- * @package Netgen\Bundle\OpenWeatherMapBundle\Cache
+ * Interface HandlerInterface.
  */
 interface HandlerInterface
 {
@@ -12,7 +11,7 @@ interface HandlerInterface
      * @const string
      */
     const CACHE_KEY_PREFIX = 'netgen-openweathermap-';
-    
+
     /**
      * Returns if there is a valid cache entry for provided cache key.
      *

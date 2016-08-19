@@ -3,13 +3,12 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Cache;
 
 /**
- * Class NoCache
- * @package Netgen\Bundle\OpenWeatherMapBundle\Cache
+ * Class NoCache.
  */
 class NoCache implements HandlerInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function has($cacheKey)
     {
@@ -17,7 +16,7 @@ class NoCache implements HandlerInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function get($cacheKey)
     {
@@ -25,7 +24,7 @@ class NoCache implements HandlerInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function set($cacheKey, $data, $ttl)
     {

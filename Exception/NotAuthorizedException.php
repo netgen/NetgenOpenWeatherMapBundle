@@ -5,14 +5,13 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Exception;
 use Exception;
 
 /**
- * Class NotAuthorizedException
- * @package Netgen\Bundle\OpenWeatherMapBundle\Exception
+ * Class NotAuthorizedException.
  */
 class NotAuthorizedException extends Exception
 {
     /**
      * NotAuthorizedException constructor.
-     * 
+     *
      * @param string $message
      */
     public function __construct($message)

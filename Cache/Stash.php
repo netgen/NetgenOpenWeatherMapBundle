@@ -5,8 +5,7 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Cache;
 use Tedivm\StashBundle\Service\CacheService;
 
 /**
- * Class Stash
- * @package Netgen\Bundle\OpenWeatherMapBundle\Cache
+ * Class Stash.
  */
 class Stash implements HandlerInterface
 {
@@ -26,7 +25,7 @@ class Stash implements HandlerInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function has($cacheKey)
     {
@@ -42,7 +41,7 @@ class Stash implements HandlerInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function get($cacheKey)
     {
@@ -58,7 +57,7 @@ class Stash implements HandlerInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function set($cacheKey, $data, $ttl)
     {

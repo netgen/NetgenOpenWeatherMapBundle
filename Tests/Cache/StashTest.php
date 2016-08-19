@@ -27,7 +27,6 @@ class StashTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('getItem', 'isMiss'))
             ->getMock();
 
-
         $item = $this->getMockBuilder(Item::class)
             ->disableOriginalConstructor()
             ->setMethods(array('isMiss'))
@@ -53,7 +52,6 @@ class StashTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('getItem', 'isMiss'))
             ->getMock();
 
-
         $item = $this->getMockBuilder(Item::class)
             ->disableOriginalConstructor()
             ->setMethods(array('isMiss'))
@@ -78,7 +76,6 @@ class StashTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->setMethods(array('getItem', 'isMiss'))
             ->getMock();
-
 
         $item = $this->getMockBuilder(Item::class)
             ->disableOriginalConstructor()
@@ -109,7 +106,6 @@ class StashTest extends \PHPUnit_Framework_TestCase
             ->setMethods(array('getItem', 'isMiss'))
             ->getMock();
 
-
         $item = $this->getMockBuilder(Item::class)
             ->disableOriginalConstructor()
             ->setMethods(array('isMiss', 'get'))
@@ -134,7 +130,6 @@ class StashTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->setMethods(array('getItem', 'isMiss'))
             ->getMock();
-
 
         $item = $this->getMockBuilder(Item::class)
             ->disableOriginalConstructor()

@@ -5,13 +5,12 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Core;
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface;
 
 /**
- * Class UltravioletIndex
- * @package Netgen\Bundle\OpenWeatherMapBundle\Core
+ * Class UltravioletIndex.
  */
 class UltravioletIndex extends Base implements UltravioletIndexInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function fetchUltraviletIndex($latitude, $longitude, $datetime = 'current')
     {

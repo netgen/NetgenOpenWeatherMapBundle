@@ -3,13 +3,12 @@
 namespace Netgen\Bundle\OpenWeatherMapBundle\Http;
 
 /**
- * Interface HttpClientInterface
- * @package Netgen\Bundle\OpenWeatherMapBundle\Http
+ * Interface HttpClientInterface.
  */
 interface HttpClientInterface
 {
     /**
-     * Performs get request to given URL
+     * Performs get request to given URL.
      *
      * @param string $url
      *

@@ -9,8 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use DateTime;
 
 /**
- * Class AirPollutionController
- * @package Netgen\Bundle\OpenWeatherMapBundle\Controller
+ * Class AirPollutionController.
  */
 class AirPollutionController
 {
@@ -30,7 +29,7 @@ class AirPollutionController
     }
 
     /**
-     * Returns ozone data
+     * Returns ozone data.
      *
      * @param float $latitude
      * @param float $longitude
@@ -41,7 +40,6 @@ class AirPollutionController
     public function getOzoneData($latitude, $longitude, $datetime = 'current')
     {
         if ($datetime !== 'current') {
-
             $datetime = DateTime::createFromFormat('c', $datetime);
 
             if ($datetime === false) {
@@ -66,7 +64,7 @@ class AirPollutionController
     }
 
     /**
-     * Returns carbon monoxide data
+     * Returns carbon monoxide data.
      *
      * @param float $latitude
      * @param float $longitude
@@ -77,14 +75,13 @@ class AirPollutionController
     public function getCarbonMonoxideData($latitude, $longitude, $datetime = 'current')
     {
         if ($datetime !== 'current') {
-
             $datetime = DateTime::createFromFormat('c', $datetime);
 
             if ($datetime === false) {
                 $datetime = 'current';
             }
         }
-        
+
         $response = new Response();
 
         try {
