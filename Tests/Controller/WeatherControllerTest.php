@@ -6,6 +6,7 @@ use Netgen\Bundle\OpenWeatherMapBundle\Controller\WeatherController;
 use Netgen\Bundle\OpenWeatherMapBundle\Core\Weather;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class WeatherControllerTest extends \PHPUnit_Framework_TestCase
@@ -338,5 +339,90 @@ class WeatherControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals('Not found', $response->getContent());
         $this->assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
+    }
+
+    public function testByCityIds()
+    {
+        $weather = $this->getMockBuilder(Weather::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('fetchWeatherDataForSeveralCityIds'))
+            ->getMock();
+
+        $weather->expects($this->once())
+            ->willReturn('some_data')
+            ->method('fetchWeatherDataForSeveralCityIds');
+
+        $request = new Request(array('cities' => 12));
+
+        $weatherController = new WeatherController($weather);
+        $response = $weatherController->byCityIds($request);
+
+        $this->assertInstanceOf(Response::class, $response);
+    }
+
+    public function testByCityIdsWithNotAuthorizedException()
+    {
+        $weather = $this->getMockBuilder(Weather::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('fetchWeatherDataForSeveralCityIds'))
+            ->getMock();
+
+        $weather->expects($this->once())
+            ->willThrowException(new NotAuthorizedException('Not authorized'))
+            ->method('fetchWeatherDataForSeveralCityIds');
+
+        $weatherController = new WeatherController($weather);
+
+        $request = new Request(array('cities' => 12));
+
+        $response = $weatherController->byCityIds($request);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertEquals('Not authorized', $response->getContent());
+        $this->assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
+    }
+
+    public function testByCityIdsWithNotFoundException()
+    {
+        $weather = $this->getMockBuilder(Weather::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('fetchWeatherDataForSeveralCityIds'))
+            ->getMock();
+
+        $weather->expects($this->once())
+            ->willThrowException(new NotFoundException('Not found'))
+            ->method('fetchWeatherDataForSeveralCityIds');
+
+        $weatherController = new WeatherController($weather);
+
+        $request = new Request(array('cities' => 12));
+
+        $response = $weatherController->byCityIds($request);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertEquals('Not found', $response->getContent());
+        $this->assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
+    }
+
+    public function testByCityIdsWithBadRequest()
+    {
+        $weather = $this->getMockBuilder(Weather::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('fetchWeatherDataForSeveralCityIds'))
+            ->getMock();
+
+        $weather->expects($this->never())
+            ->willThrowException(new NotFoundException('Not found'))
+            ->method('fetchWeatherDataForSeveralCityIds');
+
+        $weatherController = new WeatherController($weather);
+
+        $request = new Request(array());
+
+        $response = $weatherController->byCityIds($request);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertEquals('', $response->getContent());
+        $this->assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 }
