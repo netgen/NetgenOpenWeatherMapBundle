@@ -42,14 +42,93 @@ UV Index (in progress)
 
 ### Ultraviolet index by geographic coordinates
 
-Weather stations (in progress)
+Weather stations
 ------------------------------
 
 ### Current weather from one station
 
+* By calling WeatherStations service
+```php
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
+$data = $weatherStations->fetchFromOnStationById(29584);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.weather_stations:getFromOnStationById', 
+            { 'stationId': 29584 }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/weatherstations/station/29584
+```
+
 ### Current weather from several stations by rectangle zone
 
+* By calling WeatherStations service
+```php
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
+$data = $weatherStations->fetchFromSeveralByRectangleZone(
+    8.87, 49.07, 65.21, 61.26, 6
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.weather_stations:getFromSeveralByRectangleZone',
+            { 
+                'longitudeTopLeft': 8.87,
+                'latitudeTopLeft': 49.07,
+                'longitudeBottomRight': 65.21,
+                'latitudeBottomRight': 61.26,
+                'mapZoom': 6 
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/weatherstations/stationsrectangle/8.87/49.07/65.21/61.26/6
+```
+
 ### Current weather from several stations by geo point
+
+* By calling WeatherStations service
+```php
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherStationsInterface */
+$data = $weatherStations->fetchFromSeveralByGeoPoint(
+    55, 37
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.weather_stations:getFromSeveralByGeoPoint',
+            { 
+                'latitude': 55,
+                'longitude': 37
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/weatherstations/stationsgeopoint/55/37
+```
 
 Air pollution
 ---------------------------
@@ -65,7 +144,12 @@ $data = $airPollution->fetchOzoneData(35, 139);
 
 * By rendering controller inside template
 ```jinja
-{{ render(controller('netgen_open_weather_map.controller.air_pollution:getOzoneData', { 'latitude': 35, 'longitude: '139' })) }}
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.air_pollution:getOzoneData', 
+            { 'latitude': 35, 'longitude: '139' }
+        )
+) }}
 ```
 
 * Or via Symfony route
@@ -84,7 +168,12 @@ $data = $airPollution->fetchCarbonMonoxideData(35, 139);
 
 * By rendering controller inside template
 ```jinja
-{{ render(controller('netgen_open_weather_map.controller.air_pollution:getCarbonMonoxideData', { 'latitude': 35, 'longitude: '139' })) }}
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.air_pollution:getCarbonMonoxideData', 
+            { 'latitude': 35, 'longitude: '139' }
+        )
+) }}
 ```
 
 * Or via Symfony route
