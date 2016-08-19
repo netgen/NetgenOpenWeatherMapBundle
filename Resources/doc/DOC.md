@@ -28,16 +28,95 @@ Current weather data
 
 ### 5 day / 3 hour forecast data by geographic coordinates
 
-16 day / daily forecast (in progress)
+16 day / daily forecast
 -------------------------------------
 
 ### 16 day / daily forecast data by city name
 
+* By calling DailyForecast service
+```php
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
+$data = $dailyForecast->fetchForecastByCityName(
+    'London'
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.daily_forecast:getForecastByCityName',
+            { 
+                'cityName': 'London'
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/dailyforecast/cityname/London
+```
+
 ### 16 day / daily forecast data by city id
+
+* By calling DailyForecast service
+```php
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
+$data = $dailyForecast->fetchForecastByCityId(
+    524901
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.daily_forecast:getForecastByCityId',
+            { 
+                'cityId': 524901
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/dailyforecast/cityid/524901
+```
 
 ### 16 day / daily forecast data by geographic coordinates
 
-UV Index (in progress)
+* By calling DailyForecast service
+```php
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\DailyForecastInterface */
+$data = $dailyForecast->fetchForecastByCityGeographicCoordinates(
+    55, 37
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.daily_forecast:getForecastByCityGeographicCoordinates',
+            { 
+                'latitude': 55,
+                'longitude': 37
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/dailyforecast/geocoords/55/37
+```
+
+UV Index
 ----------------------
 
 ### Ultraviolet index by geographic coordinates
