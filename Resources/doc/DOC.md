@@ -19,14 +19,93 @@ Current weather data
 ### Current weather data for several cities by city IDs
 
 
-5 day / 3 hour forecast (in progress)
+5 day / 3 hour forecast
 -------------------------------------
 
 ### 5 day / 3 hour forecast data by city name
 
+* By calling HourForecast service
+```php
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
+$data = $hourForecast->fetchForecastByCityName(
+    'London'
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.hour_forecast:getForecastByCityName',
+            { 
+                'cityName': 'London'
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/hourforecast/cityname/London
+```
+
 ### 5 day / 3 hour forecast data by city id
 
+* By calling HourForecast service
+```php
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
+$data = $hourForecast->fetchForecastByCityId(
+    524901
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.hour_forecast:getForecastByCityId',
+            { 
+                'cityId': 524901
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/hourforecast/cityid/524901
+```
+
 ### 5 day / 3 hour forecast data by geographic coordinates
+
+* By calling HourForecast service
+```php
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\HourForecastInterface */
+$data = $hourForecast->fetchForecastByCityGeographicCoordinates(
+    35, 139
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.hour_forecast:getForecastByCityGeographicCoordinates',
+            { 
+                'latitude': 35,
+                'longitude': 139
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/hourforecast/geocoords/35/139
+```
 
 16 day / daily forecast
 -------------------------------------
