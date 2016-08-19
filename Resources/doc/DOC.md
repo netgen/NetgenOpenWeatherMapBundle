@@ -4,6 +4,8 @@ Netgen OpenWeatherMap Bundle documentation
 Current weather data
 --------------------
 
+For more details please check [here](http://openweathermap.org/current).
+
 ### Current weather data for one location by city name
 
 * By calling Weather service
@@ -201,6 +203,8 @@ netgen/openweather/weather/cityids?cities=524901,703448,2643743
 5 day / 3 hour forecast
 -------------------------------------
 
+For more details please check [here](http://openweathermap.org/forecast5).
+
 ### 5 day / 3 hour forecast data by city name
 
 * By calling HourForecast service
@@ -288,6 +292,8 @@ $data = $hourForecast->fetchForecastByCityGeographicCoordinates(
 
 16 day / daily forecast
 -------------------------------------
+
+For more details please check [here](http://openweathermap.org/forecast16).
 
 ### 16 day / daily forecast data by city name
 
@@ -377,6 +383,8 @@ $data = $dailyForecast->fetchForecastByCityGeographicCoordinates(
 UV Index
 ----------------------
 
+For more details please check [here](http://openweathermap.org/api/uvi).
+
 ### Ultraviolet index by geographic coordinates
 
 * By calling UltravioletIndex service
@@ -408,6 +416,8 @@ $data = $ultravioletIndex->fetchUltraviletIndex(
 
 Weather stations
 ------------------------------
+
+For more details please check [here](http://openweathermap.org/api_station).
 
 ### Current weather from one station
 
@@ -498,6 +508,8 @@ $data = $weatherStations->fetchFromSeveralByGeoPoint(
 
 Air pollution
 ---------------------------
+
+For details about CO check [here](http://openweathermap.org/api/pollution/co) and for [ozone](http://openweathermap.org/api/pollution/o3).
 
 ### Ozone Data by geographic coordinates
 
