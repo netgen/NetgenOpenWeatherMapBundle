@@ -42,6 +42,33 @@ UV Index (in progress)
 
 ### Ultraviolet index by geographic coordinates
 
+* By calling UltravioletIndex service
+```php
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface */
+$data = $ultravioletIndex->fetchUltraviletIndex(
+    55, 37
+);
+
+```
+
+* By rendering controller inside template
+```jinja
+{{ render(
+    controller(
+        'netgen_open_weather_map.controller.ultraviolet_index:getUltravioletIndex',
+            { 
+                'latitude': 55,
+                'longitude': 37
+            }
+        )
+) }}
+```
+
+* Or via Symfony route
+```php
+/netgen/openweather/ultravioletindex/55/37
+```
+
 Weather stations
 ------------------------------
 
