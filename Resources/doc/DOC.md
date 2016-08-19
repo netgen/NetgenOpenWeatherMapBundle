@@ -51,9 +51,23 @@ Weather stations (in progress)
 
 ### Current weather from several stations by geo point
 
-Air pollution (in progress)
+Air pollution
 ---------------------------
 
 ### Ozone Data by geographic coordinates
 
+```php
+
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface */
+$data = $airPollution->fetchOzoneData(35, 139);
+
+```
+
 ### Carbon Monoxide Data by geographic coordinates
+
+```php
+
+/** @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface */
+$data = $airPollution->fetchCarbonMonoxideData(35, 139);
+
+```
