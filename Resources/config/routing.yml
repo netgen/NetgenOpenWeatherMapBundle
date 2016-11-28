@@ -52,11 +52,11 @@ netgen_openweather_weather_by_circle:
     defaults: { _controller: 'netgen_open_weather_map.controller.weather:byCircle' }
     methods:
         - GET
-    requirements:
-        latitude: \d+
-        longitude: \d+
-        cluster: \w+
-        numberOfCities: \d+
+    #requirements:
+    #    latitude: '\[d\.]+'
+    #    longitude: '\[d\.]+'
+    #    cluster: \w+
+    #    numberOfCities: \d+
 
 netgen_openweather_weather_by_city_ids:
     path: /netgen/openweather/weather/cityids
