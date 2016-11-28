@@ -55,7 +55,7 @@ $data = $weather->fetchWeatherDataByCityId(
     controller(
         'netgen_open_weather_map.controller.weather:byCityId',
             { 
-                'cityId': '2172797
+                'cityId': '2172797'
             }
         )
 ) }}
