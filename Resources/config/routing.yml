@@ -170,7 +170,7 @@ netgen_openweather_weather_daily_forecast_geographic_coordinates:
 # HourForecastController
 netgen_openweather_weather_hour_forecast_city_name:
     path: /netgen/openweather/hourforecast/cityname/{cityName}/{countryCode}
-    defaults: { _controller: 'netgen_open_weather_map.controller.hour_forecast:getForecastByCityName', countryCode = '' }
+    defaults: { _controller: 'netgen_open_weather_map.controller.hour_forecast:getForecastByCityName', countryCode: '' }
     methods:
         - GET
     requirements:
