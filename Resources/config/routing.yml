@@ -35,14 +35,14 @@ netgen_openweather_weather_by_zip_code:
         countryCode: \w+
 
 netgen_openweather_weather_by_rectangle_zone:
-    path: /netgen/openweather/weather/rectanglezone/{longitudeLeft}/{latitudeBottom}/{logitudeRight}/{latitudeTop}/{mapZoom}/{cluster}
+    path: /netgen/openweather/weather/rectanglezone/{longitudeLeft}/{latitudeBottom}/{longitudeRight}/{latitudeTop}/{mapZoom}/{cluster}
     defaults: { _controller: 'netgen_open_weather_map.controller.weather:byRectangleZone', mapZoom: 10, cluster: 'yes' }
     methods:
         - GET
     requirements:
         longitudeLeft: \d+
         latitudeBottom: \d+
-        logitudeRight: \d+
+        longitudeRight: \d+
         latitudeTop: \d+
         mapZoom: \d+
         cluster: \w+
@@ -52,11 +52,11 @@ netgen_openweather_weather_by_circle:
     defaults: { _controller: 'netgen_open_weather_map.controller.weather:byCircle' }
     methods:
         - GET
-    requirements:
-        latitude: \d+
-        longitude: \d+
-        cluster: \w+
-        numberOfCities: \d+
+    #requirements:
+    #    latitude: '\[d\.]+'
+    #    longitude: '\[d\.]+'
+    #    cluster: \w+
+    #    numberOfCities: \d+
 
 netgen_openweather_weather_by_city_ids:
     path: /netgen/openweather/weather/cityids
@@ -112,7 +112,7 @@ netgen_openweather_weather_stations_station:
 
 netgen_openweather_weather_stations_stations_rectangle:
     path: /netgen/openweather/weatherstations/stationsrectangle/{longitudeTopLeft}/{latitudeTopLeft}/{longitudeBottomRight}/{latitudeBottomRight}/{mapZoom}/{cluster}/{numberOfStations}
-    defaults: { _controller: 'netgen_open_weather_map.controller.weather_stations:getFromSeveralByRectangleZone', cluster = 'yes', numberOfStations = 10 }
+    defaults: { _controller: 'netgen_open_weather_map.controller.weather_stations:getFromSeveralByRectangleZone', cluster: 'yes', numberOfStations: 10 }
     methods:
         - GET
     requirements:
@@ -126,7 +126,7 @@ netgen_openweather_weather_stations_stations_rectangle:
 
 netgen_openweather_weather_stations_stations_geopoint:
     path: /netgen/openweather/weatherstations/stationsgeopoint/{latitude}/{longitude}/{numberOfStations}
-    defaults: { _controller: 'netgen_open_weather_map.controller.weather_stations:getFromSeveralByGeoPoint', numberOfStations = 10 }
+    defaults: { _controller: 'netgen_open_weather_map.controller.weather_stations:getFromSeveralByGeoPoint', numberOfStations: 10 }
     methods:
         - GET
     requirements:
@@ -138,7 +138,7 @@ netgen_openweather_weather_stations_stations_geopoint:
 # DailyForecastController routes
 netgen_openweather_weather_daily_forecast_city_name:
     path: /netgen/openweather/dailyforecast/cityname/{cityName}/{numberOfDays}/{countryCode}
-    defaults: { _controller: 'netgen_open_weather_map.controller.daily_forecast:getForecastByCityName', numberOfDays = 16, countryCode = '' }
+    defaults: { _controller: 'netgen_open_weather_map.controller.daily_forecast:getForecastByCityName', numberOfDays: 16, countryCode: '' }
     methods:
         - GET
     requirements:
@@ -148,7 +148,7 @@ netgen_openweather_weather_daily_forecast_city_name:
 
 netgen_openweather_weather_daily_forecast_city_id:
     path: /netgen/openweather/dailyforecast/cityid/{cityId}/{numberOfDays}
-    defaults: { _controller: 'netgen_open_weather_map.controller.daily_forecast:getForecastByCityId', numberOfDays = 16 }
+    defaults: { _controller: 'netgen_open_weather_map.controller.daily_forecast:getForecastByCityId', numberOfDays: 16 }
     methods:
         - GET
     requirements:
@@ -158,7 +158,7 @@ netgen_openweather_weather_daily_forecast_city_id:
 
 netgen_openweather_weather_daily_forecast_geographic_coordinates:
     path: /netgen/openweather/dailyforecast/geocoords/{latitude}/{longitude}/{numberOfDays}
-    defaults: { _controller: 'netgen_open_weather_map.controller.daily_forecast:getForecastByCityGeographicCoordinates', numberOfDays = 16 }
+    defaults: { _controller: 'netgen_open_weather_map.controller.daily_forecast:getForecastByCityGeographicCoordinates', numberOfDays: 16 }
     methods:
         - GET
     requirements:
@@ -170,7 +170,7 @@ netgen_openweather_weather_daily_forecast_geographic_coordinates:
 # HourForecastController
 netgen_openweather_weather_hour_forecast_city_name:
     path: /netgen/openweather/hourforecast/cityname/{cityName}/{countryCode}
-    defaults: { _controller: 'netgen_open_weather_map.controller.hour_forecast:getForecastByCityName', countryCode = '' }
+    defaults: { _controller: 'netgen_open_weather_map.controller.hour_forecast:getForecastByCityName', countryCode: '' }
     methods:
         - GET
     requirements:

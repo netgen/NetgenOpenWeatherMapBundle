@@ -55,7 +55,7 @@ $data = $weather->fetchWeatherDataByCityId(
     controller(
         'netgen_open_weather_map.controller.weather:byCityId',
             { 
-                'cityId': '2172797
+                'cityId': '2172797'
             }
         )
 ) }}
@@ -561,7 +561,7 @@ $data = $airPollution->fetchOzoneData(35, 139);
 {{ render(
     controller(
         'netgen_open_weather_map.controller.air_pollution:getOzoneData', 
-            { 'latitude': 35, 'longitude: '139' }
+            { 'latitude': 35, 'longitude': 139 }
         )
 ) }}
 ```
@@ -587,7 +587,7 @@ $data = $airPollution->fetchCarbonMonoxideData(35, 139);
 {{ render(
     controller(
         'netgen_open_weather_map.controller.air_pollution:getCarbonMonoxideData', 
-            { 'latitude': 35, 'longitude: '139' }
+            { 'latitude': 35, 'longitude': 139 }
         )
 ) }}
 ```
