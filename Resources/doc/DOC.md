@@ -587,7 +587,7 @@ $data = $airPollution->fetchCarbonMonoxideData(35, 139);
 {{ render(
     controller(
         'netgen_open_weather_map.controller.air_pollution:getCarbonMonoxideData', 
-            { 'latitude': 35, 'longitude: '139' }
+            { 'latitude': 35, 'longitude': 139 }
         )
 ) }}
 ```
