@@ -205,7 +205,7 @@ class WeatherController
             return $response->setStatusCode(Response::HTTP_BAD_REQUEST);
         }
 
-        $cities = $request->query->has('cities');
+        $cities = $request->query->get('cities');
         $cities = explode(',', $cities);
 
         try {
