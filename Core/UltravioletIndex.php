@@ -20,7 +20,7 @@ class UltravioletIndex extends Base implements UltravioletIndexInterface
             $datetime = 'current';
         }
 
-        $queryPart = '/uvi/' . $latitude . ',' . $longitude . '/' . $datetime . '.json?appid=' . $this->apiKey;
+        $queryPart = '/' . $latitude . ',' . $longitude . '/' . $datetime . '.json?appid=' . $this->apiKey;
 
         return $this->getResult(self::BASE_URL, $queryPart);
     }
