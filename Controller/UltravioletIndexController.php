@@ -50,7 +50,7 @@ class UltravioletIndexController
         $response = new Response();
 
         try {
-            $data = $this->ultravioletIndex->fetchUltraviletIndex($latitude, $longitude, $datetime);
+            $data = $this->ultravioletIndex->fetchUltravioletIndex($latitude, $longitude, $datetime);
             $response->setContent($data);
         } catch (NotAuthorizedException $e) {
             $response->setContent($e->getMessage());

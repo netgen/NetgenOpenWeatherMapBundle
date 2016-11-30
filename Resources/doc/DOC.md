@@ -418,7 +418,7 @@ For more details please check [here](http://openweathermap.org/api/uvi).
 /** 
  * @var $ultravioletIndex \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface 
  */
-$data = $ultravioletIndex->fetchUltraviletIndex(
+$data = $ultravioletIndex->fetchUltravioletIndex(
     55, 37
 );
 

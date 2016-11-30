@@ -48,7 +48,7 @@ class UltravioletIndexTest extends \PHPUnit_Framework_TestCase
             ->method('get');
 
         $ultravioletIndex = new UltravioletIndex($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
-        $data = $ultravioletIndex->fetchUltraviletIndex(34, 129);
+        $data = $ultravioletIndex->fetchUltravioletIndex(34, 129);
         $this->assertEquals('some_data', $data);
     }
 
@@ -78,7 +78,7 @@ class UltravioletIndexTest extends \PHPUnit_Framework_TestCase
             ->method('get');
 
         $ultravioletIndex = new UltravioletIndex($httpClient, 'api_key', $cacheHandler, 3600, 'metric', 'en', 'accurate');
-        $data = $ultravioletIndex->fetchUltraviletIndex(34, 129, new \DateTime());
+        $data = $ultravioletIndex->fetchUltravioletIndex(34, 129, new \DateTime());
         $this->assertEquals('some_data', $data);
     }
 }

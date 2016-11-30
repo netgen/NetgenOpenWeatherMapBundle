@@ -12,7 +12,7 @@ class UltravioletIndex extends Base implements UltravioletIndexInterface
     /**
      * {@inheritdoc}
      */
-    public function fetchUltraviletIndex($latitude, $longitude, $datetime = 'current')
+    public function fetchUltravioletIndex($latitude, $longitude, $datetime = 'current')
     {
         if ($datetime instanceof \DateTime) {
             $datetime = $datetime->format('c');
@@ -20,7 +20,7 @@ class UltravioletIndex extends Base implements UltravioletIndexInterface
             $datetime = 'current';
         }
 
-        $queryPart = '/uvi/' . $latitude . ',' . $longitude . '/' . $datetime . '.json?appid=' . $this->apiKey;
+        $queryPart = '/' . $latitude . ',' . $longitude . '/' . $datetime . '.json?appid=' . $this->apiKey;
 
         return $this->getResult(self::BASE_URL, $queryPart);
     }

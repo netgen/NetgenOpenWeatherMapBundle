@@ -12,68 +12,68 @@ class UltravioletIndexControllerTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetUltravioletIndex()
     {
-        $ultraviletIndex = $this->getMockBuilder(UltravioletIndex::class)
+        $ultravioletIndex = $this->getMockBuilder(UltravioletIndex::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('fetchUltraviletIndex'))
+            ->setMethods(array('fetchUltravioletIndex'))
             ->getMock();
 
-        $ultraviletIndex->expects($this->once())
+        $ultravioletIndex->expects($this->once())
             ->willReturn('some_data')
-            ->method('fetchUltraviletIndex');
+            ->method('fetchUltravioletIndex');
 
-        $ultraviletIndexController = new UltravioletIndexController($ultraviletIndex);
-        $response = $ultraviletIndexController->getUltravioletIndex(12.7, 45.3, 'current');
+        $ultravioletIndexController = new UltravioletIndexController($ultravioletIndex);
+        $response = $ultravioletIndexController->getUltravioletIndex(12.7, 45.3, 'current');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testGetUltravioletIndexWithInvalidDateString()
     {
-        $ultraviletIndex = $this->getMockBuilder(UltravioletIndex::class)
+        $ultravioletIndex = $this->getMockBuilder(UltravioletIndex::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('fetchUltraviletIndex'))
+            ->setMethods(array('fetchUltravioletIndex'))
             ->getMock();
 
-        $ultraviletIndex->expects($this->once())
+        $ultravioletIndex->expects($this->once())
             ->willReturn('some_data')
-            ->method('fetchUltraviletIndex');
+            ->method('fetchUltravioletIndex');
 
-        $ultraviletIndexController = new UltravioletIndexController($ultraviletIndex);
-        $response = $ultraviletIndexController->getUltravioletIndex(12.7, 45.3, 'test');
+        $ultravioletIndexController = new UltravioletIndexController($ultravioletIndex);
+        $response = $ultravioletIndexController->getUltravioletIndex(12.7, 45.3, 'test');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testGetUltravioletIndexWithNotAuthorizedException()
     {
-        $ultraviletIndex = $this->getMockBuilder(UltravioletIndex::class)
+        $ultravioletIndex = $this->getMockBuilder(UltravioletIndex::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('fetchUltraviletIndex'))
+            ->setMethods(array('fetchUltravioletIndex'))
             ->getMock();
 
-        $ultraviletIndex->expects($this->once())
+        $ultravioletIndex->expects($this->once())
             ->willThrowException(new NotAuthorizedException('Not authorized'))
-            ->method('fetchUltraviletIndex');
+            ->method('fetchUltravioletIndex');
 
-        $ultraviletIndexController = new UltravioletIndexController($ultraviletIndex);
-        $response = $ultraviletIndexController->getUltravioletIndex(12.7, 45.3, 'current');
+        $ultravioletIndexController = new UltravioletIndexController($ultravioletIndex);
+        $response = $ultravioletIndexController->getUltravioletIndex(12.7, 45.3, 'current');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testGetUltravioletIndexWithNotFoundException()
     {
-        $ultraviletIndex = $this->getMockBuilder(UltravioletIndex::class)
+        $ultravioletIndex = $this->getMockBuilder(UltravioletIndex::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('fetchUltraviletIndex'))
+            ->setMethods(array('fetchUltravioletIndex'))
             ->getMock();
 
-        $ultraviletIndex->expects($this->once())
+        $ultravioletIndex->expects($this->once())
             ->willThrowException(new NotFoundException('Not found'))
-            ->method('fetchUltraviletIndex');
+            ->method('fetchUltravioletIndex');
 
-        $ultraviletIndexController = new UltravioletIndexController($ultraviletIndex);
-        $response = $ultraviletIndexController->getUltravioletIndex(12.7, 45.3, 'current');
+        $ultravioletIndexController = new UltravioletIndexController($ultravioletIndex);
+        $response = $ultravioletIndexController->getUltravioletIndex(12.7, 45.3, 'current');
 
         $this->assertInstanceOf(Response::class, $response);
     }
