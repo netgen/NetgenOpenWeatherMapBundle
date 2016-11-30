@@ -24,5 +24,6 @@ interface UltravioletIndexInterface
      *
      * @return string
      */
-    public function fetchUltraviletIndex($latitude, $longitude, $datetime = 'current');
+    public function fetchUltravioletIndex($latitude, $longitude, $datetime = 'current');
+
 }

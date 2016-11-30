@@ -12,7 +12,7 @@ class UltravioletIndex extends Base implements UltravioletIndexInterface
     /**
      * {@inheritdoc}
      */
-    public function fetchUltraviletIndex($latitude, $longitude, $datetime = 'current')
+    public function fetchUltravioletIndex($latitude, $longitude, $datetime = 'current')
     {
         if ($datetime instanceof \DateTime) {
             $datetime = $datetime->format('c');
