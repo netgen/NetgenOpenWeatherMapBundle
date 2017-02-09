@@ -9,8 +9,9 @@ use Netgen\Bundle\OpenWeatherMapBundle\Core\HourForecast;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClient;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\JsonResponse;
+use PHPUnit\Framework\TestCase;
 
-class HourForecastTest extends \PHPUnit_Framework_TestCase
+class HourForecastTest extends TestCase
 {
     public function testInstanceOfHourForecastInterface()
     {

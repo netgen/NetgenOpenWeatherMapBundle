@@ -9,8 +9,9 @@ use Netgen\Bundle\OpenWeatherMapBundle\Core\DailyForecast;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClient;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\JsonResponse;
+use PHPUnit\Framework\TestCase;
 
-class DailyForecastTest extends \PHPUnit_Framework_TestCase
+class DailyForecastTest extends TestCase
 {
     public function testInstanceOfDailyForecastInterface()
     {

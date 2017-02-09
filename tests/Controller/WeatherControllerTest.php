@@ -8,8 +8,9 @@ use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use PHPUnit\Framework\TestCase;
 
-class WeatherControllerTest extends \PHPUnit_Framework_TestCase
+class WeatherControllerTest extends TestCase
 {
     public function testByGeographicCoordinates()
     {

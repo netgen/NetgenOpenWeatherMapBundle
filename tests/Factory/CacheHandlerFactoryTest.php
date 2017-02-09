@@ -6,8 +6,9 @@ use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Factory\CacheHandlerFactory;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use PHPUnit\Framework\TestCase;
 
-class CacheHandlerFactoryTest extends \PHPUnit_Framework_TestCase
+class CacheHandlerFactoryTest extends TestCase
 {
     public function testInstanceOfContainerAware()
     {

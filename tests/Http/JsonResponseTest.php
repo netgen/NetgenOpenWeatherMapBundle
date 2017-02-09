@@ -4,8 +4,9 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Tests\Http;
 
 use Netgen\Bundle\OpenWeatherMapBundle\Http\JsonResponse;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\ResponseInterface;
+use PHPUnit\Framework\TestCase;
 
-class JsonResponseTest extends \PHPUnit_Framework_TestCase
+class JsonResponseTest extends TestCase
 {
     public function testInstanceOfResponseInterface()
     {

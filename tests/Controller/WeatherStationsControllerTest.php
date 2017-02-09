@@ -7,8 +7,9 @@ use Netgen\Bundle\OpenWeatherMapBundle\Core\WeatherStations;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Response;
+use PHPUnit\Framework\TestCase;
 
-class WeatherStationsControllerTest extends \PHPUnit_Framework_TestCase
+class WeatherStationsControllerTest extends TestCase
 {
     public function testGetFromOnStationById()
     {

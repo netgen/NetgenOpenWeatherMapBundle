@@ -9,8 +9,9 @@ use Netgen\Bundle\OpenWeatherMapBundle\Core\AirPollution;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClient;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\JsonResponse as Response;
+use PHPUnit\Framework\TestCase;
 
-class AirPollutionTest extends \PHPUnit_Framework_TestCase
+class AirPollutionTest extends TestCase
 {
     public function testInstanceOfAirPollutionInterface()
     {

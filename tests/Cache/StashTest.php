@@ -6,8 +6,9 @@ use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\Stash;
 use Stash\Item;
 use Tedivm\StashBundle\Service\CacheService;
+use PHPUnit\Framework\TestCase;
 
-class StashTest extends \PHPUnit_Framework_TestCase
+class StashTest extends TestCase
 {
     public function testInstanceOfHandlerInterface()
     {

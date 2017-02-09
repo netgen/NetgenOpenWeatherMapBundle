@@ -7,8 +7,9 @@ use Netgen\Bundle\OpenWeatherMapBundle\Core\AirPollution;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Response;
+use PHPUnit\Framework\TestCase;
 
-class AirPollutionControllerTest extends \PHPUnit_Framework_TestCase
+class AirPollutionControllerTest extends TestCase
 {
     public function testCallOzoneDataWithDatetimeStringCurrent()
     {

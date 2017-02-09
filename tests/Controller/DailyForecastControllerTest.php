@@ -7,8 +7,9 @@ use Netgen\Bundle\OpenWeatherMapBundle\Core\DailyForecast;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Response;
+use PHPUnit\Framework\TestCase;
 
-class DailyForecastControllerTest extends \PHPUnit_Framework_TestCase
+class DailyForecastControllerTest extends TestCase
 {
     public function testGetForecastByCityName()
     {

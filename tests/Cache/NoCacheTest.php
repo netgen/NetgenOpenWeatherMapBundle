@@ -4,8 +4,9 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Tests\Cache;
 
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\NoCache;
+use PHPUnit\Framework\TestCase;
 
-class NoCacheTest extends \PHPUnit_Framework_TestCase
+class NoCacheTest extends TestCase
 {
     public function testInstanceOfHandlerInterface()
     {
