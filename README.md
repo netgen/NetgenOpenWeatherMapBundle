@@ -23,8 +23,8 @@ License, docs and installation instructions
 
 [License](LICENSE)
 
-[Installation instructions](bundle/Resources/doc/INSTALL.md)
+[Installation instructions](doc/INSTALL.md)
 
-[Documentation](bundle/Resources/doc/DOC.md)
+[Documentation](doc/DOC.md)
 
-[Changelogs](bundle/Resources/doc/)
+[Changelog](doc/CHANGELOG.md)

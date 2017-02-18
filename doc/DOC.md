@@ -1,5 +1,5 @@
-Netgen OpenWeatherMap Bundle documentation
-==========================================
+Documentation
+=============
 
 Current weather data
 --------------------

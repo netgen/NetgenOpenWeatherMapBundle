@@ -1,5 +1,5 @@
-Netgen OpenWeatherMap Bundle installation instructions
-======================================================
+Installation instructions
+=========================
 
 Requirements
 ------------
@@ -27,7 +27,7 @@ public function registerBundles()
 {
     ...
 
-    $bundles[] = new Netgen\Bundle\OpenWeatherMapBundle\NetgenTagsBundle();
+    $bundles[] = new Netgen\Bundle\OpenWeatherMapBundle\NetgenOpenWeatherMapBundle();
 
     return $bundles;
 }
