@@ -19,7 +19,6 @@
         <whitelist>
             <directory suffix=".php">bundle</directory>
             <exclude>
-                <directory>bundle/DependencyInjection</directory>
                 <file>bundle/Cache/Memcached.php</file>
                 <file>bundle/Http/HttpClient.php</file>
                 <file>bundle/NetgenOpenWeatherMapBundle.php</file>
