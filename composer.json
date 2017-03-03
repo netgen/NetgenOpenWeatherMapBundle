@@ -1,7 +1,7 @@
 {
     "name": "netgen/open-weather-map-bundle",
     "description": "eZ Publish/Platform Bundle for OpenWeatherMap",
-    "type": "symfony-bundle",
+    "type": "ezplatform-bundle",
     "keywords": [
         "ezpublish",
         "ezplatform",
