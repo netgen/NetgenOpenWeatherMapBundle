@@ -34,8 +34,6 @@ class NetgenOpenWeatherMapExtensionTest extends AbstractExtensionTestCase
                     'cache_settings' => [
                         'handler' => 'memcached',
                         'ttl' => 3600,
-                    ],
-                    'memcached_settings' => [
                         'server' => 'localhost',
                         'port' => 11211,
                     ],

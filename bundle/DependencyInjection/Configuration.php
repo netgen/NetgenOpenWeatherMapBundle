@@ -59,10 +59,6 @@ class Configuration extends SiteAccessConfiguration
                             return true;
                         }
 
-                        if (!is_array($v)) {
-                            return true;
-                        }
-
                         $requiredSettings = array();
 
                         switch($v['handler']) {
@@ -97,12 +93,15 @@ class Configuration extends SiteAccessConfiguration
                         ->end()
                     ->end()
                     ->scalarNode('ttl')
+                        ->cannotBeEmpty()
                         ->info('Cache ttl in seconds')
                     ->end()
                     ->scalarNode('server')
+                        ->cannotBeEmpty()
                         ->info('Memcached server IP address')
                     ->end()
                     ->scalarNode('port')
+                        ->cannotBeEmpty()
                         ->info('Memcached server port')
                     ->end()
                 ->end()

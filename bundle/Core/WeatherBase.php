@@ -5,9 +5,6 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Core;
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
 
-/**
- * Class WeatherBase.
- */
 abstract class WeatherBase extends Base
 {
     /**
@@ -31,14 +28,13 @@ abstract class WeatherBase extends Base
      * @param \Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface $client
      * @param string $apiKey
      * @param \Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface $cacheService
-     * @param int $ttl
      * @param string $units
      * @param string $language
      * @param string $type
      */
-    public function __construct(HttpClientInterface $client, $apiKey, HandlerInterface $cacheService, $ttl, $units, $language, $type)
+    public function __construct(HttpClientInterface $client, $apiKey, HandlerInterface $cacheService, $units, $language, $type)
     {
-        parent::__construct($client, $apiKey, $cacheService, $ttl);
+        parent::__construct($client, $apiKey, $cacheService);
         $this->units = $units;
         $this->language = $language;
         $this->type = $type;
@@ -52,7 +48,7 @@ abstract class WeatherBase extends Base
     protected function getParams()
     {
         return '&units=' . $this->units . '&lang=' . $this->language
-        . '&type=' . $this->type
-        . '&appid=' . $this->apiKey;
+            . '&type=' . $this->type
+            . '&appid=' . $this->apiKey;
     }
 }

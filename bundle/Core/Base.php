@@ -7,20 +7,12 @@ use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface;
 
-/**
- * Class Base.
- */
 abstract class Base
 {
     /**
      * @var \Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface
      */
     protected $cacheService;
-
-    /**
-     * @var int
-     */
-    protected $ttl;
 
     /**
      * @var string
@@ -38,13 +30,11 @@ abstract class Base
      * @param \Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClientInterface $client
      * @param string $apiKey
      * @param \Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface $cacheService
-     * @param int $ttl
      */
-    public function __construct(HttpClientInterface $client, $apiKey, HandlerInterface $cacheService, $ttl)
+    public function __construct(HttpClientInterface $client, $apiKey, HandlerInterface $cacheService)
     {
         $this->apiKey = $apiKey;
         $this->cacheService = $cacheService;
-        $this->ttl = $ttl;
         $this->client = $client;
     }
 
@@ -78,7 +68,7 @@ abstract class Base
                 throw new NotFoundException($response->getMessage());
             }
 
-            $this->cacheService->set($hash, (string)$response, $this->ttl);
+            $this->cacheService->set($hash, (string)$response);
 
             return (string)$response;
         }

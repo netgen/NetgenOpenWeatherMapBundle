@@ -2,36 +2,123 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\Tests\Factory;
 
-use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
+use Netgen\Bundle\OpenWeatherMapBundle\Cache\Memcached;
+use Netgen\Bundle\OpenWeatherMapBundle\Cache\NoCache;
+use Netgen\Bundle\OpenWeatherMapBundle\Cache\Stash;
 use Netgen\Bundle\OpenWeatherMapBundle\Factory\CacheHandlerFactory;
+use Netgen\Bundle\OpenWeatherMapBundle\Factory\CacheHandlerFactoryInterface;
 use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use PHPUnit\Framework\TestCase;
+use Tedivm\StashBundle\Service\CacheService;
 
 class CacheHandlerFactoryTest extends TestCase
 {
-    public function testInstanceOfContainerAware()
-    {
-        $factory = new CacheHandlerFactory();
-        $this->assertInstanceOf(ContainerAware::class, $factory);
-    }
+    /**
+     * @var CacheHandlerFactoryInterface
+     */
+    protected $factory;
 
-    public function testGetCacheHandler()
-    {
-        $cacheHandler = $this->getMockForAbstractClass(HandlerInterface::class);
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $container;
 
-        $container = $this->getMockBuilder(Container::class)
+    /**
+     * @var array
+     */
+    protected $cacheSettingsNull;
+
+    /**
+     * @var array
+     */
+    protected $cacheSettingsMemcached;
+
+    /**
+     * @var array
+     */
+    protected $cacheSettingsStash;
+
+    public function setUp()
+    {
+        $this->container = $this->getMockBuilder(Container::class)
             ->disableOriginalConstructor()
             ->setMethods(array('get'))
             ->getMock();
 
-        $container->expects($this->once())
-            ->willReturn($cacheHandler)
-            ->method('get');
+        $this->cacheSettingsNull = array(
+            'handler' => 'null',
+        );
 
-        $factory = new CacheHandlerFactory();
-        $factory->setContainer($container);
+        $this->cacheSettingsStash = array(
+            'handler' => 'stash',
+            'ttl' => '100',
+        );
 
-        $this->assertSame($cacheHandler, $factory->getCacheHandler('null'));
+        $this->cacheSettingsMemcached = array(
+            'handler' => 'memcached',
+            'ttl' => '100',
+            'server' => '127.0.0.1',
+            'port' => '11211',
+        );
+
+        $this->factory = new CacheHandlerFactory($this->cacheSettingsNull, $this->container);
+    }
+    public function testInstanceOfCacheHandlerFactoryInterface()
+    {
+        $this->assertInstanceOf(CacheHandlerFactoryInterface::class, $this->factory);
+    }
+
+    public function testGetNullCacheHandler()
+    {
+        $this->assertInstanceOf(NoCache::class, $this->factory->getCacheHandler());
+    }
+
+    public function testGetMemcachedCacheHandler()
+    {
+        if (!class_exists(\Memcached::class)) {
+            $this->markTestSkipped();
+        }
+
+        $this->factory = new CacheHandlerFactory($this->cacheSettingsMemcached, $this->container);
+
+        $this->assertInstanceOf(Memcached::class, $this->factory->getCacheHandler());
+    }
+
+    public function testGetInvalidConfiguration()
+    {
+        $this->factory = new CacheHandlerFactory(array('handler' => 'test'), $this->container);
+
+        $this->assertInstanceOf(NoCache::class, $this->factory->getCacheHandler());
+    }
+
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage Memcached class do not exist, please install memcached php extension
+     */
+    public function testGetMemcachedCacheHandlerWithoutMemcachedExtension()
+    {
+        if (class_exists(\Memcached::class)) {
+            $this->markTestSkipped();
+        }
+
+        $this->factory = new CacheHandlerFactory($this->cacheSettingsMemcached, $this->container);
+
+        $this->factory->getCacheHandler();
+    }
+
+    public function testGetStashCacheHandler()
+    {
+        $this->factory = new CacheHandlerFactory($this->cacheSettingsStash, $this->container);
+
+        $handler = $this->getMockBuilder(CacheService::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->container->expects($this->once())
+            ->method('get')
+            ->with('stash')
+            ->willReturn($handler);
+
+        $this->assertInstanceOf(Stash::class, $this->factory->getCacheHandler());
     }
 }
