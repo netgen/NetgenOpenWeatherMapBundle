@@ -1,9 +1,8 @@
 {
     "name": "netgen/open-weather-map-bundle",
-    "description": "eZ Publish/Platform Bundle for OpenWeatherMap",
+    "description": "eZ Platform Bundle for OpenWeatherMap",
     "type": "ezplatform-bundle",
     "keywords": [
-        "ezpublish",
         "ezplatform",
         "netgen",
         "openweathermap",
