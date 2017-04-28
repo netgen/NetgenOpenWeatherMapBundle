@@ -53,6 +53,8 @@ class CacheHandlerFactory implements CacheHandlerFactoryInterface
      * @throws \Exception
      *
      * @return MemcachedHandler
+     *
+     * @codeCoverageIgnore
      */
     protected function provideMemcached()
     {
