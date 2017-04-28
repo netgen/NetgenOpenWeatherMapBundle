@@ -33,12 +33,11 @@ class CacheHandlerFactory implements CacheHandlerFactoryInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getCacheHandler()
     {
         switch ($this->cacheSettings['handler']) {
-
             case CacheConstraints::MEMCACHED:
                 return $this->provideMemcached();
 
@@ -47,20 +46,18 @@ class CacheHandlerFactory implements CacheHandlerFactoryInterface
 
             default:
                 return new NoCache();
-
         }
     }
 
     /**
-     * @return MemcachedHandler
-     *
      * @throws \Exception
+     *
+     * @return MemcachedHandler
      */
     protected function provideMemcached()
     {
-
         if (!class_exists(\Memcached::class)) {
-            throw new \Exception("Memcached class do not exist, please install memcached php extension");
+            throw new \Exception('Memcached class do not exist, please install memcached php extension');
         }
 
         $memcached = new \Memcached();

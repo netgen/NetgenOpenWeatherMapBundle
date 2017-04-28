@@ -22,6 +22,6 @@ class JsonResponseTest extends TestCase
         $this->assertEquals(401, $response->getStatusCode());
         $this->assertEquals('Test', $response->getMessage());
         $this->assertEquals(array('cod' => 401, 'message' => 'Test'), $response->getData());
-        $this->assertEquals('{"cod":401,"message":"Test"}', (string)$response);
+        $this->assertEquals('{"cod":401,"message":"Test"}', (string) $response);
     }
 }

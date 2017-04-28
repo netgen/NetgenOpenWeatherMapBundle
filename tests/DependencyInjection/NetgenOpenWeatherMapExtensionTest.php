@@ -7,38 +7,38 @@ use Netgen\Bundle\OpenWeatherMapBundle\DependencyInjection\NetgenOpenWeatherMapE
 
 class NetgenOpenWeatherMapExtensionTest extends AbstractExtensionTestCase
 {
-    protected function getContainerExtensions()
-    {
-        return [
-            new NetgenOpenWeatherMapExtension(),
-        ];
-    }
-
     public function testItSetsValidContainerParameters()
     {
-        $this->container->setParameter('ezpublish.siteaccess.list', []);
+        $this->container->setParameter('ezpublish.siteaccess.list', array());
         $this->load();
+    }
+
+    protected function getContainerExtensions()
+    {
+        return array(
+            new NetgenOpenWeatherMapExtension(),
+        );
     }
 
     protected function getMinimalConfiguration()
     {
-        return [
-            'system' => [
-                'default' => [
-                    'api_settings' => [
+        return array(
+            'system' => array(
+                'default' => array(
+                    'api_settings' => array(
                         'api_key' => 'myApiKey',
                         'units' => 'metric',
                         'language' => 'en',
                         'type' => 'accurate',
-                    ],
-                    'cache_settings' => [
+                    ),
+                    'cache_settings' => array(
                         'handler' => 'memcached',
                         'ttl' => 3600,
                         'server' => 'localhost',
                         'port' => 11211,
-                    ],
-                ],
-            ],
-        ];
+                    ),
+                ),
+            ),
+        );
     }
 }

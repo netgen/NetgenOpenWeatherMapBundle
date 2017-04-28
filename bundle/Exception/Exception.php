@@ -7,7 +7,7 @@ use Exception as BaseException;
 abstract class Exception extends BaseException
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __construct($message)
     {

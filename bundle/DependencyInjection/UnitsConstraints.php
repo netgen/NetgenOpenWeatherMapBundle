@@ -5,17 +5,17 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\DependencyInjection;
 class UnitsConstraints
 {
     /**
-     * For temperature in Kelvin
+     * For temperature in Kelvin.
      */
     const STANDARD = 'standard';
 
     /**
-     * For temperature in Celsius
+     * For temperature in Celsius.
      */
     const METRIC = 'metric';
 
     /**
-     * For temperature in Fahrenheit
+     * For temperature in Fahrenheit.
      */
     const IMPERIAL = 'imperial';
 }

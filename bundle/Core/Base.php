@@ -57,20 +57,19 @@ abstract class Base
 
         if ($this->cacheService->has($hash)) {
             return $this->cacheService->get($hash);
-        } else {
-            $response = $this->client->get($url);
-
-            if (!$response->isAuthorized()) {
-                throw new NotAuthorizedException($response->getMessage());
-            }
-
-            if (!$response->isOk()) {
-                throw new NotFoundException($response->getMessage());
-            }
-
-            $this->cacheService->set($hash, (string)$response);
-
-            return (string)$response;
         }
+        $response = $this->client->get($url);
+
+        if (!$response->isAuthorized()) {
+            throw new NotAuthorizedException($response->getMessage());
+        }
+
+        if (!$response->isOk()) {
+            throw new NotFoundException($response->getMessage());
+        }
+
+        $this->cacheService->set($hash, (string) $response);
+
+        return (string) $response;
     }
 }

@@ -6,8 +6,8 @@ use Netgen\Bundle\OpenWeatherMapBundle\Controller\DailyForecastController;
 use Netgen\Bundle\OpenWeatherMapBundle\Core\DailyForecast;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
-use Symfony\Component\HttpFoundation\Response;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class DailyForecastControllerTest extends TestCase
 {

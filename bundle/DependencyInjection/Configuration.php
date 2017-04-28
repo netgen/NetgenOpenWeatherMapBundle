@@ -2,8 +2,8 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\Configuration as SiteAccessConfiguration;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 /**
  * This is the class that validates and merges configuration from your app/config files.
@@ -32,7 +32,7 @@ class Configuration extends SiteAccessConfiguration
                     ->scalarNode('units')
                         ->validate()
                             ->ifNotInArray(array(UnitsConstraints::IMPERIAL, UnitsConstraints::METRIC, UnitsConstraints::STANDARD))
-                            ->thenInvalid("Invalid units parameter %s")
+                            ->thenInvalid('Invalid units parameter %s')
                         ->end()
                         ->info('Standard, metric, and imperial units are available')
                     ->end()
@@ -43,7 +43,7 @@ class Configuration extends SiteAccessConfiguration
                     ->scalarNode('type')
                         ->validate()
                             ->ifNotInArray(array(SearchAccuracyConstraints::ACCURATE, SearchAccuracyConstraints::LIKE))
-                            ->thenInvalid("Invalid search accuracy parameter %s")
+                            ->thenInvalid('Invalid search accuracy parameter %s')
                         ->end()
                         ->info('Search accuracy')
                     ->end()
@@ -53,27 +53,25 @@ class Configuration extends SiteAccessConfiguration
         $builder
             ->arrayNode('cache_settings')
                 ->validate()
-                    ->ifTrue(function($v) {
-
+                    ->ifTrue(function ($v) {
                         if (empty($v)) {
                             return true;
                         }
 
                         $requiredSettings = array();
 
-                        switch($v['handler']) {
+                        switch ($v['handler']) {
                             case 'memcached':
-                                $requiredSettings = ['ttl', 'server', 'port'];
+                                $requiredSettings = array('ttl', 'server', 'port');
                                 break;
                             case 'stash':
-                                $requiredSettings = ['ttl'];
+                                $requiredSettings = array('ttl');
                                 break;
                             case 'null':
                                 return false;
                         }
 
                         foreach ($requiredSettings as $setting) {
-
                             if (!array_key_exists($setting, $v)) {
                                 return true;
                             }
@@ -81,15 +79,15 @@ class Configuration extends SiteAccessConfiguration
 
                         return false;
                     })
-                    ->thenInvalid("Invalid handler configuration")
+                    ->thenInvalid('Invalid handler configuration')
                 ->end()
                 ->children()
                     ->scalarNode('handler')
                         ->cannotBeEmpty()
                         ->info('Cache handler')
                         ->validate()
-                            ->ifNotInArray(['stash', 'memcached', 'null'])
-                            ->thenInvalid("Invalid cache handler %s")
+                            ->ifNotInArray(array('stash', 'memcached', 'null'))
+                            ->thenInvalid('Invalid cache handler %s')
                         ->end()
                     ->end()
                     ->scalarNode('ttl')

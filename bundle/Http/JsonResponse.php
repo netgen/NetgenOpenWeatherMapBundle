@@ -31,10 +31,24 @@ class JsonResponse implements ResponseInterface
         $this->data = $data;
 
         if (is_array($data) && array_key_exists('cod', $data)) {
-            $this->httpCode = (int)$data['cod'];
+            $this->httpCode = (int) $data['cod'];
         } else {
             $this->httpCode = $httpCode;
         }
+    }
+
+    /**
+     * Returns data represented as string.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        if (is_array($this->data)) {
+            return json_encode($this->data);
+        }
+
+        return $this->data;
     }
 
     /**
@@ -58,7 +72,7 @@ class JsonResponse implements ResponseInterface
      */
     public function isOk()
     {
-        if ($this->httpCode == 200) {
+        if ($this->httpCode === 200) {
             return true;
         }
 
@@ -70,7 +84,7 @@ class JsonResponse implements ResponseInterface
      */
     public function isAuthorized()
     {
-        if ($this->httpCode != 401) {
+        if ($this->httpCode !== 401) {
             return true;
         }
 
@@ -90,20 +104,6 @@ class JsonResponse implements ResponseInterface
     }
 
     /**
-     * Returns data represented as string.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        if (is_array($this->data)) {
-            return json_encode($this->data);
-        }
-
-        return $this->data;
-    }
-
-    /**
      * Checks if given string is valid json.
      *
      * @param string $string
@@ -114,6 +114,6 @@ class JsonResponse implements ResponseInterface
     {
         json_decode($string);
 
-        return json_last_error() == JSON_ERROR_NONE;
+        return json_last_error() === JSON_ERROR_NONE;
     }
 }

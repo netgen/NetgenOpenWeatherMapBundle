@@ -10,107 +10,102 @@ class ConfigurationTest extends TestCase
 {
     use ConfigurationTestCaseTrait;
 
-    protected function getConfiguration()
-    {
-        return new Configuration();
-    }
-
     public function testConfigurationValuesAreOkAndValid()
     {
         $this->assertConfigurationIsValid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'memcached',
                                 'ttl' => 3600,
                                 'server' => 'localhost',
                                 'port' => 11211,
-                            ],
-                        ],
-                    ],
-                ],
-            ]
+                            ),
+                        ),
+                    ),
+                ),
+            )
         );
     }
 
     public function testConfigurationValuesAreOkAndValidWithNullHandler()
     {
         $this->assertConfigurationIsValid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'null',
-                            ],
-                        ],
-                    ],
-                ],
-            ]
+                            ),
+                        ),
+                    ),
+                ),
+            )
         );
     }
 
     public function testConfigurationValuesAreOkAndValidWithStashHandler()
     {
         $this->assertConfigurationIsValid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'stash',
                                 'ttl' => 3600,
-                            ],
-                        ],
-                    ],
-                ],
-            ]
+                            ),
+                        ),
+                    ),
+                ),
+            )
         );
     }
 
     public function testConfigurationWithApiKeyMissing()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => '',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'memcached',
                                 'ttl' => 3600,
                                 'server' => 'localhost',
                                 'port' => 11211,
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'netgen_open_weather_map.system.default.api_settings.api_key'
         );
     }
@@ -118,26 +113,26 @@ class ConfigurationTest extends TestCase
     public function testConfigurationUnits()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'something',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'memcached',
                                 'ttl' => 3600,
                                 'server' => 'localhost',
                                 'port' => 11211,
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'netgen_open_weather_map.system.default.api_settings.units'
         );
     }
@@ -145,26 +140,26 @@ class ConfigurationTest extends TestCase
     public function testConfigurationAccuracyType()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'something',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'memcached',
                                 'ttl' => 3600,
                                 'server' => 'localhost',
                                 'port' => 11211,
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'netgen_open_weather_map.system.default.api_settings.type'
         );
     }
@@ -172,25 +167,25 @@ class ConfigurationTest extends TestCase
     public function testConfigurationMemcachedNoTtl()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'memcached',
                                 'server' => 'localhost',
                                 'port' => 11211,
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'Invalid configuration for path "netgen_open_weather_map.system.default.cache_settings": Invalid handler configuration'
         );
     }
@@ -198,26 +193,26 @@ class ConfigurationTest extends TestCase
     public function testConfigurationMemcachedEmptyTtl()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'memcached',
                                 'ttl' => '',
                                 'server' => 'localhost',
                                 'port' => 11211,
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'netgen_open_weather_map.system.default.cache_settings.ttl'
         );
     }
@@ -225,25 +220,25 @@ class ConfigurationTest extends TestCase
     public function testConfigurationMemcachedNoServer()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'memcached',
                                 'ttl' => 100,
                                 'port' => 11211,
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'Invalid configuration for path "netgen_open_weather_map.system.default.cache_settings": Invalid handler configuration'
         );
     }
@@ -251,26 +246,26 @@ class ConfigurationTest extends TestCase
     public function testConfigurationMemcachedEmptyServer()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'memcached',
                                 'ttl' => 100,
                                 'server' => '',
                                 'port' => 11211,
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'netgen_open_weather_map.system.default.cache_settings.server'
         );
     }
@@ -278,25 +273,25 @@ class ConfigurationTest extends TestCase
     public function testConfigurationMemcachedNoPort()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'memcached',
                                 'server' => 'localhost',
                                 'ttl' => 100,
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'Invalid configuration for path "netgen_open_weather_map.system.default.cache_settings": Invalid handler configuration'
         );
     }
@@ -304,26 +299,26 @@ class ConfigurationTest extends TestCase
     public function testConfigurationMemcachedEmptyPort()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'memcached',
                                 'ttl' => 100,
                                 'server' => 'localhost',
                                 'port' => '',
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'netgen_open_weather_map.system.default.cache_settings.port'
         );
     }
@@ -331,23 +326,23 @@ class ConfigurationTest extends TestCase
     public function testConfigurationStashNoTtl()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'stash',
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'Invalid configuration for path "netgen_open_weather_map.system.default.cache_settings": Invalid handler configuration'
         );
     }
@@ -355,24 +350,24 @@ class ConfigurationTest extends TestCase
     public function testConfigurationStashEmptyTtl()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
+                            ),
+                            'cache_settings' => array(
                                 'handler' => 'stash',
                                 'ttl' => '',
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'netgen_open_weather_map.system.default.cache_settings.ttl'
         );
     }
@@ -380,22 +375,22 @@ class ConfigurationTest extends TestCase
     public function testConfigurationNoCacheSettings()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
-                            'cache_settings' => [
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                            'cache_settings' => array(
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'netgen_open_weather_map.system.default.cache_settings'
         );
     }
@@ -403,22 +398,27 @@ class ConfigurationTest extends TestCase
     public function testConfigurationCacheSettingsNotArray()
     {
         $this->assertConfigurationIsInvalid(
-            [
-                'netgen_open_weather_map' => [
-                    'system' => [
-                        'default' => [
-                            'api_settings' => [
+            array(
+                'netgen_open_weather_map' => array(
+                    'system' => array(
+                        'default' => array(
+                            'api_settings' => array(
                                 'api_key' => 'myApiKey',
                                 'units' => 'metric',
                                 'language' => 'en',
                                 'type' => 'accurate',
-                            ],
+                            ),
                             'cache_settings' => 'cache',
-                        ],
-                    ],
-                ],
-            ],
+                        ),
+                    ),
+                ),
+            ),
             'netgen_open_weather_map.system.default.cache_settings'
         );
+    }
+
+    protected function getConfiguration()
+    {
+        return new Configuration();
     }
 }

@@ -6,8 +6,8 @@ use Netgen\Bundle\OpenWeatherMapBundle\Controller\UltravioletIndexController;
 use Netgen\Bundle\OpenWeatherMapBundle\Core\UltravioletIndex;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
-use Symfony\Component\HttpFoundation\Response;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class UltravioletIndexControllerTest extends TestCase
 {

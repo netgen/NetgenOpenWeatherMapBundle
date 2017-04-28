@@ -62,7 +62,7 @@ class Memcached implements HandlerInterface
         // as a relative value, so we will make sure that it is converted to a timestamp for consistent
         // usage later on
         if ($this->ttl < 60 * 60 * 24 * 30) {
-            $this->ttl = time() + (int)$this->ttl;
+            $this->ttl = time() + (int) $this->ttl;
         }
 
         $this->memcached->set($cacheKey, $data, $this->ttl);

@@ -7,8 +7,8 @@ use Netgen\Bundle\OpenWeatherMapBundle\Cache\NoCache;
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\Stash;
 use Netgen\Bundle\OpenWeatherMapBundle\Factory\CacheHandlerFactory;
 use Netgen\Bundle\OpenWeatherMapBundle\Factory\CacheHandlerFactoryInterface;
-use Symfony\Component\DependencyInjection\Container;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\DependencyInjection\Container;
 use Tedivm\StashBundle\Service\CacheService;
 
 class CacheHandlerFactoryTest extends TestCase
@@ -63,6 +63,7 @@ class CacheHandlerFactoryTest extends TestCase
 
         $this->factory = new CacheHandlerFactory($this->cacheSettingsNull, $this->container);
     }
+
     public function testInstanceOfCacheHandlerFactoryInterface()
     {
         $this->assertInstanceOf(CacheHandlerFactoryInterface::class, $this->factory);

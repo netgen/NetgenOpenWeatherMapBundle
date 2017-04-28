@@ -23,9 +23,9 @@ interface HandlerInterface
      *
      * @param string $cacheKey
      *
-     * @return string
-     *
      * @throws
+     *
+     * @return string
      */
     public function get($cacheKey);
 
@@ -33,7 +33,6 @@ interface HandlerInterface
      * Sets the data to cache entry for provided cache key.
      *
      * @param string $cacheKey
-     *
      * @param string $data
      */
     public function set($cacheKey, $data);

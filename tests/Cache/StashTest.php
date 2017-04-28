@@ -4,9 +4,9 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\Tests\Cache;
 
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\HandlerInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Cache\Stash;
+use PHPUnit\Framework\TestCase;
 use Stash\Item;
 use Tedivm\StashBundle\Service\CacheService;
-use PHPUnit\Framework\TestCase;
 
 class StashTest extends TestCase
 {
@@ -42,7 +42,7 @@ class StashTest extends TestCase
             ->setMethods(array('isHit', 'get', 'set', 'expiresAfter'))
             ->getMock();
 
-        $this->ttl =155;
+        $this->ttl = 155;
 
         $this->handler = new Stash($this->cacheService, $this->ttl);
     }

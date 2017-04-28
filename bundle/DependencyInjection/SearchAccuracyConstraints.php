@@ -5,12 +5,12 @@ namespace Netgen\Bundle\OpenWeatherMapBundle\DependencyInjection;
 class SearchAccuracyConstraints
 {
     /**
-     * Returns exact match values
+     * Returns exact match values.
      */
     const ACCURATE = 'accurate';
 
     /**
-     * Returns results by searching for that substring
+     * Returns results by searching for that substring.
      */
     const LIKE = 'like';
 }

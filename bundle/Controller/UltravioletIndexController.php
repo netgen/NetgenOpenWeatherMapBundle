@@ -2,11 +2,11 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\Controller;
 
+use DateTime;
 use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use Symfony\Component\HttpFoundation\Response;
-use DateTime;
 
 /**
  * Class UltravioletIndexController.

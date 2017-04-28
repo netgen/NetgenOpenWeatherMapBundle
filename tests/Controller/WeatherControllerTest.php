@@ -6,9 +6,9 @@ use Netgen\Bundle\OpenWeatherMapBundle\Controller\WeatherController;
 use Netgen\Bundle\OpenWeatherMapBundle\Core\Weather;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
 use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use PHPUnit\Framework\TestCase;
 
 class WeatherControllerTest extends TestCase
 {

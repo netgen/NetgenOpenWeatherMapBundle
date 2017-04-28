@@ -145,8 +145,8 @@ class WeatherController
      */
     public function byRectangleZone($longitudeLeft, $latitudeBottom, $longitudeRight, $latitudeTop, $mapZoom = 10, $cluster = 'yes')
     {
-	$boundingBox = array($longitudeLeft, $latitudeBottom, $longitudeRight, $latitudeTop, $mapZoom);
-	
+        $boundingBox = array($longitudeLeft, $latitudeBottom, $longitudeRight, $latitudeTop, $mapZoom);
+
         $response = new Response();
 
         try {
