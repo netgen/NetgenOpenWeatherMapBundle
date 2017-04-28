@@ -18,6 +18,7 @@
         }
     ],
     "require": {
+        "php": "~5.6|~7.0|~7.1",
         "ezsystems/ezpublish-kernel": "~6.0",
         "tedivm/stash-bundle": "~0.6"
     },
