@@ -6,7 +6,7 @@ Netgen OpenWeatherMap Bundle
 [![Latest stable](https://img.shields.io/packagist/v/netgen/open-weather-map-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/open-weather-map-bundle)
 [![License](https://img.shields.io/packagist/l/netgen/open-weather-map-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/open-weather-map-bundle)
 
-Netgen OpenWeatherMap Bundle is an eZ Publish / eZ Platform bundle for working with http://openweathermap.org/ API.
+Netgen OpenWeatherMap Bundle is an eZ Platform bundle for working with http://openweathermap.org/ API.
 
 Implemented features
 --------------------

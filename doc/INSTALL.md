@@ -5,7 +5,6 @@ Requirements
 ------------
 
 * eZ Platform 1.0+
-* eZ Publish 5
 
 Installation steps
 ------------------
@@ -53,20 +52,19 @@ netgen_open_weather_map:
        default:
            api_settings:
                api_key: 'YOUR API KEY HERE'
-               units: 'metric' # metric or imperial
+               units: 'metric' # metric, imperial or standard
                language: 'en' # Please check http://openweathermap.org/ for this one
                type: 'accurate' # like or accurate
            cache_settings:
                handler: 'stash' # stash, memcached or null
-               ttl: 3600
-           memcached_settings: # if memcached is used, please set memcached settings
-               server: localhost
-               port: 11211
+               ttl: 3600 # required for memcached and stash
+               server: localhost # required for memcached
+               port: 11211 # required for memcached
 ```
 
 ### Clear the caches
 
-Clear the eZ Publish caches with the following command:
+Clear the eZ Platform caches with the following command:
 
 ```bash
 $ php app/console cache:clear
