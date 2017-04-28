@@ -8,11 +8,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-/**
- * This is the class that loads and manages your bundle configuration.
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
- */
 class NetgenOpenWeatherMapExtension extends Extension
 {
     /**
@@ -27,7 +22,7 @@ class NetgenOpenWeatherMapExtension extends Extension
         $loader->load('services.yml');
 
         $processor = new ConfigurationProcessor($container, 'netgen_open_weather_map');
-        $configArrays = array('api_settings', 'cache_settings', 'memcached_settings');
+        $configArrays = array('api_settings', 'cache_settings');
 
         $scopes = array_merge(array('default'), $container->getParameter('ezpublish.siteaccess.list'));
 
