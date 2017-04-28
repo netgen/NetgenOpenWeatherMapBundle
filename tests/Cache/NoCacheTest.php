@@ -8,35 +8,41 @@ use PHPUnit\Framework\TestCase;
 
 class NoCacheTest extends TestCase
 {
+    /**
+     * @var HandlerInterface
+     */
+    protected $handler;
+
+    public function setUp()
+    {
+        $this->handler = new NoCache();
+    }
+
     public function testInstanceOfHandlerInterface()
     {
-        $this->assertInstanceOf(HandlerInterface::class, new NoCache());
+        $this->assertInstanceOf(HandlerInterface::class, $this->handler);
     }
 
     public function testHasMethodMustAlwaysReturnFalse()
     {
-        $nullHandler = new NoCache();
-
-        $this->assertFalse($nullHandler->has('some_key'));
-        $this->assertFalse($nullHandler->has('test'));
-        $this->assertFalse($nullHandler->has('weather'));
+        $this->assertFalse($this->handler->has('some_key'));
+        $this->assertFalse($this->handler->has('test'));
+        $this->assertFalse($this->handler->has('weather'));
     }
 
-    public function testGetMethodMustAlwaysReturnFalse()
+    /**
+     * @expectedException \Netgen\Bundle\OpenWeatherMapBundle\Exception\ItemNotFoundException
+     * @expectedExceptionMessage Item with key:some_key not found.
+     */
+    public function testGetMethodMustThrowException()
     {
-        $nullHandler = new NoCache();
-
-        $this->assertFalse($nullHandler->get('some_key'));
-        $this->assertFalse($nullHandler->get('test'));
-        $this->assertFalse($nullHandler->get('weather'));
+        $this->handler->get('some_key');
     }
 
     public function testSetMethodShouldDoNothing()
     {
-        $nullHandler = new NoCache();
-
-        $nullHandler->set('some_key', 'data', 120);
-        $nullHandler->set('test', 'data', 1000);
-        $nullHandler->set('weather', 'data', 3600);
+        $this->handler->set('some_key', 'data');
+        $this->handler->set('test', 'data');
+        $this->handler->set('weather', 'data');
     }
 }

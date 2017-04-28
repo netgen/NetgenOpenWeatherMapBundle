@@ -2,9 +2,8 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\Cache;
 
-/**
- * Class NoCache.
- */
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\ItemNotFoundException;
+
 class NoCache implements HandlerInterface
 {
     /**
@@ -20,13 +19,13 @@ class NoCache implements HandlerInterface
      */
     public function get($cacheKey)
     {
-        return false;
+        throw new ItemNotFoundException("Item with key:{$cacheKey} not found.");
     }
 
     /**
      * {@inheritdoc}
      */
-    public function set($cacheKey, $data, $ttl)
+    public function set($cacheKey, $data)
     {
     }
 }

@@ -2,9 +2,6 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\Cache;
 
-/**
- * Interface HandlerInterface.
- */
 interface HandlerInterface
 {
     /**
@@ -26,7 +23,9 @@ interface HandlerInterface
      *
      * @param string $cacheKey
      *
-     * @return mixed
+     * @return string
+     *
+     * @throws
      */
     public function get($cacheKey);
 
@@ -34,8 +33,8 @@ interface HandlerInterface
      * Sets the data to cache entry for provided cache key.
      *
      * @param string $cacheKey
-     * @param mixed $data
-     * @param int $ttl
+     *
+     * @param string $data
      */
-    public function set($cacheKey, $data, $ttl);
+    public function set($cacheKey, $data);
 }

@@ -10,142 +10,114 @@ use PHPUnit\Framework\TestCase;
 
 class StashTest extends TestCase
 {
-    public function testInstanceOfHandlerInterface()
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $cacheService;
+
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $itemHit;
+
+    /**
+     * @var int
+     */
+    protected $ttl;
+
+    /**
+     * @var HandlerInterface
+     */
+    protected $handler;
+
+    public function setUp()
     {
-        $cacheService = $this->getMockBuilder(CacheService::class)
+        $this->cacheService = $this->getMockBuilder(CacheService::class)
+            ->setMethods(array('getItem', 'isHit', 'isMiss', 'save', 'hasItem'))
             ->disableOriginalConstructor()
             ->getMock();
 
-        $handler = new Stash($cacheService);
+        $this->itemHit = $this->getMockBuilder(Item::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('isHit', 'get', 'set', 'expiresAfter'))
+            ->getMock();
 
-        $this->assertInstanceOf(HandlerInterface::class, $handler);
+        $this->ttl =155;
+
+        $this->handler = new Stash($this->cacheService, $this->ttl);
+    }
+
+    public function testInstanceOfHandlerInterface()
+    {
+        $this->assertInstanceOf(HandlerInterface::class, $this->handler);
     }
 
     public function testCacheHasKeyMethod()
     {
-        $cacheService = $this->getMockBuilder(CacheService::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('getItem', 'isMiss'))
-            ->getMock();
+        $this->cacheService->expects($this->once())
+            ->willReturn(true)
+            ->method('hasItem');
 
-        $item = $this->getMockBuilder(Item::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('isMiss'))
-            ->getMock();
-
-        $cacheService->expects($this->once())
-            ->willReturn($item)
-            ->method('getItem');
-
-        $item->expects($this->once())
-            ->willReturn(false)
-            ->method('isMiss');
-
-        $handler = new Stash($cacheService);
-
-        $this->assertTrue($handler->has('some_key'));
+        $this->assertTrue($this->handler->has('some_key'));
     }
 
     public function testCacheHasNotKeyMethod()
     {
-        $cacheService = $this->getMockBuilder(CacheService::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('getItem', 'isMiss'))
-            ->getMock();
+        $this->cacheService->expects($this->once())
+            ->willReturn(false)
+            ->method('hasItem');
 
-        $item = $this->getMockBuilder(Item::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('isMiss'))
-            ->getMock();
-
-        $cacheService->expects($this->once())
-            ->willReturn($item)
-            ->method('getItem');
-
-        $item->expects($this->once())
-            ->willReturn(true)
-            ->method('isMiss');
-
-        $handler = new Stash($cacheService);
-
-        $this->assertFalse($handler->has('some_key'));
+        $this->assertFalse($this->handler->has('some_key'));
     }
 
     public function testGetMethod()
     {
-        $cacheService = $this->getMockBuilder(CacheService::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('getItem', 'isMiss'))
-            ->getMock();
-
-        $item = $this->getMockBuilder(Item::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('isMiss', 'get'))
-            ->getMock();
-
-        $cacheService->expects($this->once())
-            ->willReturn($item)
+        $this->cacheService->expects($this->once())
+            ->willReturn($this->itemHit)
             ->method('getItem');
 
-        $item->expects($this->once())
-            ->willReturn(false)
-            ->method('isMiss');
+        $this->itemHit->expects($this->once())
+            ->willReturn(true)
+            ->method('isHit');
 
-        $item->expects($this->once())
+        $this->itemHit->expects($this->once())
             ->willReturn('some_data')
             ->method('get');
 
-        $handler = new Stash($cacheService);
-
-        $this->assertEquals('some_data', $handler->get('some_key'));
+        $this->assertEquals('some_data', $this->handler->get('some_key'));
     }
 
+    /**
+     * @expectedException \Netgen\Bundle\OpenWeatherMapBundle\Exception\ItemNotFoundException
+     * @expectedExceptionMessage Item with key:netgen-openweathermap-some_key not found.
+     */
     public function testGetDoesNotReturnsDataMethod()
     {
-        $cacheService = $this->getMockBuilder(CacheService::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('getItem', 'isMiss'))
-            ->getMock();
-
-        $item = $this->getMockBuilder(Item::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('isMiss', 'get'))
-            ->getMock();
-
-        $cacheService->expects($this->once())
-            ->willReturn($item)
+        $this->cacheService->expects($this->once())
+            ->willReturn($this->itemHit)
             ->method('getItem');
 
-        $item->expects($this->once())
-            ->willReturn(true)
-            ->method('isMiss');
+        $this->itemHit->expects($this->once())
+            ->willReturn(false)
+            ->method('isHit');
 
-        $handler = new Stash($cacheService);
-
-        $this->assertFalse($handler->get('some_key'));
+        $this->handler->get('some_key');
     }
 
     public function testSetMethod()
     {
-        $cacheService = $this->getMockBuilder(CacheService::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('getItem', 'isMiss'))
-            ->getMock();
-
-        $item = $this->getMockBuilder(Item::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('set'))
-            ->getMock();
-
-        $cacheService->expects($this->once())
-            ->willReturn($item)
+        $this->cacheService->expects($this->once())
+            ->willReturn($this->itemHit)
             ->method('getItem');
 
-        $item->expects($this->once())
-            ->method('set');
+        $this->itemHit->expects($this->once())
+            ->method('set')
+            ->with('some_data');
 
-        $handler = new Stash($cacheService);
+        $this->itemHit->expects($this->once())
+            ->method('expiresAfter')
+            ->with($this->ttl);
 
-        $handler->set('some_key', 'some_data', 3600);
+        $this->handler->set('some_key', 'some_data');
     }
 }

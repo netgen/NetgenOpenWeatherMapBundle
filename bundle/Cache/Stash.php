@@ -2,11 +2,9 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\Cache;
 
+use Netgen\Bundle\OpenWeatherMapBundle\Exception\ItemNotFoundException;
 use Tedivm\StashBundle\Service\CacheService;
 
-/**
- * Class Stash.
- */
 class Stash implements HandlerInterface
 {
     /**
@@ -15,13 +13,20 @@ class Stash implements HandlerInterface
     protected $cacheService;
 
     /**
+     * @var int
+     */
+    protected $ttl;
+
+    /**
      * Stash constructor.
      *
      * @param \Tedivm\StashBundle\Service\CacheService $cacheService
+     * @param int $ttl
      */
-    public function __construct(CacheService $cacheService)
+    public function __construct(CacheService $cacheService, $ttl)
     {
         $this->cacheService = $cacheService;
+        $this->ttl = $ttl;
     }
 
     /**
@@ -31,13 +36,7 @@ class Stash implements HandlerInterface
     {
         $cacheKey = self::CACHE_KEY_PREFIX . $cacheKey;
 
-        $item = $this->cacheService->getItem($cacheKey);
-
-        if (!$item->isMiss()) {
-            return true;
-        }
-
-        return false;
+        return $this->cacheService->hasItem($cacheKey);
     }
 
     /**
@@ -49,21 +48,24 @@ class Stash implements HandlerInterface
 
         $item = $this->cacheService->getItem($cacheKey);
 
-        if (!$item->isMiss()) {
+        if ($item->isHit()) {
             return $item->get();
         }
 
-        return false;
+        throw new ItemNotFoundException("Item with key:{$cacheKey} not found.");
     }
 
     /**
      * {@inheritdoc}
      */
-    public function set($cacheKey, $data, $ttl)
+    public function set($cacheKey, $data)
     {
         $cacheKey = self::CACHE_KEY_PREFIX . $cacheKey;
 
         $item = $this->cacheService->getItem($cacheKey);
-        $item->set($data, $ttl);
+        $item->set($data);
+        $item->expiresAfter($this->ttl);
+
+        $this->cacheService->save($item);
     }
 }
