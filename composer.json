@@ -1,9 +1,8 @@
 {
     "name": "netgen/open-weather-map-bundle",
-    "description": "eZ Platform Bundle for OpenWeatherMap",
-    "type": "ezplatform-bundle",
+    "description": "Symfony Bundle for OpenWeatherMap",
+    "type": "symfony-bundle",
     "keywords": [
-        "ezplatform",
         "netgen",
         "openweathermap",
         "api",
@@ -19,8 +18,8 @@
     ],
     "require": {
         "php": "~5.6|~7.0|~7.1",
-        "ezsystems/ezpublish-kernel": "~6.0",
-        "tedivm/stash-bundle": "~0.6"
+        "symfony/framework-bundle": "~2.3|~3.0",
+        "marioblazek/open-weather-map-library": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",

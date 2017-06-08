@@ -1,38 +1,25 @@
-parameters:
-    netgen_open_weather_map.controller.weather.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\WeatherController
-    netgen_open_weather_map.controller.weather_stations.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\WeatherStationsController
-    netgen_open_weather_map.controller.ultraviolet_index.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\UltravioletIndexController
-    netgen_open_weather_map.controller.hour_forecast.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\HourForecastController
-    netgen_open_weather_map.controller.daily_forecast.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\DailyForecastController
-    netgen_open_weather_map.controller.air_pollution.class: Netgen\Bundle\OpenWeatherMapBundle\Controller\AirPollutionController
-
 services:
     netgen_open_weather_map.controller.weather:
-        class: '%netgen_open_weather_map.controller.weather.class%'
+        class: Netgen\Bundle\OpenWeatherMapBundle\Controller\WeatherController
         arguments:
             - '@netgen_open_weather_map.weather'
 
-    netgen_open_weather_map.controller.weather_stations:
-        class: '%netgen_open_weather_map.controller.weather_stations.class%'
-        arguments:
-            - '@netgen_open_weather_map.weather_stations'
-
     netgen_open_weather_map.controller.ultraviolet_index:
-        class: '%netgen_open_weather_map.controller.ultraviolet_index.class%'
+        class: Netgen\Bundle\OpenWeatherMapBundle\Controller\UltravioletIndexController
         arguments:
             - '@netgen_open_weather_map.ultraviolet_index'
 
     netgen_open_weather_map.controller.hour_forecast:
-        class: '%netgen_open_weather_map.controller.hour_forecast.class%'
+        class: Netgen\Bundle\OpenWeatherMapBundle\Controller\HourForecastController
         arguments:
             - '@netgen_open_weather_map.hour_forecast'
 
     netgen_open_weather_map.controller.daily_forecast:
-        class: '%netgen_open_weather_map.controller.daily_forecast.class%'
+        class: Netgen\Bundle\OpenWeatherMapBundle\Controller\DailyForecastController
         arguments:
             - '@netgen_open_weather_map.daily_forecast'
 
     netgen_open_weather_map.controller.air_pollution:
-        class: '%netgen_open_weather_map.controller.air_pollution.class%'
+        class: Netgen\Bundle\OpenWeatherMapBundle\Controller\AirPollutionController
         arguments:
             - '@netgen_open_weather_map.air_pollution'

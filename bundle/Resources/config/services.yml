@@ -1,6 +1,7 @@
 imports:
     - { resource: controllers.yml }
     - { resource: weather.yml }
+    - { resource: factories.yml }
 
 parameters:
     netgen_open_weather_map.http.client.class: Netgen\Bundle\OpenWeatherMapBundle\Http\HttpClient

@@ -1,0 +1,16 @@
+services:
+    netgen_open_weather_map.factory.weather:
+        class: Marek\OpenWeatherMap\Factory\WeatherFactory
+        arguments:
+            - '@netgen_open_weather_map.factory.api_configuration'
+            - '@netgen_open_weather_map.factory.cache_configuration'
+
+    netgen_open_weather_map.factory.api_configuration:
+        class: Marek\OpenWeatherMap\API\Value\Configuration\APIConfiguration
+        arguments:
+            - ''
+
+    netgen_open_weather_map.factory.cache_configuration:
+        class: Marek\OpenWeatherMap\API\Value\Configuration\CacheConfiguration
+        arguments:
+            - ''

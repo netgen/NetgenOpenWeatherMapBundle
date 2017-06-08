@@ -1,59 +1,29 @@
-parameters:
-    netgen_open_weather_map.weather.class: Netgen\Bundle\OpenWeatherMapBundle\Core\Weather
-    netgen_open_weather_map.air_pollution.class: Netgen\Bundle\OpenWeatherMapBundle\Core\AirPollution
-    netgen_open_weather_map.daily_forecast.class: Netgen\Bundle\OpenWeatherMapBundle\Core\DailyForecast
-    netgen_open_weather_map.hour_forecast.class: Netgen\Bundle\OpenWeatherMapBundle\Core\HourForecast
-    netgen_open_weather_map.ultraviolet_index.class: Netgen\Bundle\OpenWeatherMapBundle\Core\UltravioletIndex
-    netgen_open_weather_map.weather_stations.class: Netgen\Bundle\OpenWeatherMapBundle\Core\WeatherStations
-
 services:
     netgen_open_weather_map.weather:
-        class: '%netgen_open_weather_map.weather.class%'
-        arguments:
-            - '@netgen_open_weather_map.http.client'
-            - '$api_settings.api_key;netgen_open_weather_map$'
-            - '@netgen_open_weather_map.cache_handler'
-            - '$api_settings.units;netgen_open_weather_map$'
-            - '$api_settings.language;netgen_open_weather_map$'
-            - '$api_settings.type;netgen_open_weather_map$'
+        class: Marek\OpenWeatherMap\Core\Weather\Weather
+        factory: 'netgen_open_weather_map.factory.weather:createWeatherService'
 
     netgen_open_weather_map.air_pollution:
-        class: '%netgen_open_weather_map.air_pollution.class%'
-        arguments:
-            - '@netgen_open_weather_map.http.client'
-            - '$api_settings.api_key;netgen_open_weather_map$'
-            - '@netgen_open_weather_map.cache_handler'
+        class: Marek\OpenWeatherMap\Core\Weather\AirPollution
+        factory: 'netgen_open_weather_map.factory.weather:createAirPollutionService'
 
     netgen_open_weather_map.daily_forecast:
-        class: '%netgen_open_weather_map.daily_forecast.class%'
-        arguments:
-            - '@netgen_open_weather_map.http.client'
-            - '$api_settings.api_key;netgen_open_weather_map$'
-            - '@netgen_open_weather_map.cache_handler'
-            - '$api_settings.units;netgen_open_weather_map$'
-            - '$api_settings.language;netgen_open_weather_map$'
-            - '$api_settings.type;netgen_open_weather_map$'
+        class: Marek\OpenWeatherMap\Core\Weather\DailyForecast
+        factory: 'netgen_open_weather_map.factory.weather:createDailyForecastService'
 
     netgen_open_weather_map.hour_forecast:
-        class: '%netgen_open_weather_map.hour_forecast.class%'
-        arguments:
-            - '@netgen_open_weather_map.http.client'
-            - '$api_settings.api_key;netgen_open_weather_map$'
-            - '@netgen_open_weather_map.cache_handler'
-            - '$api_settings.units;netgen_open_weather_map$'
-            - '$api_settings.language;netgen_open_weather_map$'
-            - '$api_settings.type;netgen_open_weather_map$'
+        class: Marek\OpenWeatherMap\Core\Weather\HourForecast
+        factory: 'netgen_open_weather_map.factory.weather:createHourForecastService'
 
     netgen_open_weather_map.ultraviolet_index:
-        class: '%netgen_open_weather_map.ultraviolet_index.class%'
-        arguments:
-            - '@netgen_open_weather_map.http.client'
-            - '$api_settings.api_key;netgen_open_weather_map$'
-            - '@netgen_open_weather_map.cache_handler'
+        class: Marek\OpenWeatherMap\Core\Weather\UltravioletIndex
+        factory: 'netgen_open_weather_map.factory.weather:createUltravioletIndexService'
 
-    netgen_open_weather_map.weather_stations:
-        class: '%netgen_open_weather_map.weather_stations.class%'
+    netgen_open_weather_map.weather_services:
+        class: Marek\OpenWeatherMap\Core\WeatherServices
         arguments:
-            - '@netgen_open_weather_map.http.client'
-            - '$api_settings.api_key;netgen_open_weather_map$'
-            - '@netgen_open_weather_map.cache_handler'
+            - '@netgen_open_weather_map.weather'
+            - '@netgen_open_weather_map.hour_forecast'
+            - '@netgen_open_weather_map.daily_forecast'
+            - '@netgen_open_weather_map.ultraviolet_index'
+            - '@netgen_open_weather_map.air_pollution'
