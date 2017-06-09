@@ -4,7 +4,7 @@ Installation instructions
 Requirements
 ------------
 
-* eZ Platform 1.0+
+* Symfony version greater than 2.3
 
 Installation steps
 ------------------
@@ -39,12 +39,12 @@ Put the following in your `app/config/routing.yml` file to be able to display ta
 ```yml
 _netgen_open_weather_map:
     resource: "@NetgenOpenWeatherMapBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /netgen/openweathermap/
 ```
 
-### Set siteaccess aware configuration
+### Set configuration
 
-Configure parameters related to OpenWeatherMap API in `app/config/config.yml` or `app/config/ezplatform.yml`:
+Configure parameters related to OpenWeatherMap API in `app/config/config.yml`:
 
 ```yml
 netgen_open_weather_map:
@@ -64,7 +64,7 @@ netgen_open_weather_map:
 
 ### Clear the caches
 
-Clear the eZ Platform caches with the following command:
+Clear the Symfony caches with the following command:
 
 ```bash
 $ php app/console cache:clear

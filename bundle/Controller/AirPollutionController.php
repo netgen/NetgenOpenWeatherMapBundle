@@ -2,26 +2,23 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\Controller;
 
-use DateTime;
-use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface;
-use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
-use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
+use Marek\OpenWeatherMap\API\Exception\APIException;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\DateTime;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\GeographicCoordinates;
+use Marek\OpenWeatherMap\API\Weather\Services\AirPollutionInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Class AirPollutionController.
- */
 class AirPollutionController
 {
     /**
-     * @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface
+     * @var \Marek\OpenWeatherMap\API\Weather\Services\AirPollutionInterface
      */
     protected $airPollution;
 
     /**
      * AirPollutionController constructor.
      *
-     * @param \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\AirPollutionInterface $airPollution
+     * @param \Marek\OpenWeatherMap\API\Weather\Services\AirPollutionInterface $airPollution
      */
     public function __construct(AirPollutionInterface $airPollution)
     {
@@ -39,25 +36,16 @@ class AirPollutionController
      */
     public function getOzoneData($latitude, $longitude, $datetime = 'current')
     {
-        if ($datetime !== 'current') {
-            $datetime = DateTime::createFromFormat('c', $datetime);
-
-            if ($datetime === false) {
-                $datetime = 'current';
-            }
-        }
-
         $response = new Response();
+        $geographicCoordinated = new GeographicCoordinates($latitude, $longitude);
+        $dateTime = new DateTime($datetime);
 
         try {
-            $data = $this->airPollution->fetchOzoneData($latitude, $longitude, $datetime);
+            $data = $this->airPollution->fetchOzoneData($geographicCoordinated, $dateTime);
             $response->setContent($data);
-        } catch (NotAuthorizedException $e) {
+        } catch (APIException $e) {
             $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
-        } catch (NotFoundException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+            $response->setStatusCode($e->getStatusCode());
         }
 
         return $response;
@@ -74,25 +62,68 @@ class AirPollutionController
      */
     public function getCarbonMonoxideData($latitude, $longitude, $datetime = 'current')
     {
-        if ($datetime !== 'current') {
-            $datetime = DateTime::createFromFormat('c', $datetime);
-
-            if ($datetime === false) {
-                $datetime = 'current';
-            }
-        }
-
         $response = new Response();
+        $geographicCoordinated = new GeographicCoordinates($latitude, $longitude);
+        $dateTime = new DateTime($datetime);
 
         try {
-            $data = $this->airPollution->fetchCarbonMonoxideData($latitude, $longitude, $datetime);
+            $data = $this->airPollution->fetchCarbonMonoxideData($geographicCoordinated, $dateTime);
             $response->setContent($data);
-        } catch (NotAuthorizedException $e) {
+        } catch (APIException $e) {
             $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
-        } catch (NotFoundException $e) {
+            $response->setStatusCode($e->getStatusCode());
+        }
+
+        return $response;
+    }
+
+    /**
+     * Returns sulfur dioxide data.
+     *
+     * @param float $latitude
+     * @param float $longitude
+     * @param string $datetime ISO 8601 date string
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getSulfurDioxideData($latitude, $longitude, $datetime = 'current')
+    {
+        $response = new Response();
+        $geographicCoordinated = new GeographicCoordinates($latitude, $longitude);
+        $dateTime = new DateTime($datetime);
+
+        try {
+            $data = $this->airPollution->fetchSulfurDioxideData($geographicCoordinated, $dateTime);
+            $response->setContent($data);
+        } catch (APIException $e) {
             $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+            $response->setStatusCode($e->getStatusCode());
+        }
+
+        return $response;
+    }
+
+    /**
+     * Returns nitrogen dioxide data.
+     *
+     * @param float $latitude
+     * @param float $longitude
+     * @param string $datetime ISO 8601 date string
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getNitrogenDioxideData($latitude, $longitude, $datetime = 'current')
+    {
+        $response = new Response();
+        $geographicCoordinated = new GeographicCoordinates($latitude, $longitude);
+        $dateTime = new DateTime($datetime);
+
+        try {
+            $data = $this->airPollution->fetchNitrogenDioxideData($geographicCoordinated, $dateTime);
+            $response->setContent($data);
+        } catch (APIException $e) {
+            $response->setContent($e->getMessage());
+            $response->setStatusCode($e->getStatusCode());
         }
 
         return $response;

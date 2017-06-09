@@ -2,26 +2,23 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\Controller;
 
-use DateTime;
-use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface;
-use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
-use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
+use Marek\OpenWeatherMap\API\Exception\APIException;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\DateTime;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\GeographicCoordinates;
+use Marek\OpenWeatherMap\API\Weather\Services\UltravioletIndexInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Class UltravioletIndexController.
- */
 class UltravioletIndexController
 {
     /**
-     * @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface
+     * @var \Marek\OpenWeatherMap\API\Weather\Services\UltravioletIndexInterface
      */
     protected $ultravioletIndex;
 
     /**
      * UltravioletIndexController constructor.
      *
-     * @param \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\UltravioletIndexInterface $ultravioletIndex
+     * @param \Marek\OpenWeatherMap\API\Weather\Services\UltravioletIndexInterface $ultravioletIndex
      */
     public function __construct(UltravioletIndexInterface $ultravioletIndex)
     {
@@ -39,25 +36,17 @@ class UltravioletIndexController
      */
     public function getUltravioletIndex($latitude, $longitude, $datetime = 'current')
     {
-        if ($datetime !== 'current') {
-            $datetime = DateTime::createFromFormat('c', $datetime);
-
-            if ($datetime === false) {
-                $datetime = 'current';
-            }
-        }
-
         $response = new Response();
 
+        $geographicCoordinates = new GeographicCoordinates($latitude, $longitude);
+        $dateTime = new DateTime($datetime);
+
         try {
-            $data = $this->ultravioletIndex->fetchUltravioletIndex($latitude, $longitude, $datetime);
+            $data = $this->ultravioletIndex->fetchUltravioletIndex($geographicCoordinates, $dateTime);
             $response->setContent($data);
-        } catch (NotAuthorizedException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
-        } catch (NotFoundException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        } catch (APIException $e) {
+            $response->setContent($e->getAPIMessage());
+            $response->setStatusCode($e->getStatusCode());
         }
 
         return $response;

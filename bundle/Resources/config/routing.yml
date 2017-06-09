@@ -86,6 +86,26 @@ netgen_openweather_air_pollution_carbon_monoxide:
         latitude: \d+
         longitude: \d+
         datetime: \w+
+
+netgen_openweather_air_pollution_sulfur_dioxide:
+    path: /netgen/openweather/airpollution/sulfurdioxide/{latitude}/{longitude}/{datetime}
+    defaults: { _controller: 'netgen_open_weather_map.controller.air_pollution:getSulfurDioxideData', datetime: 'current' }
+    methods:
+        - GET
+    requirements:
+        latitude: \d+
+        longitude: \d+
+        datetime: \w+
+
+netgen_openweather_air_pollution_nitrogen_dioxide:
+    path: /netgen/openweather/airpollution/nitrogendioxide/{latitude}/{longitude}/{datetime}
+    defaults: { _controller: 'netgen_open_weather_map.controller.air_pollution:getNitrogenDioxideData', datetime: 'current' }
+    methods:
+        - GET
+    requirements:
+        latitude: \d+
+        longitude: \d+
+        datetime: \w+
 # END of AirPollutionController routes
 
 
@@ -100,40 +120,6 @@ netgen_openweather_ultraviolet_index:
         longitude: \d+
         datetime: \w+
 # END of UltravioletIndexController routes
-
-# WeatherStationsController routes
-netgen_openweather_weather_stations_station:
-    path: /netgen/openweather/weatherstations/station/{stationId}
-    defaults: { _controller: 'netgen_open_weather_map.controller.weather_stations:getFromOnStationById' }
-    methods:
-        - GET
-    requirements:
-        stationId: \d+
-
-netgen_openweather_weather_stations_stations_rectangle:
-    path: /netgen/openweather/weatherstations/stationsrectangle/{longitudeTopLeft}/{latitudeTopLeft}/{longitudeBottomRight}/{latitudeBottomRight}/{mapZoom}/{cluster}/{numberOfStations}
-    defaults: { _controller: 'netgen_open_weather_map.controller.weather_stations:getFromSeveralByRectangleZone', cluster: 'yes', numberOfStations: 10 }
-    methods:
-        - GET
-    requirements:
-        longitudeTopLeft: \d+
-        latitudeTopLeft: \d+
-        longitudeBottomRight: \d+
-        latitudeBottomRight: \d+
-        mapZoom: \d+
-        cluster: \w+
-        numberOfStations: \d+
-
-netgen_openweather_weather_stations_stations_geopoint:
-    path: /netgen/openweather/weatherstations/stationsgeopoint/{latitude}/{longitude}/{numberOfStations}
-    defaults: { _controller: 'netgen_open_weather_map.controller.weather_stations:getFromSeveralByGeoPoint', numberOfStations: 10 }
-    methods:
-        - GET
-    requirements:
-        latitude: \d+
-        longitude: \d+
-        numberOfStations: \d+
-# END of WeatherStationsController routes
 
 # DailyForecastController routes
 netgen_openweather_weather_daily_forecast_city_name:
@@ -165,6 +151,16 @@ netgen_openweather_weather_daily_forecast_geographic_coordinates:
         cityName: \w+
         numberOfDays: \d+
         countryCode: \w+
+
+netgen_openweather_weather_daily_forecast_geographic_coordinates:
+    path: /netgen/openweather/dailyforecast/zipcode/{zipCode}/{numberOfDays}/{countryCode}
+    defaults: { _controller: 'netgen_open_weather_map.controller.daily_forecast:getForecastByZipCode', numberOfDays: 16, countryCode: '' }
+    methods:
+        - GET
+    requirements:
+        zipCode: \w+
+        numberOfDays: \d+
+        countryCode: \w+
 # END of DailyForecastController routes
 
 # HourForecastController
@@ -193,4 +189,13 @@ netgen_openweather_weather_hour_forecast_geographic_coordinates:
     requirements:
         latitude: \d+
         longitude: \d+
+
+netgen_openweather_weather_hour_forecast_zip_code:
+    path: /netgen/openweather/hourforecast/zipcode/{zipCode}/{countryCode}
+    defaults: { _controller: 'netgen_open_weather_map.controller.hour_forecast:getForecastByZipCode', countryCode: '' }
+    methods:
+        - GET
+    requirements:
+        zipCode: \w+
+        countryCode: \w+
 # END of HourForecastController

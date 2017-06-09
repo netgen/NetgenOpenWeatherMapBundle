@@ -2,26 +2,31 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\Controller;
 
-use Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface;
-use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
-use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
+use Marek\OpenWeatherMap\API\Exception\APIException;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\BoundingBox;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\CityCount;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\CityId;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\CityIds;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\CityName;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\Cluster;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\Latitude;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\Longitude;
+use Marek\OpenWeatherMap\API\Value\Parameter\Input\ZipCode;
+use Marek\OpenWeatherMap\API\Weather\Services\WeatherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Class WeatherController.
- */
 class WeatherController
 {
     /**
-     * @var \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface
+     * @var \Marek\OpenWeatherMap\API\Weather\Services\WeatherInterface
      */
     protected $weather;
 
     /**
      * WeatherController constructor.
      *
-     * @param \Netgen\Bundle\OpenWeatherMapBundle\API\OpenWeatherMap\Weather\WeatherInterface $weather
+     * @param \Marek\OpenWeatherMap\API\Weather\Services\WeatherInterface $weather
      */
     public function __construct(WeatherInterface $weather)
     {
@@ -39,16 +44,15 @@ class WeatherController
     public function byGeographicCoordinates($latitude, $longitude)
     {
         $response = new Response();
+        $lat = new Latitude($latitude);
+        $lng = new Longitude($longitude);
 
         try {
-            $data = $this->weather->fetchWeatherDataByGeographicCoordinates($latitude, $longitude);
+            $data = $this->weather->byGeographicCoordinates($lat, $lng);
             $response->setContent($data);
-        } catch (NotAuthorizedException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
-        } catch (NotFoundException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        } catch (APIException $e) {
+            $response->setContent($e->getAPIMessage());
+            $response->setStatusCode($e->getStatusCode());
         }
 
         return $response;
@@ -65,16 +69,14 @@ class WeatherController
     public function byCityName($cityName, $countryCode = '')
     {
         $response = new Response();
+        $city = new CityName($cityName, $countryCode);
 
         try {
-            $data = $this->weather->fetchWeatherDataByCityName($cityName, $countryCode);
+            $data = $this->weather->byCityName($city);
             $response->setContent($data);
-        } catch (NotAuthorizedException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
-        } catch (NotFoundException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        } catch (APIException $e) {
+            $response->setContent($e->getAPIMessage());
+            $response->setStatusCode($e->getStatusCode());
         }
 
         return $response;
@@ -90,16 +92,14 @@ class WeatherController
     public function byCityId($cityId)
     {
         $response = new Response();
+        $city = new CityId($cityId);
 
         try {
-            $data = $this->weather->fetchWeatherDataByCityId($cityId);
+            $data = $this->weather->byCityId($city);
             $response->setContent($data);
-        } catch (NotAuthorizedException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
-        } catch (NotFoundException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        } catch (APIException $e) {
+            $response->setContent($e->getAPIMessage());
+            $response->setStatusCode($e->getStatusCode());
         }
 
         return $response;
@@ -116,16 +116,14 @@ class WeatherController
     public function byZipCode($zipCode, $countryCode = '')
     {
         $response = new Response();
+        $zip = new ZipCode($zipCode, $countryCode);
 
         try {
-            $data = $this->weather->fetchWeatherDataByZipCode($zipCode, $countryCode);
+            $data = $this->weather->byZipCode($zip);
             $response->setContent($data);
-        } catch (NotAuthorizedException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
-        } catch (NotFoundException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        } catch (APIException $e) {
+            $response->setContent($e->getAPIMessage());
+            $response->setStatusCode($e->getStatusCode());
         }
 
         return $response;
@@ -145,19 +143,16 @@ class WeatherController
      */
     public function byRectangleZone($longitudeLeft, $latitudeBottom, $longitudeRight, $latitudeTop, $mapZoom = 10, $cluster = 'yes')
     {
-        $boundingBox = array($longitudeLeft, $latitudeBottom, $longitudeRight, $latitudeTop, $mapZoom);
-
         $response = new Response();
+        $boundingBox = new BoundingBox($longitudeLeft, $latitudeBottom, $longitudeRight, $latitudeTop, $mapZoom);
+        $cluster = new Cluster($cluster);
 
         try {
-            $data = $this->weather->fetchWeatherDataForCitiesWithinRectangleZone($boundingBox, $cluster);
+            $data = $this->weather->withinARectangleZone($boundingBox, $cluster);
             $response->setContent($data);
-        } catch (NotAuthorizedException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
-        } catch (NotFoundException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        } catch (APIException $e) {
+            $response->setContent($e->getAPIMessage());
+            $response->setStatusCode($e->getStatusCode());
         }
 
         return $response;
@@ -176,16 +171,17 @@ class WeatherController
     public function byCircle($latitude, $longitude, $cluster = 'yes', $numberOfCities = 10)
     {
         $response = new Response();
+        $latitude = new Latitude($latitude);
+        $longitude = new Longitude($longitude);
+        $cluster = new Cluster($cluster);
+        $numberOfCities = new CityCount($numberOfCities);
 
         try {
-            $data = $this->weather->fetchWeatherDataForCitiesInCycle($latitude, $longitude, $cluster, $numberOfCities);
+            $data = $this->weather->inCycle($latitude, $longitude, $cluster, $numberOfCities);
             $response->setContent($data);
-        } catch (NotAuthorizedException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
-        } catch (NotFoundException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        } catch (APIException $e) {
+            $response->setContent($e->getAPIMessage());
+            $response->setStatusCode($e->getStatusCode());
         }
 
         return $response;
@@ -208,15 +204,21 @@ class WeatherController
         $cities = $request->query->get('cities');
         $cities = explode(',', $cities);
 
+        $ids = array_map(
+            function($id) {
+                return new CityId($id);
+            },
+            $cities
+        );
+
+        $cities = new CityIds($ids);
+
         try {
-            $data = $this->weather->fetchWeatherDataForSeveralCityIds($cities);
+            $data = $this->weather->severalCityIds($cities);
             $response->setContent($data);
-        } catch (NotAuthorizedException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_UNAUTHORIZED);
-        } catch (NotFoundException $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        } catch (APIException $e) {
+            $response->setContent($e->getAPIMessage());
+            $response->setStatusCode($e->getStatusCode());
         }
 
         return $response;
