@@ -2,7 +2,6 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\DependencyInjection;
 
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ConfigurationProcessor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -21,23 +20,18 @@ class NetgenOpenWeatherMapExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
 
-        $processor = new ConfigurationProcessor($container, 'netgen_open_weather_map');
-        $configArrays = array('api_settings', 'cache_settings');
+        $apiConfiguration = $container->getDefinition('netgen_open_weather_map.factory.api_configuration');
+        $cacheConfiguration = $container->getDefinition('netgen_open_weather_map.factory.cache_configuration');
 
-        $scopes = array_merge(array('default'), $container->getParameter('ezpublish.siteaccess.list'));
+        $apiConfiguration->replaceArgument(0, $config['api_settings']['api_key']);
+        $apiConfiguration->replaceArgument(1, $config['api_settings']['units']);
+        $apiConfiguration->replaceArgument(2, $config['api_settings']['language']);
+        $apiConfiguration->replaceArgument(3, $config['api_settings']['type']);
 
-        foreach ($configArrays as $configArray) {
-            $processor->mapConfigArray($configArray, $config);
 
-            foreach ($scopes as $scope) {
-                $scopeConfig = $container->getParameter('netgen_open_weather_map.' . $scope . '.' . $configArray);
-                foreach ($scopeConfig as $key => $value) {
-                    $container->setParameter(
-                        'netgen_open_weather_map.' . $scope . '.' . $configArray . '.' . $key,
-                        $value
-                    );
-                }
-            }
-        }
+        $cacheConfiguration->replaceArgument(0, $config['cache_settings']['handler']);
+        $cacheConfiguration->replaceArgument(1, $config['cache_settings']['ttl']);
+        $cacheConfiguration->replaceArgument(2, $config['cache_settings']['server']);
+        $cacheConfiguration->replaceArgument(3, $config['cache_settings']['port']);
     }
 }
