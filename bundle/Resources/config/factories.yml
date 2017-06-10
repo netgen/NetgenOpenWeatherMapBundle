@@ -9,6 +9,9 @@ services:
         class: Marek\OpenWeatherMap\API\Value\Configuration\APIConfiguration
         arguments:
             - ''
+            - ''
+            - ''
+            - ''
 
     netgen_open_weather_map.factory.cache_configuration:
         class: Marek\OpenWeatherMap\API\Value\Configuration\CacheConfiguration

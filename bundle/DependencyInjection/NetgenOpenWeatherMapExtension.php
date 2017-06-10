@@ -2,6 +2,7 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\DependencyInjection;
 
+use Marek\OpenWeatherMap\API\Value\Configuration\CacheConfiguration;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -30,8 +31,11 @@ class NetgenOpenWeatherMapExtension extends Extension
 
 
         $cacheConfiguration->replaceArgument(0, $config['cache_settings']['handler']);
-        $cacheConfiguration->replaceArgument(1, $config['cache_settings']['ttl']);
-        $cacheConfiguration->replaceArgument(2, $config['cache_settings']['server']);
-        $cacheConfiguration->replaceArgument(3, $config['cache_settings']['port']);
+
+        if ($config['cache_settings']['handler'] === CacheConfiguration::MEMCACHED) {
+            $cacheConfiguration->addArgument($config['cache_settings']['ttl']);
+            $cacheConfiguration->addArgument($config['cache_settings']['server']);
+            $cacheConfiguration->addArgument($config['cache_settings']['port']);
+        }
     }
 }
