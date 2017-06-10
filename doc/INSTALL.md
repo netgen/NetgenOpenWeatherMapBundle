@@ -56,8 +56,8 @@ netgen_open_weather_map:
                language: 'en' # Please check http://openweathermap.org/ for this one
                type: 'accurate' # like or accurate
            cache_settings:
-               handler: 'stash' # stash, memcached or null
-               ttl: 3600 # required for memcached and stash
+               handler: 'memcached' # memcached or null
+               ttl: 3600 # required for memcached
                server: localhost # required for memcached
                port: 11211 # required for memcached
 ```

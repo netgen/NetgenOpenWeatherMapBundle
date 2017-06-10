@@ -2,181 +2,141 @@
 
 namespace Netgen\Bundle\OpenWeatherMapBundle\Tests\Controller;
 
+use Marek\OpenWeatherMap\API\Exception\APIException;
+use Marek\OpenWeatherMap\API\Exception\BadRequestException;
+use Marek\OpenWeatherMap\API\Exception\NotFoundException;
+use Marek\OpenWeatherMap\API\Weather\Services\AirPollutionInterface;
 use Netgen\Bundle\OpenWeatherMapBundle\Controller\AirPollutionController;
-use Netgen\Bundle\OpenWeatherMapBundle\Core\AirPollution;
-use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotAuthorizedException;
-use Netgen\Bundle\OpenWeatherMapBundle\Exception\NotFoundException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 class AirPollutionControllerTest extends TestCase
 {
-    public function testCallOzoneDataWithDatetimeStringCurrent()
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $airPollution;
+
+    /**
+     * @var AirPollutionController
+     */
+    protected $controller;
+
+    public function setUp()
     {
-        $airPollution = $this->getMockBuilder(AirPollution::class)
+        $this->airPollution = $this->getMockBuilder(AirPollutionInterface::class)
             ->disableOriginalConstructor()
-            ->setMethods(array('fetchOzoneData'))
+            ->setMethods(array('fetchOzoneData', 'fetchCarbonMonoxideData', 'fetchSulfurDioxideData', 'fetchNitrogenDioxideData'))
             ->getMock();
 
-        $airPollution->expects($this->once())
+        $this->controller = new AirPollutionController($this->airPollution);
+    }
+    public function testCallOzoneDataWithDatetimeStringCurrent()
+    {
+        $this->airPollution->expects($this->once())
             ->willReturn('some_data')
             ->method('fetchOzoneData');
 
-        $airPollutionController = new AirPollutionController($airPollution);
-        $response = $airPollutionController->getOzoneData(12.7, 45.3, 'current');
+        $response = $this->controller->getOzoneData(12.7, 45.3, 'current');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testCallOzoneDataWithDatetimeAsInvalidDate()
     {
-        $airPollution = $this->getMockBuilder(AirPollution::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fetchOzoneData'))
-            ->getMock();
-
-        $airPollution->expects($this->once())
+        $this->airPollution->expects($this->once())
             ->willReturn('some_data')
             ->method('fetchOzoneData');
 
-        $airPollutionController = new AirPollutionController($airPollution);
-        $response = $airPollutionController->getOzoneData(12.7, 45.3, 'test');
+        $response = $this->controller->getOzoneData(12.7, 45.3, 'test');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testCallOzoneDataWithValidDatetimeString()
     {
-        $airPollution = $this->getMockBuilder(AirPollution::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fetchOzoneData'))
-            ->getMock();
-
-        $airPollution->expects($this->once())
+        $this->airPollution->expects($this->once())
             ->willReturn('some_data')
             ->method('fetchOzoneData');
 
-        $airPollutionController = new AirPollutionController($airPollution);
-        $response = $airPollutionController->getOzoneData(12.7, 45.3, 'test');
+        $response = $this->controller->getOzoneData(12.7, 45.3, 'test');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testCallOzoneDataWithNotAuthorizedException()
     {
-        $airPollution = $this->getMockBuilder(AirPollution::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fetchOzoneData'))
-            ->getMock();
-
-        $airPollution->expects($this->once())
-            ->willThrowException(new NotAuthorizedException('Not authorized'))
+        $this->airPollution->expects($this->once())
+            ->willThrowException(new BadRequestException("Bad request", APIException::BAD_REQUEST))
             ->method('fetchOzoneData');
-
-        $airPollutionController = new AirPollutionController($airPollution);
-        $response = $airPollutionController->getOzoneData(12.7, 45.3, 'current');
+        
+        $response = $this->controller->getOzoneData(12.7, 45.3, 'current');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testCallOzoneDataWithNotFoundException()
     {
-        $airPollution = $this->getMockBuilder(AirPollution::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fetchOzoneData'))
-            ->getMock();
-
-        $airPollution->expects($this->once())
-            ->willThrowException(new NotFoundException('Not found'))
+        $this->airPollution->expects($this->once())
+            ->willThrowException(new NotFoundException("Not found", APIException::NOT_FOUND))
             ->method('fetchOzoneData');
 
-        $airPollutionController = new AirPollutionController($airPollution);
-        $response = $airPollutionController->getOzoneData(12.7, 45.3, 'current');
+        $response = $this->controller->getOzoneData(12.7, 45.3, 'current');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testCallCarbonMonoxideDataWithDatetimeAsInvalidDate()
     {
-        $airPollution = $this->getMockBuilder(AirPollution::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fetchCarbonMonoxideData'))
-            ->getMock();
-
-        $airPollution->expects($this->once())
+        $this->airPollution->expects($this->once())
             ->willReturn('some_data')
             ->method('fetchCarbonMonoxideData');
 
-        $airPollutionController = new AirPollutionController($airPollution);
-        $response = $airPollutionController->getCarbonMonoxideData(12.7, 45.3, 'test');
+        $response = $this->controller->getCarbonMonoxideData(12.7, 45.3, 'test');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testCallCarbonMonoxideDataWithCurrentAsDatetimeString()
     {
-        $airPollution = $this->getMockBuilder(AirPollution::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fetchCarbonMonoxideData'))
-            ->getMock();
-
-        $airPollution->expects($this->once())
+        $this->airPollution->expects($this->once())
             ->willReturn('some_data')
             ->method('fetchCarbonMonoxideData');
 
-        $airPollutionController = new AirPollutionController($airPollution);
-        $response = $airPollutionController->getCarbonMonoxideData(12.7, 45.3, 'current');
+        $response = $this->controller->getCarbonMonoxideData(12.7, 45.3, 'current');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testCallCarbonMonoxideDataWithValidDatetimeString()
     {
-        $airPollution = $this->getMockBuilder(AirPollution::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fetchCarbonMonoxideData'))
-            ->getMock();
-
-        $airPollution->expects($this->once())
+        $this->airPollution->expects($this->once())
             ->willReturn('some_data')
             ->method('fetchCarbonMonoxideData');
 
-        $airPollutionController = new AirPollutionController($airPollution);
-        $response = $airPollutionController->getCarbonMonoxideData(12.7, 45.3, 'test');
+        $response = $this->controller->getCarbonMonoxideData(12.7, 45.3, 'test');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testCallCarbonMonoxideDataWithNotAuthorizedException()
     {
-        $airPollution = $this->getMockBuilder(AirPollution::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fetchCarbonMonoxideData'))
-            ->getMock();
-
-        $airPollution->expects($this->once())
-            ->willThrowException(new NotAuthorizedException('Not authorized'))
+        $this->airPollution->expects($this->once())
+            ->willThrowException(new BadRequestException("Bad request", APIException::BAD_REQUEST))
             ->method('fetchCarbonMonoxideData');
 
-        $airPollutionController = new AirPollutionController($airPollution);
-        $response = $airPollutionController->getCarbonMonoxideData(12.7, 45.3, 'test');
+        $response = $this->controller->getCarbonMonoxideData(12.7, 45.3, 'test');
 
         $this->assertInstanceOf(Response::class, $response);
     }
 
     public function testCallCarbonMonoxideDataWithNotFoundException()
     {
-        $airPollution = $this->getMockBuilder(AirPollution::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('fetchCarbonMonoxideData'))
-            ->getMock();
-
-        $airPollution->expects($this->once())
-            ->willThrowException(new NotFoundException('Not found'))
+        $this->airPollution->expects($this->once())
+            ->willThrowException(new NotFoundException("Not Found", APIException::NOT_FOUND))
             ->method('fetchCarbonMonoxideData');
 
-        $airPollutionController = new AirPollutionController($airPollution);
-        $response = $airPollutionController->getCarbonMonoxideData(12.7, 45.3, 'test');
+        $response = $this->controller->getCarbonMonoxideData(12.7, 45.3, 'test');
 
         $this->assertInstanceOf(Response::class, $response);
     }
